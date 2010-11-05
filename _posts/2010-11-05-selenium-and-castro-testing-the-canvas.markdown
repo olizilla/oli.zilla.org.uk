@@ -39,12 +39,12 @@ How to test 'untestable' applications
 "Wouldn't it be cool if you could motorise all the pins in a Pin Art box"
 
 <div class="right">
-![Time for tea](http://www.mutr.co.uk/images/pinart.jpg) 
+	<img src="http://www.mutr.co.uk/images/pinart.jpg" title="Time for tea" alt="Time for tea"/> 
 </div>
 
 [pinmachine.org][4] provides our example of the untestable web app. The bulk of the UI is created in a new fangled html5 canvas element using three.js to draw 3d pins on to it. The pins are arranged in a grid and can be given commands to raise and lower them independently to form patterns and glyphs.
 
-All this UI magic is exposed to the dom as a single canvas node in the dom, hiding its internal structure. This poses a problem for automated testing; you cannot inspect and make assertions about the state of a canvas like you can with the dom.
+All this UI magic is exposed as a single canvas node in the dom, hiding its internal structure. This poses a problem for automated testing; you cannot inspect and make assertions about the state of a canvas like you can with the dom.
 
 Well, the theory is, the Javascript object model is good place to start (the JOM!? [@hugs][@] coins a new acronym). As you programatically build up your canvas you create a js structure that you can inspect, make assertions and even trigger interactions on.
 
@@ -54,7 +54,7 @@ Pinmachine has an in page js powered terminal that allows you to interact with t
 	show("3")       // lifts the pins to diplay a 3 glyph
 	show(3 << 5)    // bit shifing pin lifting, ye haa.
 
-So in this case a Selenuim test can write expressions to the terminal, and simulate the user interactions. In a similar fashion Brightcove has a js interface to their video player and instrumented to fire events during playback. This allows the, to write Selenuim tests that trigger playback and then assert that the video started playing by listening for the events.
+So in this case a Selenuim test can write expressions to the terminal, simulating user interactions. In a similar fashion Brightcove has a js interface to their video player and instrumentation to fire events during playback. This allows the, to write Selenuim tests that trigger playback and then assert that the video started playing by listening for the events.
 
 > "It's kinda like particle accelerators. You have to press the fire button and watch for the backsplatter to know you just smashed atoms"
 
