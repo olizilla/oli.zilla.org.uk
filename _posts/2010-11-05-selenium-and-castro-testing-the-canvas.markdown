@@ -56,7 +56,7 @@ Pinmachine has an in page js powered terminal that allows you to interact with t
 
 So in this case a Selenuim test can write expressions to the terminal, and simulate the user interactions. In a similar fashion Brightcove has a js interface to their video player and instrumented to fire events during playback. This allows the, to write Selenuim tests that trigger playback and then assert that the video started playing by listening for the events.
 
-> "It's kinda like particle accelerators. You press the fire button and see the backsplatter to know you just smashed atoms"
+> "It's kinda like particle accelerators. You have to press the fire button and watch for the backsplatter to know you just smashed atoms"
 
 It's one step removed from actually being able to read and inspect the dom, but what else are you going to do?
 
@@ -76,7 +76,7 @@ Notes, Quotes & Links
 ---------------------
 * "Selnium 2, look out for a good beta by christmas."
 * "There are 2 problems in the world... the off by 1 error..."
-* "Think of your user interface testing like your apple commercial"
+* "Think of your user interface test recording like your apple commercial"
 * Flexpilot - integrates with selenium for flex testing.
 * [http://saucelabs.com][1] "Cloud-scale Selenium Testing."
 * [http://www.meetup.com/london-software-craftsmanship][2]
