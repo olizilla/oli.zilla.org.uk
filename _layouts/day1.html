@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<link href='http://fonts.googleapis.com/css?family=Inconsolata&subset=latin' rel='stylesheet' type='text/css'>
+		<style type="text/css">
+body
+{
+	color: #333;
+	font-family: 'Inconsolata', monospace;
+	font-size: 15px;
+	text-align: left;
+	margin:0;
+	padding:0;
+
+	padding-bottom: 500px;
+	background: white url(http://oli.zilla.org.uk/stuff/zilla/olizilla.png) no-repeat bottom;
+}
+
+.header, 
+.content,
+.footer 
+{
+	padding:5px 1em;
+}
+
+.header
+{
+	background: #333;
+	color:#DDD;
+}
+
+h1
+{
+/*
+	background: #911;
+	color: {{header.color}};
+	margin:0 -5px;
+	padding:0 5px;
+*/
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active
+{
+	color:#911;
+}
+
+.header a
+{
+	color:inherit;
+	text-decoration: none;
+}
+
+pre
+{
+	background-color: #EEE;
+	padding: 5px;
+	clear: both;
+}
+
+code 
+{
+	color: green;
+}
+
+blockquote {
+	font-family: Georgia, serif;
+	font-style: italic;
+}
+
+.left {
+float:left;
+}
+.right {
+float:right;
+}
+		</style>
+		<title>{{post.title}}</title>
+	</head>
+	<body>
+		<div class="header">
+			<div><a href="/blog">Is that supposed to go there? It doesn't look right to me...</a></div>
+			<div>A blog by <a href="http://twitter.com/olizilla">olizilla</a></div>
+		</div>
+		<div class="content">
+				{{ content }}
+		</div>
+		<div class="footer">
+		</div>
+	</body>
+</html>
