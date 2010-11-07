@@ -23,7 +23,7 @@ Dailies - The raw unedited footage, that shows general direction and progress fr
 
 In software dev, we have stakeholders too, and sometimes the html test reports aren't quite enough to keep them happy. Wouldn't it be nice if they could see our dailies, some artefact of our days work, so they can see for themselves that all is well, and those new features are on the way.
 
-*Selenium + Castro = Automated screencasts*
+**Selenium + Castro = Automated screencasts**
 
 Write your Selenium tests as normal, then bookend them with calls to [Castro][3]. Selenium will drive the browser through some interesting aspect of your web app, and Castro will record the screen as it goes. Run the test suite every day, and publish the generated screencasts along with the rest of your test reports. Anyone who wants to see how things are going now has a shiny video walkthrough of where the project is at.
 
@@ -56,26 +56,27 @@ Pinmachine has an in page js powered terminal that allows you to interact with t
 
 So in this case a Selenuim test can write expressions to the terminal, simulating user interactions.
 
-An online video provider has a js interface to their video player and instrumentation to fire events during playback. This allows for Selenuim tests that trigger playback and then assert that the video started playing by listening for the events.
+HTML5 video players present a similar problem for testing. One solution already in use relies on exposing a js api to your player controls and instrumentation to fire events to the console during playback. This allows for Selenuim tests that trigger playback and then assert that the video started playing by listening for the events.
 
 > "It's kinda like particle accelerators. You have to press the fire button and watch for the backsplatter to know you just smashed atoms"
 
-It's one step removed from actually being able to read and inspect the dom, but what else are you going to do?
+It's one step removed from actually being able to read and inspect the dom, but what else are you going to do? To continue automated UI testing at the frontiers of html5 you are going to have to think about exposing some sort of testable api to your new widgets. With a canvas tag built up with js you get something sensible for free. With a video player you are going to have to give it some more thought.
 
 
 The union
 ---------
-Screencasting the automated testing of the untestable app. The next step is to wire up castro so that your Selenium test runs through all the interactions
+Screencasting the automated testing of the untestable app. 
 
-In the [pinmachine.org][4] example, having a visible in page terminal window is the key. It shows the *watcher of the screencast* what the selenium test is up to; they can see the action and the result.
+In the [pinmachine.org][4] example, having a visible in page terminal window is the key. It shows the *watcher of the screencast* what the Selenium test is up to; they can see the action and the result. The screencast becomes part of the test process, a QA person can scan through the video to check for UI anomalies.
 
 Personally I love the idea. It's not meant as a replacement for all the other reporting metrics, but a user friendly complementary document, that provides a background radiation style way to demonstrate progress to them that care to look. It depends on the project and the stakeholders involved how much value it adds, but automate it and dump it on your continuous integration server (thanks hudson) and it might just be the thing that keeps your investors investing, and the testers testing.
 
 You also end up with an archive of screencasts for your project which you can turn into your blooper reel, complete with directors commentary after a release. Add dramatic music and playback the hi-speed dubbing version for a photo a day, watch how I change but stay the same, [youtube favourite, style video...](http://www.youtube.com/watch?v=UItNVuBI9UI)
 
 
-Notes, Quotes & Links
----------------------
+Notes, Quotes, Links, & Thanks
+------------------------------
+* A big thank you to [@hugs][@] for the talk and going above and beyond the call of duty in proof-reading this post. All quotes, ideas, and new acronyms mentioned here are his.
 * "Selnium 2, look out for a good beta by christmas."
 * "There are 2 problems in the world... the off by 1 error..."
 * "Think of your user interface test recording like your apple commercial"
@@ -84,6 +85,7 @@ Notes, Quotes & Links
 * [http://www.meetup.com/london-software-craftsmanship][2]
 * [http://github.com/hugs/castro][3] "screen/cast ro/bot,  a tiny fork of pyvnc2swf, with a smidge of awesome on the side"
 * [http://pinmachine.org][4] "A [@hugs][@] creation, the culmination of a 10 year itch. A browser controlled pin art simulator with the power to move the real thing."
+
 
 
 
