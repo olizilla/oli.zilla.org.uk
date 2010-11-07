@@ -1,68 +1,81 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 	<head>
-		<link href='http://fonts.googleapis.com/css?family=Inconsolata&subset=latin' rel='stylesheet' type='text/css'>
+		<link rel="icon" type="image/png" href="http://www.gravatar.com/avatar/9d1124bf8f7fe1b93a92a7927accd9a9?s=80"  />
+		<link href='http://fonts.googleapis.com/css?family=Inconsolata&subset=latin' rel='stylesheet' type='text/css' />
 		<style type="text/css">
-body
-{
+body {
+	background: white;
 	color: #333;
-	font-family: 'Inconsolata', monospace;
+	font-family: 'Inconsolata', Monaco, monospace;
 	font-size: 15px;
 	text-align: left;
 	margin:0;
 	padding:0;
-
-	padding-bottom: 500px;
-	background: white url(http://oli.zilla.org.uk/stuff/zilla/olizilla.png) no-repeat bottom;
 }
 
-.header, 
-.content,
-.footer 
-{
-	padding:5px 1em;
-}
-
-.header
-{
-	background: #333;
-	color:#DDD;
-}
-
-h1
-{
-/*
-	background: #911;
-	color: {{header.color}};
-	margin:0 -5px;
-	padding:0 5px;
-*/
+h1 {
 }
 
 a:link,
 a:visited,
 a:hover,
-a:active
-{
+a:active {
 	color:#911;
+	text-decoration: none;
 }
 
-.header a
-{
+img {
+	margin: 0;
+	padding: 0;
+}
+
+.header,
+.content,
+.footer {
+	padding:5px 3.5em;
+}
+
+.header {
+	color:#DDD;
+	background: #444;
+	padding:0;
+}
+
+.content {
+
+}
+
+.header img {
+	height: 3em;
+	margin-right: 0.2em;
+	vertical-align: top;
+}
+
+.header .text {
+	display: inline-block;
+	margin-top: 4px;
+}
+
+.header .title {
+	color: white;
+}
+
+.header a {
 	color:inherit;
 	text-decoration: none;
 }
 
-pre
-{
-	background-color: #EEE;
-	padding: 5px;
+pre {
 	clear: both;
 }
 
-code 
-{
-	color: green;
+code {
+	display: block;
+	padding:10px 15px;
+	background-color: #444;
+	color: #EEE;
+	font-family: "Andale Mono", Monaco, monospace;
 }
 
 blockquote {
@@ -73,21 +86,32 @@ blockquote {
 .left {
 float:left;
 }
+
 .right {
 float:right;
+}
+
+.olizilla {
+	display: block;
+	height:500px;
+	background: white url('http://oli.zilla.org.uk/stuff/zilla/olizilla.png') no-repeat bottom middle;
 }
 		</style>
 		<title>{{post.title}}</title>
 	</head>
 	<body>
 		<div class="header">
-			<div><a href="/blog">Is that supposed to go there? It doesn't look right to me...</a></div>
-			<div>A blog by <a href="http://twitter.com/olizilla">olizilla</a></div>
+			<img src="http://www.gravatar.com/avatar/9d1124bf8f7fe1b93a92a7927accd9a9?s=80" />
+			<div class="text">
+				<div class="title"><a href="/blog">Is that supposed to go there? It doesn't look right to me...</a></div>
+				<div class="auth">A blog by <a href="http://twitter.com/olizilla">olizilla</a></div>			
+			</div>		
 		</div>
 		<div class="content">
 				{{ content }}
 		</div>
 		<div class="footer">
+			<div class="post"
 		</div>
 	</body>
 </html>
