@@ -1,0 +1,42 @@
+ideas
+
+unicode
+cycle through upper unicode 1 char at a time in js
+
+ascii
+js to write alphabet in characters
+
+    A
+    
+  AAAAA
+ AA   AA
+AA     AA
+
+
+again, full screen
+
+
+
+text maze, move character around, 1 em at a time.
+
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+a  
+a   aaaaaaaaaaa
+a   a
+a   a
+a   a
+a x a
+a   a
+
+
+
+moire
+slide line drawings over each other
+
+
+space
+b&w space animations, background static on exponential fade in, to bleeps, to body stuff
+
+unicode story / game
+
+a story told in single chars, desolves into interactive chunks.

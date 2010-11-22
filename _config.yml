@@ -1,1 +1,8 @@
+# _config.yaml - tell jekyll to do thy bidding
+################################################################################
+
+# automatically process changes to source files
 auto: true
+
+# Don't process or copy to _site
+exclude: _notes

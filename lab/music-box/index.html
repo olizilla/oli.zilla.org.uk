@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Jamming Pandas</title>
+<style type="text/css">
+	* {margin:0;}
+	body {
+	background-color:#889E60;
+	font-family: 'Comic Sans MS';
+	margin:0; padding:0;
+	}
+	h1 { font-size: 5em; color:white}
+	.wrap { text-align: center;}
+	.box {display: inline-block; height: 300px; margin:20px; vertical-align:text-bottom;}
+	.box img {position:relative; left:0px; top:0px;}
+	.playing {}
+	.notice {background-color:#911; padding:10px;}
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+</head>
+<body>
+
+<div id="notice-no-js" class="notice">
+	<p>
+You need JavaScript enabled in your browser preferences to join in Panda Jam!  
+	</p>
+</div>
+
+<div id="notice-no-audio" class="notice" style="display:none">
+	<p>
+This browser doesn't know how to do <a href="http://www.happyworm.com/jquery/jplayer/HTML5.Audio.Support/">html audio</a>, So you won't be able to hear the Panda's Jam. The latest versions of <a href="http://www.mozilla.com/firefox/">Firefox</a>, <a href="http://www.apple.com/safari/">Safari</a> or <a href="http://www.google.com/chrome">Chrome</a> do, give them a try.  
+	</p>
+</div>
+
+<div class="wrap">
+<h1>Jamming Pandas</h1>
+<div id="1" class="box" xa="1" xb="2">
+	<img src="img/pi/1.x.png" />
+</div>
+<div id="2" class="box" xa="5" xb="6">
+	<img src="img/pi/5.x.png" />
+</div>
+<div id="3" class="box" xa="3" xb="4">
+	<img src="img/pi/3.x.png" />
+</div>
+<div id="4" class="box" xa="2" xb="8">
+	<img src="img/pi/2.x.png" />
+</div>
+
+<!-- 
+<script type="text/javascript">
+var audioElement = document.createElement('audio');
+audioElement.setAttribute('src', 'audio/1.ogg');
+audioElement.play();
+</script>
+
+<audio id="s1" class="" src="audio/1.wav" >
+NO AUDIO FOR YOU
+</audio>
+ -->
+
+</div>
+
+<script type="text/javascript">
+
+$('#notice-no-js').hide();
+
+if ( !(document.createElement('audio').canPlayType) ) {
+	$('#notice-no-audio').show();
+}
+
+Math.randomMax = function(maxVal,asFloat){
+	var val = Math.random()*maxVal;
+	return asFloat?val:Math.round(val);
+}
+
+function randomHeaderColor() {
+	var colors = ["aqua","black","blue","fuchsia","gray","green","lime","maroon","navy","olive","purple","red","silver","teal","white","yellow","orange"];
+	var randomColor = colors[Math.randomMax(colors.length)];
+	$('h1').css("color", randomColor);
+	randomColor = colors[Math.randomMax(colors.length)];
+	$('body').css("background-color", randomColor);
+}
+
+function pandaDance(){
+	var rand = Math.randomMax(20);
+	$(".box img").animate({left:'+='+Math.randomMax(30),top:'+='+Math.randomMax(30)});
+}
+
+function pandaPrance(){
+	var rand = Math.randomMax(20);
+	$(".box img").animate({left:'-='+Math.randomMax(30),top:'-='+Math.randomMax(30)});
+}
+
+setInterval('randomHeaderColor()', 500);
+setInterval('pandaDance()', 500);
+setInterval('pandaPrance()', 500);
+
+$().ready(function(){
+
+$('.box').click( function() {
+
+	function getImageSrc(id)  {
+		return 'img/pi/' + id + '.x.png'; 		
+	}
+
+/*
+	function getAudioSrc(id)  {
+		return 'audio/Panda' + id + '.wav';
+	}
+*/
+
+	function getAudioSrc(id) {
+		var audio = "bork";
+		switch (parseInt(id))
+		{
+		case 1: audio = 'http://www.ridhughz.demon.co.uk/wav/aoogah.wav'; break;
+		case 2: audio = 'http://www.ridhughz.demon.co.uk/wav/internet.wav'; break;
+		case 3: audio = 'http://www.ridhughz.demon.co.uk/wav/LetsBurnIt.wav'; break;
+		case 4: audio = 'http://www.ridhughz.demon.co.uk/wav/SHUTDOWN.WAV'; break;
+		}
+		return audio;
+	}
+	
+
+	if ($(this).hasClass("playing")) {
+		$(this).removeClass("playing");
+		$(this).children('img').attr('src', getImageSrc( $(this).attr('xa')) );
+		$(this).children('audio').trigger('pause');
+	} else {
+		$(this).addClass("playing");
+
+		$(this).children('img').attr('src', getImageSrc( $(this).attr('xb')) );
+		var audioElement = document.createElement('audio');
+		audioElement.setAttribute('src', getAudioSrc( $(this).attr('id') ) );
+		audioElement.play();
+		$(this).append(audioElement);
+		$(this).children('audio').bind('ended',{},function() { $(this).trigger('play');	});
+	}	
+});
+
+});
+</script>
+
+</body>
+ 
+</html>

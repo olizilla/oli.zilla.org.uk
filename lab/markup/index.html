@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+<style>
+html, body
+{
+margin:0; border:0 none; padding:0;
+width:100%; height:100%;
+background-color:#333; color:black;
+font-family:monospace; font-size:10px;
+}
+#header h1{color:#911; text-align:center; font-size:4em;}
+#content{text-align:center}
+.output
+{
+text-align:left;	
+display:inline-block;
+ border:solid 1px #999; margin:0;
+width:45%;
+height:20em;
+background-color:#ddd;
+}
+	.output h2
+	{
+		padding:0;margin:-6px -6px 10px;border-bottom:1px solid lightGrey;
+		background-color:white; color:black; text-align:center;
+	}
+#footer{}
+#footer textarea
+{
+display:block;
+padding:6px; border:0 none; margin:1em auto 0;
+
+width:46%; height:5em;
+}
+
+#input,
+.output
+{
+padding:6px;
+font-size:2em;	
+}
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+</head>
+<body>
+<div id="header">
+	<h1>Markup</h1>
+</div>
+<div id="content">
+	<div class="output">	
+		<h2>Markdown</h2>
+		<div id="markdown">
+			The title
+			=========
+		</div>
+	</div>	
+	<div class="output">
+		<h2>Textile</h2>		
+		<div id="textile">
+			h1. The title
+		</div>
+	</div>	
+</div>
+<div id="footer">
+	<div class="input-box">
+	<h2>Input</h2>
+	<textarea id="input">Type here...</textarea>
+	</div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#input").keyup(function() {
+        var txt = $(this).val(); 
+    	$(".output div").html(txt);
+    });
+  });
+</script>
+</body>
+</html>
+<!--
+XSLT server notes
+
+XHTML ---D [ apply xslt ] ---D text output
+
+generically
+take some xml and an xslt and return result.
+
+specifically
+HTML --D XHTML --D XSLT ---D result
+
+
+-->

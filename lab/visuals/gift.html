@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Visuals v1</title>
+		<style type="text/css">
+		html, body, .full-screen, .full-screen div, .full-screen img {
+			display:block;
+			height:100%;
+			width:100%;
+			border:0 none;
+			margin:0;
+			padding:0;
+			outline-style:none;
+			outline-width:0;
+			outline-color:-moz-use-text-color;
+		}
+		
+		.cmd {
+			position: absolute;
+			bottom:0;	
+			width: 100%;
+		}
+			.cmd input {
+				border: none;
+				width:inherit;
+				height:2em;
+				font-family: monospace;
+				font-size:1.2em;
+				color:black;
+				background: white;
+				opacity:0.6;
+				padding:2px 0px;
+			}
+		</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js" type="text/javascript" ></script>
+
+	</head>
+	<body>
+		<div class="full-screen" id="images">
+			<img />
+		</div>
+		<div class="cmd">
+					<input type="text" id="foo" value="baa"/>
+		</div>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('#foo').keydown(function(event) {
+				  if (event.which == '13') {
+				  	event.preventDefault();
+     				giffer($('#foo').val());
+					}					
+				});
+								
+			});
+			
+			function giffer(search) {
+				$.getJSON("http://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=animated+"+search+"+filetype:gif&callback=?",
+	      function(data){
+	        $.each(data.responseData.results, function(i,item){
+						$("#images img").replaceWith($("<img/>").attr("src", item.unescapedUrl) )
+	          if ( i == 0 ) return false;
+	        });
+	      });
+			}
+			
+			giffer($('#foo').val());
+		</script>
+	</body>
+</html>
+
+<!-- 
+url: http://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=animated+filetype:gif
+query: ?v=1.0&q=animated+filetype:gif
+
+give us 5 results for file type gif, for search term animated
+
+we pass the json search results via the data variable into a function that splits up the results via:
+		$.each(data.responseData.results
+		
+where "responseData.results" is specific to the json structure returned from the google.
+
+it then passes each item to another function
+		function(i,item){
+            $("<img/>").attr("src", item.unescapedUrl).appendTo("#images");
+            if ( i == 3 ) return false;
+          });
+
+which extracts the "unescapedUrl" and sets it as the src of the image...
+
+
+Lessons learned
+---------
+ * you can't call .value on a jQuery returned by $('#id')
+
+-->
+
+<!-- http://www.google.co.uk/images?as_q=foo&hl=en&prmdo=1&biw=1241&bih=796&btnG=Google+Search&as_epq=&as_oq=&as_eq=&as_sitesearch=&safe=images&as_st=y&tbs=isch:1,ift:gif 
+
+http://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=animated+filetype:gif
+
+				$.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?tags=cat&tagmode=any&format=json&jsoncallback=?",
+        function(data){
+          $.each(data.items, function(i,item){
+            $("<img/>").attr("src", item.media.m).appendTo("#images");
+            if ( i == 3 ) return false;
+          });
+        });
+-->

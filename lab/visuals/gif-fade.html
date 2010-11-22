@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Globoloco</title>
+	<meta name="description" content="Moving pictures from the nooks and crannies of my mind" />
+	<meta name="author" content="OliZilla" />
+	<style type="text/css">
+body {
+	background-color:black;
+}	
+	
+html, body.full-screen, body.full-screen * {
+	display:block;
+	height:100%;
+	width:100%;
+	border:0 none;
+	margin:0;
+	padding:0;
+	outline-style:none;
+	outline-width:0;
+	outline-color:-moz-use-text-color;
+}
+
+img {position:absolute; top:0; left:0}
+
+.fg {
+	z-index:10;
+}
+.bg {
+	z-index:1;
+}
+	</style>
+	<!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>-->
+	<script type="text/javascript" src="libs/jquery/1.4.2/jquery.min.js"></script>
+
+	<script type="text/javascript">
+
+function show() {
+		if ($(".bg").hasClass("loaded")) {
+			swap();
+			$(".fg").fadeIn(2500, update);
+		}
+}
+	
+function update() {
+		$(".bg").hide();
+		$(".bg").removeClass("loaded");
+		$(".bg").attr("src", "img/random.php?noise=" + Math.floor(Math.random()*101));
+}
+
+function swap() {
+	var bg = $(".bg")
+	var fg = $(".fg")
+	bg.removeClass("bg");
+	bg.addClass("fg");
+ 	fg.removeClass("fg");
+ 	fg.addClass("bg");
+}
+
+function getParameterByName( name )
+{
+  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+  var regexS = "[\\?&]"+name+"=([^&#]*)";
+  var regex = new RegExp( regexS );
+  var results = regex.exec( window.location.href );
+  if( results == null )
+    return "";
+  else
+    return decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+function howFast() {
+	var speed = getParameterByName("speed");
+	if (!speed) speed = "8";
+	speed = speed+"000";
+/* 	alert(speed); */
+	return speed;
+}
+
+$(document).ready(function() {
+
+// load fg fadein update repeat
+
+	show();
+	
+	$('img').load(function(){
+		$(this).addClass("loaded");
+	});
+	
+	setInterval(show, howFast());
+
+});
+
+	</script>	
+</head>
+<body class="full-screen">
+	<a href="#">
+		<img id="x" class="fg" src="img/random.php" />
+		<img id="y" class="bg" src="img/random.php" style="display:none;"/>
+	</a>
+
+</body>
+<!-- Images mostly from http://commons.wikimedia.org/ -->
+<!-- Site design by http://theinterestedreader.co.uk -->
+</html>
