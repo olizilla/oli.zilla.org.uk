@@ -103,27 +103,63 @@ blockquote {
 }
 
 .left {
-float:left;
+	float:left;
 }
 
 .right {
-float:right;
+	float:right;
 }
 
 .olizilla {
 	display: block;
 	height:500px;
-	background:url('http://oli.zilla.org.uk/stuff/zilla/olizilla.png') no-repeat bottom right;
+	background:url('http://oli.zilla.org.uk/stuff/zilla/olizilla.png') no-repeat bottom left;
 }
+
+.experiment {
+	display: inline-block;
+	margin: 5px 20px;
+}
+
+.olizilla #tweet {
+	padding:119px 0 0 462px;
+}
+
+#tweet a img {
+	border: none;
+	display: inline;
+	vertical-align: top;
+}
+#tweet ul {
+	display: inline;
+	margin:0;
+	padding:0;
+} 
+#tweet li {
+	display: inline;
+	list-style: none;
+	margin:0;
+	padding:0;
+}
+#tweet small {
+	display: block;
+	text-align: right;
+	margin-top: 10px;
+}
+#tweet small img {
+	margin:0 5px 0;
+	vertical-align: text-bottom;
+}
+
 		</style>
-		<title>{{post.title}}</title>
+		<title>{{ page.title }}</title>
 	</head>
 	<body>
 		<div class="header">
 			<img src="http://www.gravatar.com/avatar/9d1124bf8f7fe1b93a92a7927accd9a9?s=80" onclick="window.open('/subconscious')"/>
 			<div class="text">
 				<div class="title"><a href="/" title="it doesn't look right to me...">Is that supposed to go there?</a></div>
-				<div class="auth">A blog by <a href="http://twitter.com/olizilla">olizilla</a></div>			
+				<div class="subtitle">A blog by <a href="http://twitter.com/olizilla">olizilla</a></div>			
 			</div>		
 		</div>
 		<div class="content">

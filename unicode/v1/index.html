@@ -1,0 +1,31 @@
+---
+layout: xhtml1-strict
+title: Unicode - Oli Evans
+---
+<style type="text/css">
+body {
+	font-family:monospace;
+}
+#x {
+	text-align:center;
+	margin-top: 0.5em;
+}
+</style>
+
+<div id="container">
+	<div id="x">Set your vcr to record now...</div>
+</div>
+
+<script type="text/javascript">
+var n = document.getElementById("x");
+n.style.fontSize = (window.innerHeight / 2) + "px";
+
+var c = 30;
+function nextChar() {	
+	n.firstChild.nodeValue = String.fromCharCode( c );
+	c = c+1;
+}
+
+nextChar();
+setInterval("nextChar()",100);
+</script>
