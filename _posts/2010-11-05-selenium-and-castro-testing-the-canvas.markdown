@@ -42,13 +42,13 @@ How to test 'untestable' applications
 	<img src="http://www.mutr.co.uk/images/pinart.jpg" title="Time for tea" alt="Time for tea"/>
 </div>
 
-[pinmachine.org][4] provides our example of the untestable web app. The bulk of the UI is created in a new fangled html5 canvas element using three.js to draw 3d pins on to it. The pins are arranged in a grid and can be given commands to raise and lower them independently to form patterns and glyphs.
+[pinthing.com][4] provides our example of the untestable web app. The bulk of the UI is created in a new fangled html5 canvas element using three.js to draw 3d pins on to it. The pins are arranged in a grid and can be given commands to raise and lower them independently to form patterns and glyphs.
 
 All this UI magic is exposed as a single canvas node in the dom, hiding its internal structure. This poses a problem for automated testing; you cannot inspect and make assertions about the state of a canvas like you can with the dom.
 
 Well, the theory is, the Javascript object model is good place to start (the JOM!? [@hugs][@] coins a new acronym). As you programatically build up your canvas you create a js structure that you can inspect, make assertions and even trigger interactions on.
 
-Pinmachine has an in page js powered terminal that allows you to interact with the pins.
+pinthing has an in page js powered terminal that allows you to interact with the pins.
 
 	show(3)         // lifts pins 1 and 2, as its a binary display
 	show("3")       // lifts the pins to diplay a 3 glyph
@@ -67,7 +67,7 @@ The union
 ---------
 Screencasting the automated testing of the untestable app. 
 
-In the [pinmachine.org][4] example, having a visible in page terminal window is the key. It shows the *watcher of the screencast* what the Selenium test is up to; they can see the action and the result. The screencast becomes part of the test process, a QA person can scan through the video to check for UI anomalies.
+In the [pinthing.com][4] example, having a visible in page terminal window is the key. It shows the *watcher of the screencast* what the Selenium test is up to; they can see the action and the result. The screencast becomes part of the test process, a QA person can scan through the video to check for UI anomalies.
 
 Personally I love the idea. It's not meant as a replacement for all the other reporting metrics, but a user friendly complementary document, that provides a background radiation style way to demonstrate progress to them that care to look. It depends on the project and the stakeholders involved how much value it adds, but automate it and dump it on your continuous integration server (thanks hudson) and it might just be the thing that keeps your investors investing, and the testers testing.
 
@@ -84,7 +84,7 @@ Notes, Quotes, Links, & Thanks
 * [http://saucelabs.com][1] "Cloud-scale Selenium Testing."
 * [http://www.meetup.com/london-software-craftsmanship][2]
 * [http://github.com/hugs/castro][3] "screen/cast ro/bot,  a tiny fork of pyvnc2swf, with a smidge of awesome on the side"
-* [http://pinmachine.org][4] "A [@hugs][@] creation, the culmination of a 10 year itch. A browser controlled pin art simulator with the power to move the real thing."
+* [http://pinthing.com][4] "A [@hugs][@] creation, the culmination of a 10 year itch. A browser controlled pin art simulator with the power to move the real thing."
 
 
 
@@ -93,5 +93,5 @@ Notes, Quotes, Links, & Thanks
 [1]: http://saucelabs.com "Cloud-scale Selenium Testing."
 [2]: http://www.meetup.com/london-software-craftsmanship
 [3]: http://github.com/hugs/castro "screen/cast ro/bot,  a tiny fork of pyvnc2swf, with a smidge of awesome on the side"
-[4]: http://pinmachine.org "A @hugs creation, the culmination of a 10 year itch. A browser controlled pin art simulator with the power to move the real thing."
+[4]: http://pinthing.com "A @hugs creation, the culmination of a 10 year itch. A browser controlled pin art simulator with the power to move the real thing."
 [@]: http://twitter.com/#!/hugs "Creator, Selenium. Co-founder, Sauce Labs. I make things and think about them."
