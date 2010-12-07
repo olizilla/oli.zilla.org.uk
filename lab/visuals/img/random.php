@@ -14,7 +14,7 @@ $folder = '';
 $exts = 'jpg jpeg png gif';
 
 $files = array(); $i = -1; // Initialize some variables
-if ('' == $folder) $folder = './megamix/';
+if ('' == $folder) $folder = './';
 
 $handle = opendir($folder);
 $exts = explode(' ', $exts);

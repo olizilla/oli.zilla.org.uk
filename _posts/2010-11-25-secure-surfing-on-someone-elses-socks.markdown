@@ -10,7 +10,7 @@ Today I found myself looking down the barrel of an unknown and unsecured wireles
 
 Such a display of generosity warms the cockles, but alas, as a techno-noodler my thoughts immediately turned to the worrying, if over-simplified idea that connecting to such a device would force my laptop to start publicly smearing the contents of my browser, every request, url and search term, over everything in a several meter radius.
 
-When you connect to a secured wireless access point, your communications with that device are encrypted, hindering the casual eavesdropper. When it's not secured, then you are broadcasting your communications in clear text, a bit like shouting your banking details down the telephone at the call center operator whilst sitting on a bus. Then there is the question of whether to trust the access point itself. What if keep your voice down but the call center operator goes on to use your details to maliciously check your balance‽
+When you connect to a secured wireless access point, your communications with that device are encrypted, hindering the casual eavesdropper. When it's not secured, then you are broadcasting your communications in clear text, a bit like shouting your banking details down the telephone at the call center operator whilst sitting on a bus. Then there is the question of whether to trust the access point itself. What if you keep your voice down but the call center operator goes on to use your details to maliciously check your balance‽
 
 Still the technoodler can only see this as an opportunity to put those [funix][funix] lessons to the test, so here is what I did to keep my business secure on an unknown and unsecured access point:
 

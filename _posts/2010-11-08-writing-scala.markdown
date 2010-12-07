@@ -24,7 +24,11 @@ Just different
 Stubbed toe different
 ----------------------
 * equals and == is reversed.
-* If you forget to add the = in a def it means unit return. Combine that with the type inference and you get a method that doesn't return what you think.
+* If you forget to add the = in a def it means unit return. Combine
+that with the type inference and you get a method that doesn't return
+what you think.
+
+* order of mixins is important
 
 
 
