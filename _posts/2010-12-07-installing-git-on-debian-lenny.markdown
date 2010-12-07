@@ -52,7 +52,7 @@ A-HA!, **git-core**!, well of course I love your new hair-do, I just didn't reco
 	$ git --version
 	git version 1.5.6.5
 	
-**NO NO NO.** if there is one thing worse than installing completely unrelated packges, it's finding out it's the package you want is older than your nan.
+**NO NO NO.** If there is one thing worse than installing completely unrelated packges, it's finding the package you want is older than your nan.
 
 	$ sudo aptiude purge git-core	
 
