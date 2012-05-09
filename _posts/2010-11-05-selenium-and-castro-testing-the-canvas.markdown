@@ -1,5 +1,5 @@
 ---
-layout: day1
+layout: day1post
 ---
 
 Selenium and Castro testing the Canvas

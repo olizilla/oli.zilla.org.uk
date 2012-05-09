@@ -1,5 +1,5 @@
 ---
-layout: day1
+layout: day1post
 title: Git on Lenny, a love story
 
 ---
@@ -58,14 +58,14 @@ A-HA!, **git-core**!, well of course I love your new hair-do, I just didn't reco
 
 **Oh wrinkly torment** I've just purged your grandmother. You were a youthful git 1.7 when we last met, what have I done to deserve this... Googling commences, hmm debian sources... yes yes, *git-core*, uh huh, **(obsolete)**, oh what have i done, [stackoverflow][so]... *git-core*... not you again, ...wait... what... backports you say? install lenny-backports-keyring you say? that all sounds a bit extreme, I just want git... hyperlinking now...
 
-[backports.debian.org][backports] is where it's at, to complete the quote at the top:
+[backports.debian.org][backports] is where it's at! To complete the quote at the top:
 
 > "...the software is a little bit outdated compared to other distributions. This is where backports come in.
 > 
 > Backports are recompiled packages from testing (mostly) and unstable (in a few cases only, e.g. security updates) in a stable environment so that they will run without new libraries (whenever it is possible) on a Debian stable distribution."
 
 
-Be sure to check the instructions page which is a couple of steps simpler than the stackoverflow suggestion, or just read on...
+Go there and be sure to check the instructions page which is a couple of steps simpler than the stackoverflow suggestion, or just read on...
 
 Installing git 1.7 rather than gnuit or git 1.5 on Debian Lenny
 ---------------------------------------------------------------
@@ -88,7 +88,7 @@ Check you can now see the latest git version. The lesson from all that rambling 
 	
 Go install!
 	
-	$ aptitude -t lenny-backports show git
+	$ sudo aptitude -t lenny-backports install git
 	... Done
 	$ git --version
 	git version 1.7.1
@@ -96,7 +96,6 @@ Go install!
 Love, git init your brains out and have git babies. See below:
 
 <img src="http://joemaller.com/wordpress/wp-content/uploads/2008/11/hub-prime2.jpg" title="git babies" />
-[http://joemaller.com/990/a-web-focused-git-workflow/](http://joemaller.com/990/a-web-focused-git-workflow/)
 
 Now I can get on with that web focused git workflow. If you are wondering how to make git do all your work for you then I  highly recommend Mr joemaller's [article][workflow] on the subject.
 
@@ -104,6 +103,7 @@ Credits
 -------
 * stackoverflow: [http://serverfault.com/questions/157383/why-does-the-debian-lenny-git-package-not-install-git] [so]
 * backports: [http://backports.debian.org/][backports]
+* workflow: [http://joemaller.com/990/a-web-focused-git-workflow/][workflow]
 
 [so]: http://serverfault.com/questions/157383/why-does-the-debian-lenny-git-package-not-install-git "Well serverfault actually, but it's all the same to me thanks"
 [backports]: http://backports.debian.org/

@@ -1,5 +1,5 @@
 ---
-layout: day1
+layout: day1post
 title: Web by Proxy; Secure surfing on someone else's SOCKS
 ---
 

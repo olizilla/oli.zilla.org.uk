@@ -6,3 +6,4 @@ auto: true
 
 # Don't process or copy to _site
 exclude: _notes
+

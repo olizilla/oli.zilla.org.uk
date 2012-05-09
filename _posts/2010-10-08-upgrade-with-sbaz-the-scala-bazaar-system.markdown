@@ -1,5 +1,5 @@
 ---
-layout: day1
+layout: day1post
 ---
 
 Upgrade with sbaz, the Scala Bazaar System
