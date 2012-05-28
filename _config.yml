@@ -5,5 +5,7 @@
 auto: true
 
 # Don't process or copy to _site
-exclude: _notes
+exclude: _notes, .idea, *.iml
 
+# Where to put the processed files
+destination: docroot
