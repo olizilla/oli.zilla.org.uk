@@ -2,10 +2,10 @@
 ################################################################################
 
 # automatically process changes to source files
-auto: true
+auto: false
 
 # Don't process or copy to _site
-exclude: _notes, .idea, *.iml
+exclude: docroot, _notes, .idea
 
 # Where to put the processed files
-destination: docroot
+# destination: docroot
