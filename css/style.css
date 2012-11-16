@@ -3,18 +3,15 @@ body {
 	color: #222;
 	font-family: 'Inconsolata', Monaco, monospace;
 	font-size: 15px;
+	/*line-height: 20px;*/
 	text-align: left;
 	margin:0;
 	padding:0 0 3em;
+	
 }
 h1,
 h2 {
 	margin:35px 0 8px;
-}
-h1 {
-	border-bottom: 2px solid #EEE;
-}
-h2 {
 	border-bottom: 2px solid #EEE;
 }
 a:link,
@@ -26,28 +23,31 @@ a:active {
 }
 a:hover {
 	color:#C22;
-	-webkit-transition: color 1s ease;
-	-moz-transition: color 1s ease;
-	-ms-transition: color 1s ease;
-	-o-transition: color 1s ease;
-	transition: color 1s ease;
+	-webkit-transition: color 0.7s ease;
+	-moz-transition: color 0.7s ease;
+	-ms-transition: color 0.7s ease;
+	-o-transition: color 0.7s ease;
+	transition: color 0.7s ease;
 }
 img {
 	margin: 0;
 	padding: 0;
 }
 ul li {
-	margin-bottom: 5px;
+	margin-bottom: 10px;
 }
-.header,
 .content,
 .footer {
-	padding:0 3.5em;
+	padding:0 10px;
+	max-width: 1200px;
 }
 .header {
 	color:#DDD;
 	background: #444;
 	padding:0;
+	box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+/*	font-size: 15px;
+	line-height: 15px;*/
 }
 .header img {
 	width: 3em;
@@ -61,6 +61,13 @@ ul li {
 }
 .header .title {
 	color: white;
+	font-family: "Amatic SC", "Inconsolata", Monaco, monospace;
+	font-size: 160%;
+	line-height: 1em;
+}
+.header .subtitle{
+	/*display: none;*/
+	font-size: 12px;
 }
 .header a {
 	color:inherit;
@@ -72,10 +79,6 @@ ul li {
 .header .subtitle a:hover {
 	color:#4C90C6;
 }
-
-.content {
-	max-width: 1000px;
-}
 pre {
 	clear: both;
 }
@@ -85,6 +88,7 @@ code {
 	background-color: #444;
 	color: #EEE;
 	font-family: "Andale Mono", Monaco, monospace;
+	overflow: auto;
 }
 blockquote {
 	font-family: Georgia, serif;
@@ -107,16 +111,29 @@ blockquote {
 .clear {
 	clear:both;
 }
-.olizilla {
+.posts{
+	padding-left:0;
+}
+.posts li {
+	list-style: none;
+}
+.posts li span{
 	display: block;
-	height:500px;
-	background:url('http://oli.zilla.org.uk/stuff/zilla/olizilla.png') no-repeat bottom left;
 }
-.experiment {
-	margin: 5px 20px;
+.olizilla {
+	margin:0;
+	padding: 0;
+	width:46%;
+	height: auto;
+	max-width: 453px;
 }
-.olizilla #tweet {
-	padding:119px 0 0 462px;
+#tweet{
+	margin:0;
+	padding: 0;
+	display: inline-block;
+	width:50%;
+	vertical-align: top;
+	font-family: "Amatic SC", "Comic Sans MS";
 }
 #tweet a img {
 	border: none;
@@ -134,11 +151,47 @@ blockquote {
 	margin:0;
 	padding:0;
 }
+#tweet .text{
+	font-size: 300%;
+}
+#tweet .text a{
+	font-weight: normal;
+	font-size: 60%;
+	display: block;
+}
+
 #tweet small {
 	display: block;
 	margin-top: 10px;
+	font-size: 110%;
+	/*font-family: 'Inconsolata', Monaco, monospace;*/
+	font-weight: bold;
 }
 #tweet small img {
 	margin:0 5px 0;
-	vertical-align: text-bottom;
+	vertical-align: middle;
+}
+#tiger-pilot {
+	background-image: url('http://static.tumblr.com/dyi0jog/llIm9xxhi/tiger-pilot.jpg');
+}
+#olizilla-tumblr img{
+	vertical-align: top;
+	margin:10px 10px 10px 0;
+	border:solid 1px #eee;
+	height: 100px;
+	box-shadow: 0 8px 6px -6px rgba(0,0,0,0.4);
+}
+
+@media only screen and (min-width: 35em) {
+	/* Style adjustments for viewports wider than 35em */
+	.posts li span{
+		display: inline;
+	}
+	.content,
+	.footer {
+		padding:0 3.5em;	
+	}
+	#tweet .text{
+		font-size: 500%;
+	}
 }

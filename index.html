@@ -2,49 +2,88 @@
 layout: day1
 title: Is that supposed to go there?
 ---
+<section>
+	<h1>Articles</h1>
+	<ul class="posts">
+		{% for post in site.posts %}
+		<li><span>{{ post.date | date_to_string }} &raquo; </span><a href="{{ post.url }}">{{ post.title }}</a></li>
+		{% endfor %}
+	</ul>
+</section>
 
-<h2>Recent Articles</h2>
-<ul class="posts">
-  {% for post in site.posts %}
-    <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
-  {% endfor %}
-</ul>
-
-<h2>In the lab</h2>
-<div class="experiment">
-	<p><a href="/unicode/v1">Unicode v1</a></p>
-	<iframe src="/unicode/v1" width="400" height="300"></iframe>
-</div>
-<div class="experiment">
-	<p><a href="lab/visuals/gift.html">Gift v1</a></p>
-	<!--<iframe src="/lab/visuals/gift.html" width="400" height="300"></iframe>-->
-</div>
-<div class="experiment">
-	<p><a href="/subconscious">Subconscious v1</a></p>
-	<!--<iframe src="/subconscious" width="400" height="300"></iframe>-->
-</div>
-
-<h2 title="Noun: Trivial or foolish speech or writing; nonsense.">Twaddle</h2>
-<div class="olizilla">
-	<!-- twit magic goes here -->
-	<div id="tweet">
+<section class="twitter">
+	<!-- <h2 title="Noun: Trivial or foolish speech or writing; nonsense.">Twaddle</h2> -->
+	<!-- <div class="olizilla"></div> -->
+	<img class="olizilla" src="/res/img/olizilla-rawr.png" alt="">
+	<div id="tweet" title="Noun: Trivial or foolish speech or writing; nonsense.">
+		<!-- automgically replaced by @rem's twit magic -->
 		<a href="http://www.twitter.com/olizilla">
 			<img src="http://twitter-badges.s3.amazonaws.com/t_logo-c.png" alt="Follow!"/>
 		</a>
 	</div>
-</div>
+</section>
 
-<script 
- src="http://twitterjs.googlecode.com/svn/trunk/src/twitter.min.js" 
- type="text/javascript">
+<section>
+	<h2>Experiments</h2>
+	<div class="experiment">
+		<p><a href="/unicode/v1">Unicode v1</a></p>
+		<!--<iframe src="/unicode/v1" width="400" height="300"></iframe>-->
+	</div>
+	<div class="experiment">
+		<p><a href="/subconscious">Subconscious v1</a></p>
+	</div>
+	<div class="experiment">
+		<p><a href="lab/visuals/gift.html">Gift v1</a></p>
+	</div>
+</section>
+
+<section>
+	<h2>Photos</h2>
+	<div id="olizilla-tumblr"></div>
+</section>
+
+<!-- <section id="tiger-pilot">
+	<h2><a href="http://tiger-pilot.tumblr.com">Tiger Pilot</a></h2>
+	<div id="tiger-pilot-tumblr"></div>
+</section> -->
+
+<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+
+<script type="text/javascript">
+
+	function renderTumblr(data){
+		console.log(data);
+		var el = $('#' + data.tumblelog.name + '-tumblr');
+		$.each(data.posts, function(index, post){
+			var node = render[post.type](post);
+			el.append(node)
+		})
+	}
+
+	var render = {
+		video: function(post){
+			return post['video-player-250']
+		},
+		photo: function(post){
+			return $('<img>').attr('src', post['photo-url-250']);
+		}
+	}
 </script>
+
+<script src="http://olizilla.tumblr.com/api/read/json?callback=renderTumblr"></script>
+
+<!--<script src="http://tiger-pilot.tumblr.com/api/read/json?callback=renderTumblr"></script>-->
+
+<script src="http://twitterjs.googlecode.com/svn/trunk/src/twitter.min.js"></script>
 <script type="text/javascript" charset="utf-8">
-getTwitters('tweet', { 
-  id: 'olizilla', 
-  count: 1, 
-  enableLinks: true, 
-  ignoreReplies: true, 
-  clearContents: true,
-  template: '%text% <small><a href="http://twitter.com/%user_screen_name%/statuses/%id%/">%time%<img src="http://twitter-badges.s3.amazonaws.com/t_mini-c.png"/></a></small>'
-});
+	$(document).ready(function(){
+		getTwitters('tweet', {
+			id: 'olizilla',
+			count: 1,
+			enableLinks: true,
+			ignoreReplies: true,
+			clearContents: true,
+			template: '<span class="text">%text%</span> <small><a href="https://twitter.com/%user_screen_name%/status/%id_str%"><img src="http://twitter-badges.s3.amazonaws.com/t_mini-c.png"/>%time%</a></small>'
+		});
+	});
 </script>
