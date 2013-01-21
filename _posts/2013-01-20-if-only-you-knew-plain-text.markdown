@@ -5,7 +5,7 @@ If only you knew. Things web developers do that could ease your pain
 
 TL;DR It's simple and robust, it has no vendor lock in and is pre-requist and gateway for good things described later.
 
-Plain text is great. It's plain and it works. Ever found yourself swaring at Word because you worked on a document for a couple of hours and suddenly like a gremlin fed after midnight it started acting crazy and smashing all your stuff up with rogue formatting and pencil cross-bows? Yes that's right, it happens to everyone and it's a waste of time. That doens't happen with plain text.*
+Plain text is great. It's plain and it works. Ever found yourself swaring at Word because you worked on a document for a couple of hours and suddenly like a gremlin fed after midnight it started acting crazy and smashing all your stuff up with rogue formatting and pencil cross-bows? Yes that's right, it happens to everyone and it's a waste of time. That doens't happen with plain text.
 
 No one ever lost an hour trying to figure out why a the third paragraph in a plain text document was coming out all italic comic-sans and 3 points larger.
 
