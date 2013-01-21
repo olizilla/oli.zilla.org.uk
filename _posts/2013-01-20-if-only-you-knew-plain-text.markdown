@@ -24,6 +24,8 @@ If you want the recipient to read your work, send them something that they can r
 
 If you just need to communicate some content, or an idea, send them plain text. If you're on the same team, the overhead of additional formatting isn't adding anything apart from hours in your life spent working.
 
+![](http://24.media.tumblr.com/tumblr_mc0rbxDQK31rhg0k6o1_500.jpg)
+
 If you need to collaborate on a big chunk of prose-based work and you're about to start emailing Word documents back and forth, stop. Just stop... How many times have you done this? How many times have you ended up with more versions of the document than the number of ideas it actually expresses? How many times have said ideas been lost by the simple and almost inevitable act of working on the wrong version of the doc?
 Ok. Are you sitting down?
 Yes?...
