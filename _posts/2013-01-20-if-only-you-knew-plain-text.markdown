@@ -21,7 +21,7 @@ Plain text avoids 'vendor lock-in'. Not an illicit after-hours drink, but the ac
 
 Wherever possible, capture your ideas in plain text. Read up about [Markdown](http://daringfireball.net/projects/markdown/basics). It's a standard for writing plain text that means you can automagically turn them into HTML. HTML documents beat Word documents every time; if you have an interweb connection, you probably read a bunch of them before breakfast or firing up anything you think of as a computer.
 
-*Word documents are a storage format for the CV's of the semi-skilled.* A Word doc is editable. It's your source code, not the finished article. Just because it's contrived enough to look a bit like a page of paper, and it has all your text on it does not mean it's the artifact of your labour that you should pass on. 
+*Word documents are a storage format for bad CV's* A Word doc is editable. It's your source code, not the finished article. Just because it's contrived enough to look a bit like a page of paper, and it has all your text on it does not mean it's the artifact of your labour that you should pass on. 
 
 If you want the recipient to read your work, send them something that they can read easily but not edit; a PDF or better still a link to an HTML document that you auto-magic'd from a Markdown document. 
 
@@ -32,7 +32,7 @@ If you just need to communicate some content, or an idea, send them plain text. 
 If you need to collaborate on a big chunk of prose-based work and you're about to start emailing Word documents back and forth, stop. Just stop... How many times have you done this? How many times have you ended up with more versions of the document than the number of ideas it actually expresses? How many times have said ideas been lost by the simple and almost inevitable act of working on the wrong version of the doc?
 Ok. Are you sitting down?
 Yes?...
-...This may come as a surprise but, there _is_ a better way. BOOM. Just blew your mind.
+...This may come as a surprise but, there _is_ a better way.
 
 Right now you've got at least 2 obvious solutions:
 
@@ -53,5 +53,4 @@ Coming up next:
 
 ### Footnotes
 
-<span id="note-1">[1]</span> 
-We could get into an argument about character encodings, but then I'd know your a web developer and this article isn't for you. Also, what are you doing arguing against plain text? Get off my lawn ya looncake.
+<p><span id="note-1">[1]</span> We could get into an argument about character encodings, but then I'd know your a web developer and this article isn't for you. Also, what are you doing arguing against plain text? Get off my lawn ya looncake.</p>
