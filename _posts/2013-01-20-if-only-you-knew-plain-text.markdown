@@ -1,6 +1,7 @@
 ---
-
-published: false
+title: If only you knew plain text
+layout: day1post
+published: true
 ---
 
 If only you knew. Things web developers do that could ease your pain
