@@ -51,4 +51,5 @@ Coming up next:
 
 ### Footnotes
 
-<span id="note-1">[1]</span> We could get into an argument about character encodings, but then I'd know your a web developer and this article isn't for you. Also, what are you doing arguing against plain text? Get off my lawn ya looncake.
+<span id="note-1">[1]</span> 
+We could get into an argument about character encodings, but then I'd know your a web developer and this article isn't for you. Also, what are you doing arguing against plain text? Get off my lawn ya looncake.
