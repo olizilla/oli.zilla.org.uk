@@ -21,7 +21,7 @@ Plain text avoids 'vendor lock-in'. Not an illicit after-hours drink, but the ac
 
 Wherever possible, capture your ideas in plain text. Read up about [Markdown](http://daringfireball.net/projects/markdown/basics). It's a standard for writing plain text that means you can automagically turn them into HTML. HTML documents beat Word documents every time; if you have an interweb connection, you probably read a bunch of them before breakfast or firing up anything you think of as a computer.
 
-*Word documents are a storage format for bad CV's* A Word doc is editable. It's your source code, not the finished article. Just because it's contrived enough to look a bit like a page of paper, and it has all your text on it does not mean it's the artifact of your labour that you should pass on. 
+*Word documents are a storage format for bad CV's.* A Word doc is editable. It's your source code, not the finished article. Just because it's contrived enough to look a bit like a page of paper, and it has all your text on it does not mean it's the artifact of your labour that you should pass on. 
 
 If you want the recipient to read your work, send them something that they can read easily but not edit; a PDF or better still a link to an HTML document that you auto-magic'd from a Markdown document. 
 
@@ -40,7 +40,7 @@ Right now you've got at least 2 obvious solutions:
 It can track changes, and you can use the margins to flirt about the best bits to bold all you like. It's still a weird simulacra/homage chimera of a Word doc, but it's at least a single shared editable resource, which I believe is what you said you were after.
 
 - Plain text and version control. 
-An awesome solution, with the one drawback that it's apparent simplicity masks a velociraptor of complexity that'll fold your mind into a party hat and leave you with no tears left to cry. By way of an example the most popular version control tool out their right now is called Git. It's great, and it will kill again. So yeah, maybe stick to a googledoc, or better still, do use plain text and version control, but be safe, and cover it with this: http://gist.io/ or this: http://prose.io
+An awesome solution, with the one drawback that it's apparent simplicity masks a velociraptor of complexity that'll fold your mind into a party hat and leave you with no tears left to cry. As if as a warning, the version control system du jour is called Git. It's great, and it will kill again. So yeah, maybe stick to a googledoc, or better still, do use plain text and version control, but be safe, and cover it with this: http://gist.io/ or this: http://prose.io
 
 I can see that after sitting you down and telling you that emailing Word docs was more dangerous than chainsaw juggling, you were hoping for more of a worked example all up in here. We'll come back to it later, but hopefully you get the theory. Try not panic in the meantime, I'm sure it'll be fine.
 
