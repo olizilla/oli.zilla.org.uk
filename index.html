@@ -2,20 +2,14 @@
 layout: day1
 title: Is that supposed to go there?
 ---
-<section>
-	<h1>Articles</h1>
-	<ul class="posts">
-		{% for post in site.posts %}
-		<li><span>{{ post.date | date_to_string }} &raquo; </span><a href="{{ post.url }}">{{ post.title }}</a></li>
-		{% endfor %}
-	</ul>
+<section id="photos">
+	<div id="olizilla-tumblr"></div>
 </section>
 
-<section class="twitter">
+<section id="twitter" class="twitter">
 	<!-- <h2 title="Noun: Trivial or foolish speech or writing; nonsense.">Twaddle</h2> -->
-	<!-- <div class="olizilla"></div> -->
-	<img class="olizilla" src="/res/img/olizilla-rawr.png" alt="">
-	<div id="tweet" title="Noun: Trivial or foolish speech or writing; nonsense.">
+	<img class="olizilla" src="/res/img/olizilla-rawr.png" title="RAWR!">
+	<div id="tweet" title="Twaddle:  Noun; trivial or foolish speech or writing; nonsense.">
 		<!-- automgically replaced by @rem's twit magic -->
 		<a href="http://www.twitter.com/olizilla">
 			<img src="http://twitter-badges.s3.amazonaws.com/t_logo-c.png" alt="Follow!"/>
@@ -23,8 +17,35 @@ title: Is that supposed to go there?
 	</div>
 </section>
 
-<section>
+<section id="articles">
+	<h2>Articles</h2>
+	<ul class="posts">
+		{% for post in site.posts %}
+		<li><span>{{ post.date | date_to_string }} &raquo; </span><a href="{{ post.url }}">{{ post.title }}</a></li>
+		{% endfor %}
+	</ul>
+</section>
+
+<section id="experiments">
 	<h2>Experiments</h2>
+	<div class="experiment">
+		<h3><a href="http://goto.meteor.com">GOTO</a> &raquo; A live map showing where you and everyone else is.</h3> 
+		<a href="http://goto.meteor.com"><img src="http://the-medium-is-the-message.meteor.com/goto-meteor.png"></a>
+	</div>
+	<div class="experiment">
+		<h3><a href="https://github.com/olizilla/asciify">asciify</a> &amp; <a href="https://github.com/olizilla/grunt-asciify">grunt-asciify</a> &raquo; Plain text awesomizer for Node, Grunt and the CLI.</h3>
+		<a href="https://github.com/olizilla/asciify"><img src="https://raw.github.com/olizilla/grunt-asciify/master/doc/grunt-asciify.png"></a>
+	</div>
+	<div class="experiment">
+		<h3><a href="http://foam.meteor.com/">Photo Foam</a> &raquo; Communal photo hot-tub bubbling with getUserMedia, D3 &amp; Meteor</h3>
+		<a href="http://the-medium-is-the-message.meteor.com/">
+			<img src="https://pbs.twimg.com/media/BHmiWUrCcAE-U0q.png:large">
+		</a>
+	</div>	
+	<div class="experiment">
+		<h3><a href="http://the-medium-is-the-message.meteor.com/">Meteor: The Medium Is The Message</a> &raquo; A talk and app about <a href="http://meteor.com/">Meteor</a>, MongoDB, &amp; D3.</p></h3>
+		<a href="http://the-medium-is-the-message.meteor.com/"><img style="width:70%" src="http://photos4.meetupstatic.com/photos/event/6/8/6/c/highres_218246732.jpeg"> <img style="width:26.4%" src="http://photos3.meetupstatic.com/photos/event/d/2/3/4/highres_222953812.jpeg"></a>
+	</div>
 	<div class="experiment">
 		<p><a href="/unicode/v1">Unicode v1</a></p>
 		<!--<iframe src="/unicode/v1" width="400" height="300"></iframe>-->
@@ -35,11 +56,6 @@ title: Is that supposed to go there?
 	<div class="experiment">
 		<p><a href="lab/visuals/gift.html">Gift v1</a></p>
 	</div>
-</section>
-
-<section>
-	<h2>Photos</h2>
-	<div id="olizilla-tumblr"></div>
 </section>
 
 <!-- <section id="tiger-pilot">
@@ -65,13 +81,12 @@ title: Is that supposed to go there?
 			return post['video-player-250']
 		},
 		photo: function(post){
-			return $('<img>').attr('src', post['photo-url-250']);
+			return $('<img>').attr('src', post['photo-url-250']).attr('data-1x', post['photo-url-500']);
 		}
 	}
 </script>
 
 <script src="http://olizilla.tumblr.com/api/read/json?callback=renderTumblr"></script>
-
 <!--<script src="http://tiger-pilot.tumblr.com/api/read/json?callback=renderTumblr"></script>-->
 
 <script src="http://twitterjs.googlecode.com/svn/trunk/src/twitter.min.js"></script>
