@@ -22,11 +22,16 @@ title: Is that supposed to go there? A blog by olizilla
 		</h1>
 	</header>
 	<nav class="block max-width-1 m-x-auto p-y-3">
+		<a href="http://jsbin.com/iKaGel/edit?css,output" class="block hover p-a-1 m-b-2">
+			<h2>Animated CSS logo for nodebots</h2>
+			<small class="block text-right uppercase monospace gray-2 bg-gray-1 p-a-2">15 Jun 2014</small>
+		</a>
 		<a href="https://github.com/olizilla/asciify" class="block hover p-a-1 m-b-2">
 			<h2>Asciify - Plain text awesomizer for Node, Grunt and the CLI.</h2>
 			<img src="https://raw.github.com/olizilla/grunt-asciify/master/doc/grunt-asciify.png">
 			<small class="block text-right uppercase monospace gray-2 bg-gray-1 p-a-2">15 Mar 2013</small>
 		</a>
+		
 		{% for post in site.posts %}
 			<a href="{{ post.url }}" class="block hover p-a-1 m-b-2">
 				<h2>{{ post.title }}</h2>

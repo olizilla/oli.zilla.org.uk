@@ -1,5 +1,5 @@
 ---
-layout: day1
+layout: day1post
 title: Hating on Java for XML? Your DSL is worse.
 published: false
 ---
@@ -12,9 +12,9 @@ Do tell me again how you've dismissed Java as a waste of time due to it's XML fe
 __Hating on Java for it's XML love is like hating on a government for wanting transparency.__
 
 XML is a standard for defining structured documents. Every drop of logic that you can externalise allows some other system, regardless of it's implementation language, to operate on it.
-I can't think of a useful language that doesn't have a library for dealing with XML. 
+I can't think of a useful language that doesn't have a library for dealing with XML.
 
-Oh wait, _XML is too slow_? 
+Oh wait, _XML is too slow_?
 
 __No.__ Your chosen lauguage's runtime is too slow. XML is just structure around plain text.
 
@@ -28,9 +28,9 @@ None of these things use a custom DSL that you have to learn, but XML so at the 
 
 All the bullshit DSLs that require me to read the docs to figure out the primatives can go fuck themselves if they think they've improved anything. (Puppet, I love you, but I'm staring hard in your direction here).
 You all took a good idea and encrptyed it in your own micro-langauage that isn't properly defined. Not just ill defined like in the pained cries of civilised humans on your mailing lists that are forced to sacrifice a goat at your alter of aracanea to get their shit working,
-but ill defined like: 
+but ill defined like:
 
-> DSL is the boss now, don't cry. Didn't you enjoy the easy on ramp like eveyone else? 
+> DSL is the boss now, don't cry. Didn't you enjoy the easy on ramp like eveyone else?
 > Now you're 5000 lines in, and I see your requirements don't cleanly map to my concepts. __Now you're crying__ about syntactic obsucrity? Too late bitch. Should have evaluated harder.
 
 Yes. To all DSL writers, that's how you make relatively sane human beings feel when you get a DSL wrong.
