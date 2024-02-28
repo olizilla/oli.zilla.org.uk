@@ -1,0 +1,20 @@
+/* The integration's default injected base.css file */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  background: hsl(0,20%,20%);
+}
+body {
+  background: hsl(65,30%,97%);
+  border: solid hsl(0,20%,20%) 9px;
+  color: hsl(0,20%,20%);
+}
+
+@font-face {
+  font-family: 'courier_prime_sans';
+  src: url('courier_prime_sans-webfont.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}

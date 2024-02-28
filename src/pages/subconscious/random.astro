@@ -1,0 +1,7 @@
+---
+const dir = import.meta.glob('../../../public/animation/*.gif');
+const paths = Object.keys(dir).map(p => `/animation/${p.split('/').at(-1)}`)
+const rand = Math.floor(Math.random() * paths.length)
+return Astro.redirect(paths.at(rand), 307)
+---
+

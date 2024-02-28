@@ -1,0 +1,19 @@
+---
+interface Props {
+  by: string
+  year: string
+	cite: string
+}
+const { by, year, cite } = Astro.props;
+---
+
+<blockquote cite={cite} class="py-8">
+  <div class="border-l-4 border-zinc-100 border-solid -ml-3 pl-3">
+    <slot />
+    <footer>
+      <small class="text-zinc-400 font-mono">
+        <span class="pr-1">—</span><a class="" href={cite}>{by}, <time datetime={year}>{year}</time></a>
+      </small>
+    </footer>
+  </div>
+</blockquote>
