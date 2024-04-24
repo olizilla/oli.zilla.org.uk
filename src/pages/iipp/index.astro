@@ -1,0 +1,165 @@
+---
+import '../../base.css'
+import { getCollection } from 'astro:content'
+import Time from '../../components/Time.astro'
+import Quote from '../../components/Quote.astro'
+import LinkItem from '../../components/LinkItem.astro'
+const title = "Leave it better than you found it"
+---
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>{title}</title>
+	<link href="http://www.gravatar.com/avatar/9d1124bf8f7fe1b93a92a7927accd9a9?s=80" rel="icon" type="image/png"  />
+</head>
+<body class="font-serif min-h-screen">
+	<header>
+		<div class="mx-auto max-w-2xl pt-8 px-2">
+			<h1 class="serif border-b-4 border-double border-zinc-500 text-2xl pb-2 font-bold">
+				Personal Statement for the IIPP
+			</h1>
+			<p class="font-mono text-sm pt-3">
+				by Oli Evans - Published 24th April 2024
+			</p>
+		</div>
+	</header>
+
+	<div class="mx-auto max-w-2xl pt-4 px-2 text-base">
+
+		<h2 class="text-xl pb-4 pt-8 font-bold">
+			Why the IIPP?
+		</h2>
+		<p class="text-lg">
+			<strong>I believe in the mission</strong>: We need a network of people with the skills and motivation to rebuild trust: between citizens and the state; locals and local government.
+		</p>
+		<p class="pt-4">
+			During lockdown I read 
+			<a class="hover:text-blue-600 font-bold" href="https://marianamazzucato.com/books/the-value-of-everything/">"The Value of Everything"</a> and it demystified the mess we're in with a broad and compelling vision of what 'better' looks like. Then 
+			<a class="hover:text-blue-600 font-bold" href="https://www.hilarycottam.com/radical-help/">"Radical Help"</a> demonstrated how projects rooted in listening to those effected can start to repair the damage. I've been following the IIPP ever since.
+		</p>
+		<p class="pt-4">
+			I'm deep into a career building software; an industry where it has become normal to roll out innovations without considering those who will be impacted, or taking responsibility for outcomes not shown on the balance sheet.
+		</p>
+		<p class="pt-4">
+			I've participated in scrappy co-operatives that succeeded by listening and co-creating together 
+			(<a class="hover:text-blue-600" href="https://tableflip.io">TABLEFLIP</a>, 
+			<a class="hover:text-blue-600" href="https://outlandish.com/">Outlandish</a>,
+			<a class="hover:text-blue-600" href="https://www.coops.tech/">Co-Tech</a>). 
+			And I've worked on well-funded and well-intentioned projects that derailed through misalignment and poor communication.
+		</p>
+		<p class="pt-4">
+			The most poorly functioning systems I've seen were always a reflection of the behaviours and priorities that created them. Debugging the code never fixed the team. I want to step back from solving the symptoms and learn how to incubate healthy collaborations that grow and fill the gaps in practical and humane ways.
+		</p>
+		<p class="pt-4">
+			I want to be part of the conversations the IIPP is nurturing. I want to pivot and acknowledge that while I have experience, I am a beginner here. I want to put my energy in to working on real and immediate social problems and supporting those that see those issues more clearly than I do. 
+		</p>
+		<p class="pt-4">
+			In the most recent <a class="hover:text-blue-600" href="https://open.spotify.com/show/2n6VvwkU9z6u9MlvvckYQw?si=00c3961e7f194387"><strong>IIPP Valuable Conversations</strong></a> podcast, <a class="hover:text-blue-600" href="https://www.phoebetickell.com/"><strong>Phoebe Tickell</strong></a> gives a call to action:
+		</p>
+		<Quote by="Phoebe Tickell" year="2023" cite="https://open.spotify.com/episode/52GGqpGDgZTTYGTQ4sAwLa">
+			<p class="pt-4">
+				People say to me: <em>"Why have you decided to work with local councils? That seems so boring. what are you doing?"</em>
+			</p>
+			<p class="pt-4">
+				There is something very attractive about the boring problems... the classic local council thing: "what are we doing about the bins?" that is the real life reality of people. It's not Elon Musk's next moonshot... I started life as a scientist and in technology... the problems I am working on now are so much more exciting.
+			</p>
+			<p class="pt-4 pb-4">
+				I'd love to see a real recruitment drive of all the talent the goes into silicon valley and technology. Let's get that talent into civic problems. Lets get them working with local councils; into the boroughs with communities. that is where the work really lies for the next decade.
+			</p>
+		</Quote>
+		<p class="">
+			I'm down for that. If <em>the bins</em> is the battle ground, hand me the gloves!
+		</p>
+
+		<h2 class="text-xl pt-8 font-bold">
+			Why me?
+		</h2>
+		<p class="pt-4 text-lg">
+			I build, maintain, comprehend, and untangle complex systems.
+			I love nuance and language, enthusiasm, care, solidarity, and people.
+		</p>
+		<p class="pt-4">
+			I want to use my energy with and for purpose. I'm going to give my time to listening, facilitating, growing and celebrating communities.
+		</p>
+		<p class="pt-4">
+			...and more prosaically I have:
+		</p>
+		<ul class="list-inside list-disc">
+			<li class="pt-2">
+				Designed, built, and maintained hundreds of software systems, some with millions of users. 
+				(<a class="hover:text-blue-600" href="https://docs.ipfs.io">IPFS</a>,
+				<a class="hover:text-blue-600" href="https://protocol.ai">Protocol Labs</a>)
+			</li>
+			<li class="pt-2">
+				Run a software development agency as a co-operative 
+				(<a class="hover:text-blue-600" href="https://tableflip.io">TABLEFLIP</a>), that guided its customers to give back to the commons of open-source, collaborated with other co-ops 
+				(<a class="hover:text-blue-600" href="https://www.coops.tech/">Co-Tech</a>), and used its profits to buy time to share knowledge and build community through local meet-ups.
+			</li>
+			<li class="pt-2">
+				Run a local lunch club where all the participants take turns to cook for each other, facilitated by a small app that simply tracks and visualises the number of lunches eaten vs cooked, to diffuse the complicated issue of "whose turn it it to cook". (<em>This worked without argument for 5 years and over 100+ hungry fabricators</em>)
+			</li>
+			<li class="pt-2">
+				Helped set up the West Norwood Feast, a monthly volunteer powered street market that aimed to get folks to know their neighbours and boost the local high street. It's in its 11th year!
+			</li>
+			<li class="pt-2">
+				Helped set up the 
+				<a class="hover:text-blue-600" href="https://westnorwoodfeast.com/">West Norwood Feast</a>, a monthly volunteer powered street market that aimed to get folks to know their neighbours and boost the local high street. It's in its 11th year!
+			</li>
+		</ul>
+
+		<p class="py-24 text-center text-xl -mb-1">⁂</p>
+
+		<h2 class="text-right text-sm font-mono uppercase tracking-widest text-zinc-400 -mb-1 pt-8">Work</h2>
+		<LinkItem
+			title="IPFS - A content-addressed p2p internet"
+			desc="What if you could co-host websites and data you care about?"
+			img="https://avatars.githubusercontent.com/u/10536621?s=200&v=4"
+			href="https://docs.ipfs.tech/" />
+
+		<LinkItem
+			title="web3.storage - An IPFS compatible upload service"
+			desc="Sometimes you want to pay someone else to host your data."
+			img="https://avatars.githubusercontent.com/u/86230656?s=200&v=4"
+			href="https://web3.storage/docs" />
+
+		<LinkItem
+			title="TABLEFLIP - a web-dev co-op"
+			desc="Building apps, websites, robots, and community!"
+			img="https://avatars.githubusercontent.com/u/5347145?s=200&v=4"
+			href="https://tableflip.io" />
+
+
+		<h2 class="text-right text-sm font-mono uppercase tracking-widest text-zinc-400 -mb-1 pt-20">Play</h2>
+		<LinkItem
+			title="Open Source Software - olizilla on github"
+			desc="Where I make things I want to see in the world."
+			img="https://avatars.githubusercontent.com/u/58871?v=4"
+			href="https://github.com/olizilla" />
+
+ 		<LinkItem
+			title="Nodebots of London"
+			desc="A workshop meetup where we learn how to robot with JavaScript together."
+			img="https://avatars.githubusercontent.com/u/4650383?s=200&v=4"
+			href="https://www.youtube.com/@nodebotsoflondon1957/videos" />
+
+		<LinkItem
+			title="Meteor London"
+			desc="A show'n'tell for designers and developers building real-time web-apps."
+			img="https://avatars.githubusercontent.com/u/7863151?s=200&v=4"
+			href="https://www.youtube.com/watch?v=AYcyoli02EA&list=PLTUf4ytkmI8TntQ72WVvQIHKja4KaAXUc" />
+
+		<LinkItem
+			title="West Norwood Feast"
+			desc="A volunteer-powered street market festival."
+			img="https://media.licdn.com/dms/image/C560BAQEzlx-c_Hn53A/company-logo_200_200/0/1631358653466?e=2147483647&v=beta&t=jdQmatDNXBeWL7fLfjrzSRcL-COuyJf17ZP-iMUVIfo"
+			href="https://westnorwoodfeast.com/" />
+	</div>
+
+	<footer class="pt-16 text-center text-2xl -mb-1">
+		🌻
+	</footer>
+</body>
+</html>
