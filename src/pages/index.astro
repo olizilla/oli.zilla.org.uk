@@ -18,10 +18,16 @@ const title = "Leave it better than you found it"
 <body class="font-serif min-h-screen">
 	<header>
 		<div class="mx-auto max-w-2xl pt-8 px-2">
-			<h1 class="serif border-b-4 border-double border-zinc-500 text-2xl pb-2 font-bold">
-				Leave it better than you found it. 🌻
+			<h1 class="border-b-0 border-double border-red-950 text-2xl font-bold">
+				<a href="/subconscious" class="inline-block cursor-crosshair">
+					<img title="is that supposed to go there?" alt="logo" src="/res/img/olizilla-trace.svg" style=" width:140px; height:140px; vertical-align:-92px;" class="inline-block"/>
+				</a>
+					<span class="text-3xl pb-2 font-bold font-mono">olizilla</span>
 			</h1>
-			<p class="font-mono text-sm pt-3">
+			<p class="font-mono text-xs py-3 leading-6 sm:hidden">
+				software 🤖 resilience ✊ enthusiasm 🎉 community 👯‍♀️
+			</p>
+			<p class="font-mono text-md py-3 leading-6 hidden sm:block">
 				Building software 🤖 resilience ✊ enthusiasm 🎉 and community 👯‍♀️
 			</p>
 		</div>
@@ -47,8 +53,8 @@ const title = "Leave it better than you found it"
 		<Quote by="Jane Jacobs, James C. Scott" year="1998" cite="https://uk.bookshop.org/p/books/seeing-like-a-state-how-certain-schemes-to-improve-the-human-condition-have-failed-james-c-scott/3456225?ean=9780300246759">
 			<p class="text-lg">
 				The next step will require great humility, since we are now so prone to confuse great building projects with great social achievements. 
-				We will have to admit that it is beyond the scope of anyone's imagination to create community.
-				We must learn to cherish the communities we have, they are hard to come by.
+				We will have to admit that it is beyond the scope of anyone's imagination to create community. <br>
+				<strong>We must learn to cherish the communities we have</strong>, they are hard to come by.
 			</p>
 			<!-- <p>
 				'Fix the buildings, but leave the people.' 'No relocation outside the neighborhood.' These must be the slogans if public housing is to be popular.
@@ -66,22 +72,41 @@ const title = "Leave it better than you found it"
 			</p>
 		</Quote> -->
 
-		<!-- <p class="font-mono text-sm pt-3">
-			Building software 🤖 resiliance ✊ enthusiasm 🎉 and community 👯‍♀️
-		</p> -->
+		<h2 class="text-right text-sm font-mono uppercase tracking-widest text-zinc-400 -mb-1 pt-8">Blog</h2>
+		<LinkItem
+		title="Unicode"
+		desc="Visual memory across the Basic Multilingual Plane"
+		emoji="࿇"
+		href="/unicode/v1" />
+		<LinkItem
+		title="Rainbow"
+		desc="sketching with animated SVGs"
+		emoji="🌈"
+		href="/2015/09/18/rainbow" />
+		<!-- <LinkItem
+			title="Must we go over this again?"
+			desc="Right size your feedback loops"
+			img="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>➿</text></svg>"
+			href="/2025/02/12/must-we-go-over-this-again" /> -->
 
-		<h2 class="text-right text-sm font-mono uppercase tracking-widest text-zinc-400 -mb-1 pt-8">Work</h2>
+		<LinkItem
+			title="Older posts..."
+			emoji="☎️"
+			desc="from a more or less civilised age"
+			href="/blog" />
+
+		<h2 class="text-right text-sm font-mono uppercase tracking-widest text-zinc-400 -mb-1 pt-10">Work</h2>
+		<LinkItem
+			title="Institute of Innovation and Public Purpose"
+			desc="What should the state do?"
+			img="/res/img/iipp.jpg"
+			href="https://bsky.app/profile/ucl-iipp.bsky.social" />
+
 		<LinkItem
 			title="IPFS - A content-addressed p2p internet"
 			desc="What if you could co-host websites and data you care about?"
 			img="https://avatars.githubusercontent.com/u/10536621?s=200&v=4"
-			href="https://docs.ipfs.tech/" />
-
-		<LinkItem
-			title="web3.storage - An IPFS compatible upload service"
-			desc="Sometimes you want to pay someone else to host your data."
-			img="https://avatars.githubusercontent.com/u/86230656?s=200&v=4"
-			href="https://web3.storage/docs" />
+			href="https://youtu.be/-cW7QCQkhKo?si=26tAQdQiJWUG193y&t=100" />
 
 		<LinkItem
 			title="TABLEFLIP - a web-dev co-op"
@@ -89,13 +114,17 @@ const title = "Leave it better than you found it"
 			img="https://avatars.githubusercontent.com/u/5347145?s=200&v=4"
 			href="https://tableflip.io" />
 
-		<!-- <p class="py-8 text-center text-2xl -mb-1">⁂</p> -->
+		<h2 class="text-right text-sm font-mono uppercase tracking-widest text-zinc-400 -mb-1 pt-10">Play</h2>
+		<LinkItem
+			title="Suena Bien Soundsystem"
+			desc="Making speakers. Playing music. Partying together."
+			img="https://suenabien.co/suenabien.png"
+			href="https://suenabien.co/" />
 
-		<h2 class="text-right text-sm font-mono uppercase tracking-widest text-zinc-400 -mb-1 pt-20">Play</h2>
 		<LinkItem
 			title="Open Source Software - olizilla on github"
 			desc="Where I make things I want to see in the world."
-			img="https://avatars.githubusercontent.com/u/58871?v=4"
+			img="https://avatars.githubusercontent.com/u/9919?s=200&v=4"
 			href="https://github.com/olizilla" />
 
  		<LinkItem
@@ -106,16 +135,17 @@ const title = "Leave it better than you found it"
 
 		<LinkItem
 			title="Meteor London"
-			desc="A show'n'tell for designers and developers building real-time web-apps."
+			desc="A show'n'tell for designers and devs building real-time web-apps."
 			img="https://avatars.githubusercontent.com/u/7863151?s=200&v=4"
 			href="https://www.youtube.com/watch?v=AYcyoli02EA&list=PLTUf4ytkmI8TntQ72WVvQIHKja4KaAXUc" />
 
 		<LinkItem
 			title="West Norwood Feast"
-			desc="A volunteer-powered street market festival."
+			desc="I helped start a street party in 2011. Still partying today!"
 			img="https://media.licdn.com/dms/image/C560BAQEzlx-c_Hn53A/company-logo_200_200/0/1631358653466?e=2147483647&v=beta&t=jdQmatDNXBeWL7fLfjrzSRcL-COuyJf17ZP-iMUVIfo"
 			href="https://westnorwoodfeast.com/" />
 	</div>
+
 
 	<footer class="pt-16 text-center text-2xl -mb-1">
 		🌻

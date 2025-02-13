@@ -1,0 +1,54 @@
+---
+import { getCollection } from 'astro:content'
+import Time from '../components/Time.astro'
+const title = "Is that supposed to go there? A blog by olizilla"
+const rawPosts = (await getCollection('posts').then(posts => posts.filter(p => p.data.published === true))).reverse()
+const posts = await Promise.all(rawPosts.map(async p => {
+	const isoDateStr = p.id.slice(0, 10)
+	const date = new Date(isoDateStr)
+	const content = await p.render()
+	const title = p.data.title ?? content.headings.at(0)?.text
+  const link = p.data.link ?? p.slug
+  const image = p.data.image
+	return { ...p, date, title, link, image }
+}))
+
+---
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{title}</title>
+	<link rel="stylesheet" href="/css/atoms.css" />
+	<link href="http://feeds.feedburner.com/olizilla" rel="alternate" title="RSS" type="application/rss+xml" />
+	<link href="http://www.gravatar.com/avatar/9d1124bf8f7fe1b93a92a7927accd9a9?s=80" rel="icon" type="image/png"  />
+</head>
+<body class="bg-gray-1">
+	<header class="max-width-1 m-x-auto p-y-3">
+		<h1 class="p-y-3 text-center">
+			<a class="block font-xl" href="/">
+				<img title="is that supposed to go there?" alt="logo" src="/res/img/olizilla-trace.svg" style="width:140px; height:140px; vertical-align:-1em;" />
+				<span class="bg-gray-1 uppercase bolder " style="letter-spacing:1px; border-bottom: hsl(0,20%,20%) solid 25px;">olizilla</span>
+			</a>
+		</h1>
+	</header>
+	<nav class="block max-width-1 m-x-auto p-y-3">
+		{ posts.map(post => (
+			<a href={ post.link } class="block hover p-a-1 m-b-2">
+				<h2 class="m-t-0">{ post.title ?? '?' }</h2>
+        { post.image && <img src={post.image} /> }
+				<small class="block text-right uppercase monospace gray-2 bg-gray-1 p-a-2"><Time date={post.date} /></small>
+			</a>
+		)) }
+	</nav>
+	<section class="block max-width-1 m-x-auto p-y-3">
+		<a href="/unicode/v1" class="block hover p-a-1 m-b-2">
+			<h2>Unicode</h2>
+			<iframe src="/unicode/v1" width="100%" height="500px"></iframe>
+			<small class="block text-right uppercase monospace gray-2 bg-gray-1 p-a-2">2010</small>
+		</a>
+	</section>
+</body>
+</html>

@@ -1,23 +1,23 @@
 ---
 layout: ../../layouts/day1post.astro
+# layout: ../../layouts/2025.astro
 slug: 2010/11/05/selenium-and-castro-testing-the-canvas
 ---
 
-Selenium and Castro testing the Canvas
-======================================
+# Selenium and Castro testing the Canvas
+
 
 Notes from [Painless product demos & how to test 'untestable' applications](http://www.meetup.com/london-software-craftsmanship/calendar/15118493/). Original talk by Jason Huggins ([@hugs][@]) of [Sauce Labs][1] presenting at the [London Software Craftsmanship Community][2], 4th Nov 2010.
 
-The Selenium toolbox
---------------------
+## The Selenium toolbox
+
 * Selenium IDE for Firefox - record and replay browser sessions. Use the output as a starting point for creating selenium tests.
 * Selenium Remote Control - an http proxy and library to drive a browser from test code
 * Selenium Grid - drive multiple Selenium RCs from a hub, to test multiple browser/os combinations. Run your tests in parallel rather than serially.
 * Sauce on demand - selenium testing as cloud service - [http://saucelabs.com/ondemand](http://saucelabs.com/ondemand)
 
+## Painless product demos
 
-Painless product demos
-----------------------
 AKA: Pilfering ideas for software development from filmmaking.
 
 Dailies - The raw unedited footage, that shows general direction and progress from previous days work. Helps stakeholders seeking assurance that the work meets expectations.
@@ -35,13 +35,13 @@ Write your Selenium tests as normal, then bookend them with calls to [Castro][3]
 	c.publishToStakeholders()  // ! tweet(), youtube(),
 
 
-How to test 'untestable' applications
--------------------------------------
+## How to test 'untestable' applications
+
 "Wouldn't it be cool if you could motorise all the pins in a Pin Art box"
 
-<div class="right">
+<!-- <div class="right">
 	<img src="http://www.mutr.co.uk/images/pinart.jpg" title="Time for tea" alt="Time for tea"/>
-</div>
+</div> -->
 
 [pinthing.com][4] provides our example of the untestable web app. The bulk of the UI is created in a new fangled html5 canvas element using three.js to draw 3d pins on to it. The pins are arranged in a grid and can be given commands to raise and lower them independently to form patterns and glyphs.
 
@@ -64,8 +64,8 @@ HTML5 video players present a similar problem for testing. One solution already 
 It's one step removed from actually being able to read and inspect the dom, but what else are you going to do? To continue automated UI testing at the frontiers of html5 you are going to have to think about exposing some sort of testable api to your new widgets. With a canvas tag built up with js you get something sensible for free. With a video player you are going to have to give it some more thought.
 
 
-The union
----------
+## The union
+
 Screencasting the automated testing of the untestable app. 
 
 In the [pinthing.com][4] example, having a visible in page terminal window is the key. It shows the *watcher of the screencast* what the Selenium test is up to; they can see the action and the result. The screencast becomes part of the test process, a QA person can scan through the video to check for UI anomalies.
@@ -75,17 +75,17 @@ Personally I love the idea. It's not meant as a replacement for all the other re
 You also end up with an archive of screencasts for your project which you can turn into your blooper reel, complete with directors commentary after a release. Add dramatic music and playback the hi-speed dubbing version for a photo a day, watch how I change but stay the same, [youtube favourite, style video...](http://www.youtube.com/watch?v=UItNVuBI9UI)
 
 
-Notes, Quotes, Links, & Thanks
-------------------------------
-* A big thank you to [@hugs][@] for the talk and going above and beyond the call of duty in proof-reading this post. All quotes, ideas, and new acronyms mentioned here are his.
-* "Selnium 2, look out for a good beta by christmas."
-* "There are 2 problems in the world... the off by 1 error..."
-* "Think of your user interface test recording like your apple commercial"
-* Flexpilot - integrates with selenium for flex testing.
-* [http://saucelabs.com][1] "Cloud-scale Selenium Testing."
-* [http://www.meetup.com/london-software-craftsmanship][2]
-* [http://github.com/hugs/castro][3] "screen/cast ro/bot,  a tiny fork of pyvnc2swf, with a smidge of awesome on the side"
-* [http://pinthing.com][4] "A [@hugs][@] creation, the culmination of a 10 year itch. A browser controlled pin art simulator with the power to move the real thing."
+## Notes, Quotes, Links, & Thanks
+
+- A big thank you to [@hugs][@] for the talk and going above and beyond the call of duty in proof-reading this post. All quotes, ideas, and new acronyms mentioned here are his.
+- "Selnium 2, look out for a good beta by christmas."
+- "There are 2 problems in the world... the off by 1 error..."
+- "Think of your user interface test recording like your apple commercial"
+- Flexpilot - integrates with selenium for flex testing.
+- [http://saucelabs.com][1] "Cloud-scale Selenium Testing."
+- [http://www.meetup.com/london-software-craftsmanship][2]
+- [http://github.com/hugs/castro][3] "screen/cast ro/bot,  a tiny fork of pyvnc2swf, with a smidge of awesome on the side"
+- [http://pinthing.com][4] "A [@hugs][@] creation, the culmination of a 10 year itch. A browser controlled pin art simulator with the power to move the real thing."
 
 
 

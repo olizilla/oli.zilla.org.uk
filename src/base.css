@@ -2,6 +2,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@plugin '@tailwindcss/typography';
 
 html {
   background: hsl(0,20%,20%);
@@ -9,7 +10,7 @@ html {
 body {
   background: hsl(65,30%,97%);
   border: solid hsl(0,20%,20%) 9px;
-  color: hsl(0,20%,20%);
+  color: hsl(0,15%,15%);
 }
 
 @font-face {

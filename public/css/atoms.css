@@ -12,11 +12,11 @@ body {
   color: hsl(0,20%,20%);
 }
 h1,h2 {
-  margin:0;
+  margin:2rem 0 0 0;
   padding:0;
 }
 h1 {
-  font-size: 2.25rem;
+  font-size: 2rem;
 }
 h2 {
   font-size: 1.5rem;
@@ -24,8 +24,8 @@ h2 {
 h3 {
   font-size: 1.25rem;
 }
-p {
-  margin: 1.5rem 0;
+p, ul, ol {
+  margin: 1rem 0 1.5rem;
 }
 img {
   max-width:100%;
@@ -46,10 +46,10 @@ pre {
 }
 blockquote {
   font-family: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 400;
   padding: 0 0rem;
-  margin: 3rem 0;
+  margin: 1.9rem 2rem;
 }
 blockquote small {
   font-size: .875rem;
@@ -62,8 +62,7 @@ a.hover:hover {
   transition: all 0.3s ease-in-out;
 }
 ul {
-  list-style-type: none;
-  margin:0;
+  list-style-type: square;
   padding:0;
 }
 .block {
@@ -102,6 +101,9 @@ ul {
 }
 .m-a-2 {
   margin:1rem !important;
+}
+.m-t-0 {
+  margin-top:0 !important;
 }
 .m-t-1 {
   margin-top:0.5rem !important;

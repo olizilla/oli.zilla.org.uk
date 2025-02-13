@@ -1,6 +1,7 @@
 ---
 layout: ../../layouts/day1post.astro
 slug: 2010/10/06/arcade-fire-knows-where-you-live
+published: false
 ---
 
 Is that where you grew up?

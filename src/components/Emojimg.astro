@@ -1,0 +1,8 @@
+---
+export function toDataUrl(emoji: string) {
+  return `data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>${emoji}</text></svg>`
+}
+const { emoji } = Astro.props
+const src = toDataUrl(emoji)
+---
+<img class="h-14 w-14" src={src} alt="">
