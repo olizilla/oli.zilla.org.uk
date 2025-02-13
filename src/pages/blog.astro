@@ -8,7 +8,7 @@ const posts = await Promise.all(rawPosts.map(async p => {
 	const date = new Date(isoDateStr)
 	const content = await p.render()
 	const title = p.data.title ?? content.headings.at(0)?.text
-  const link = p.data.link ?? p.slug
+  const link = p.data.link ?? `/${p.slug}`
   const image = p.data.image
 	return { ...p, date, title, link, image }
 }))
