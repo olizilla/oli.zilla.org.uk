@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/day1post.astro
+layout: ../../layouts/2025.astro
 slug: 2010/10/06/arcade-fire-knows-where-you-live
 published: false
 ---

@@ -43,6 +43,15 @@ export default {
 					'Noto Color Emoji'
 				],
 			},
+			typography: {
+        DEFAULT: {
+          css: {
+            blockquote: {
+              quotes: "none",
+            },
+          },
+        },
+			}
 		},
 	},
 	plugins: [

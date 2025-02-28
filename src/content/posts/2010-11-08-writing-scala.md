@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/day1post.astro
+layout: ../../layouts/2025.astro
 slug: 2010/11/08/writing-scala
 ---
 Scala from Java

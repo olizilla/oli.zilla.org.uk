@@ -1,6 +1,6 @@
 ---
 slug: 2011/02/19/scala-compiler-fictions-and-the-suprising-difficulties-asking-anyval-its-maxvalue
-layout: ../../layouts/day1post.astro
+layout: ../../layouts/2025.astro
 ---
 
 Scala's polite compiler fictions &amp; the surprising difficulties of asking an AnyVal it's MaxValue
@@ -15,34 +15,39 @@ That's not something I want from my tools, so what follows is the highlights of 
 
 > "hmm, that should be pretty simple, let's take a look at what you got."
 
-	object NumberWang {
-	  def main(args: Array[String]) {
-	    println("Max Byte:  " + Byte.MaxValue )
-	    println("Max Short: " + Short.MaxValue)
-	    println("Max Int:   " + Int.MaxValue  ) 
-	    println("Max Long:  " + Long.MaxValue )
-	  }
+```scala
+object NumberWang {
+	def main(args: Array[String]) {
+		println("Max Byte:  " + Byte.MaxValue )
+		println("Max Short: " + Short.MaxValue)
+		println("Max Int:   " + Int.MaxValue  ) 
+		println("Max Long:  " + Long.MaxValue )
 	}
+}
+```
 
 Output
 
-	scala> NumberWang.main(null)                               
-	Max Byte:  127
-	Max Short: 32767
-	Max Int:   2147483647
-	Max Long:  9223372036854775807
-
+```scala
+scala> NumberWang.main(null)                               
+Max Byte:  127
+Max Short: 32767
+Max Int:   2147483647
+Max Long:  9223372036854775807
+```
 
 > "All good so far, but how would we write a method to get rid of all the repeated code?"
 
 > "hmm. Let's have a go"
 
-	scala> def maxor(numericType: AnyVal) {
-	     |   println(numericType.MaxValue)
-	     | }
-	 <console>:6: error: value MaxValue is not a member of AnyVal
-	          println(numericType.MaxValue)
-	                              ^
+```scala
+scala> def maxor(numericType: AnyVal) {
+			|   println(numericType.MaxValue)
+			| }
+	<console>:6: error: value MaxValue is not a member of AnyVal
+					println(numericType.MaxValue)
+															^
+```
 
 Rats. I'd assumed something like MaxValue would be common to all the AnyVals. Compiler says no. Let's actually find out where MaxValue is defined. And here lies the first surprising difficulty:
 
@@ -96,17 +101,18 @@ hmm...
 
 _Stand back, I am going to try duck-typing_
 
-	scala> def maxDuck( numericType: { def MaxValue: AnyVal } ) {                       
-	      |  println( numericType.MaxValue )
-	      |}
-	maxDuck: (numericType: AnyRef{def MaxValue: AnyVal})Unit
+```scala
+scala> def maxDuck( numericType: { def MaxValue: AnyVal } ) {                       
+			|  println( numericType.MaxValue )
+			|}
+maxDuck: (numericType: AnyRef{def MaxValue: AnyVal})Unit
 
-	scala> maxDuck( Int )
-		java.lang.NoSuchMethodException: scala.runtime.Int$.MaxValue()
-		at java.lang.Class.getMethod(Class.java:1605)
-		at .reflMethod$Method1(<console>:6)
-		at .maxDuck(<console>:6)
-
+scala> maxDuck( Int )
+	java.lang.NoSuchMethodException: scala.runtime.Int$.MaxValue()
+	at java.lang.Class.getMethod(Class.java:1605)
+	at .reflMethod$Method1(<console>:6)
+	at .maxDuck(<console>:6)
+```
 
 Kabooom. Hmm... that should have worked! Is this a sign from the capacitors that duck typing is evil and should be avoided? 
 No, and before you all shout at me, yes, I know this isn't really duck typing but if you find a simple way to explain what Scala is up to there, do let me know. 
@@ -126,20 +132,22 @@ And so to surprising difficulty #2:
 I read this as, N.B. here be beasties, take care, and a sword. But then I do have a tendency to see patterns in noise. Let's see if we can prove that it's compiler voodoo at the root of all this:
 
 
-	scala> def max(maxable: {def MaxValue: Any}) { println( maxable.MaxValue ) }
-	max: (maxable: AnyRef{def MaxValue: Any})Unit
+```scala
+scala> def max(maxable: {def MaxValue: Any}) { println( maxable.MaxValue ) }
+max: (maxable: AnyRef{def MaxValue: Any})Unit
 
-	scala> object Lung { val MaxValue: Long = 1046 }
-	defined module Lung
+scala> object Lung { val MaxValue: Long = 1046 }
+defined module Lung
 
-	scala> object Boot { val MaxValue: Byte = 8 }   
-	defined module Boot
+scala> object Boot { val MaxValue: Byte = 8 }   
+defined module Boot
 
-	scala> max( Boot )
-	8
+scala> max( Boot )
+8
 
-	scala> max( Lung )
-	1046
+scala> max( Lung )
+1046
+```
 
 It works! Ha! In your face compiler. You have been caught out in a lie, or, performing "polite compiler fictions" as mentioned in the wonderfully evocative Scala commit msg that ends this reign of voodoo.
 
@@ -148,9 +156,9 @@ It works! Ha! In your face compiler. You have been caught out in a lie, or, perf
 >Revision 24068, 5.7 KB (checked in by extempore, 4 weeks ago)
 >The AnyVal? types become source files instead of polite
 >compiler fictions.
-
+>
 >!! You'll need a serious "ant all.clean" now. !!
-
+>
 >As of this commit the system is fully bootstrapped and the
 >synthetic code eliminated: only the source files remain.
 >The sort-of-AnyVal?-companions in scala.runtime.* have all
@@ -159,7 +167,7 @@ It works! Ha! In your face compiler. You have been caught out in a lie, or, perf
 >the companions. This left AnyValCompanion? as the only AnyVal?
 >related thing in the runtime package: that made little sense,
 >so I deprecated and moved it as well.
-
+>
 >Starr is based on r24066 plus this commit. Closes #4121.
 >Review by rytz, odersky.
 

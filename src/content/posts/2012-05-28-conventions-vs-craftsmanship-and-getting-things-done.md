@@ -1,6 +1,6 @@
 ---
 slug: 2012/05/28/conventions-vs-craftsmanship-and-getting-things-done
-layout: ../../layouts/day1post.astro
+layout: ../../layouts/2025.astro
 ---
 
 Conventions Vs Craftsmanship and Getting Things Done

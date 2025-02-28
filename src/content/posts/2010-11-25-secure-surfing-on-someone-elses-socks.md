@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/day1post.astro
+layout: ../../layouts/2025.astro
 slug: 2010/11/25/secure-surfing-on-someone-elses-socks
 ---
 

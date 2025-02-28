@@ -1,6 +1,6 @@
 ---
 slug: 2013/01/20/if-only-you-knew-plain-text
-layout: ../../layouts/day1post.astro
+layout: ../../layouts/2025.astro
 ---
 
 If only you knew... plain text

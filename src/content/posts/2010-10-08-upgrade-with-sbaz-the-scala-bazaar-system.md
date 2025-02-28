@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/day1post.astro
+layout: ../../layouts/2025.astro
 slug: 2010/10/08/upgrade-with-sbaz-the-scala-bazaar-system
 ---
 

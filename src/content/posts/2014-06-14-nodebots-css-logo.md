@@ -1,6 +1,6 @@
 ---
 link: http://jsbin.com/iKaGel/edit?css,output
-layout: ../../layouts/day1post.astro
+layout: ../../layouts/2025.astro
 slug: 2014/06/14/animated-css-logo-for-nodebots
 ---
 

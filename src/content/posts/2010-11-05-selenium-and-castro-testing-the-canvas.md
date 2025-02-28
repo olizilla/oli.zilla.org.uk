@@ -1,11 +1,9 @@
 ---
-layout: ../../layouts/day1post.astro
-# layout: ../../layouts/2025.astro
+layout: ../../layouts/2025.astro
 slug: 2010/11/05/selenium-and-castro-testing-the-canvas
 ---
 
 # Selenium and Castro testing the Canvas
-
 
 Notes from [Painless product demos & how to test 'untestable' applications](http://www.meetup.com/london-software-craftsmanship/calendar/15118493/). Original talk by Jason Huggins ([@hugs][@]) of [Sauce Labs][1] presenting at the [London Software Craftsmanship Community][2], 4th Nov 2010.
 
@@ -28,20 +26,19 @@ In software dev, we have stakeholders too, and sometimes the html test reports a
 
 Write your Selenium tests as normal, then bookend them with calls to [Castro][3]. Selenium will drive the browser through some interesting aspect of your web app, and Castro will record the screen as it goes. Run the test suite every day, and publish the generated screencasts along with the rest of your test reports. Anyone who wants to see how things are going now has a shiny video walkthrough of where the project is at.
 
-	c = Castro()
-	c.start()
-	// Your tests here
-	c.stop()
-	c.publishToStakeholders()  // ! tweet(), youtube(),
-
+```js
+c = Castro()
+c.start()
+// Your tests here
+c.stop()
+c.publishToStakeholders()  // ! tweet(), youtube(),
+```
 
 ## How to test 'untestable' applications
 
 "Wouldn't it be cool if you could motorise all the pins in a Pin Art box"
 
-<!-- <div class="right">
-	<img src="http://www.mutr.co.uk/images/pinart.jpg" title="Time for tea" alt="Time for tea"/>
-</div> -->
+<img src="https://i.ytimg.com/vi/KHKQEzVy3Ro/maxresdefault.jpg" title="Time for tea" alt="Time for tea"/>
 
 [pinthing.com][4] provides our example of the untestable web app. The bulk of the UI is created in a new fangled html5 canvas element using three.js to draw 3d pins on to it. The pins are arranged in a grid and can be given commands to raise and lower them independently to form patterns and glyphs.
 
@@ -51,9 +48,11 @@ Well, the theory is, the Javascript object model is good place to start (the JOM
 
 pinthing has an in page js powered terminal that allows you to interact with the pins.
 
-	show(3)         // lifts pins 1 and 2, as its a binary display
-	show("3")       // lifts the pins to diplay a 3 glyph
-	show(3 << 5)    // bit shifing pin lifting, ye haa.
+```js
+show(3)         // lifts pins 1 and 2, as its a binary display
+show("3")       // lifts the pins to diplay a 3 glyph
+show(3 << 5)    // bit shifing pin lifting, ye haa.
+```
 
 So in this case a Selenuim test can write expressions to the terminal, simulating user interactions.
 
