@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/day1post.astro
+layout: ../../layouts/2025.astro
 slug: 2013/02/08/hating-on-java-for-xml
 published: false
 ---
