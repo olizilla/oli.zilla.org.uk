@@ -138,6 +138,7 @@ __They want to fix that too!__
 
 ## And more...
 
-The promise of digital-first legislation, a line about trialing [a new unique identifier on children]("strengthen-and-extend-our-digital-and-data-public-infrastructure") that would benefit from more context ...there really is something for everyone. I encourage you to give the [blueprint](https://www.gov.uk/government/publications/a-blueprint-for-modern-digital-government/a-blueprint-for-modern-digital-government-html) a read.
+The promise of ['digital ready' legislation](https://www.gov.uk/government/publications/a-blueprint-for-modern-digital-government/a-blueprint-for-modern-digital-government-html#priority-reforms), a line about trialing [a new unique identifier on children](https://www.gov.uk/government/publications/a-blueprint-for-modern-digital-government/a-blueprint-for-modern-digital-government-html#priority-reforms-4#strengthen-and-extend-our-digital-and-data-public-infrastructure) that would benefit from more context …there really is something for everyone. 
+I encourage you to give the [blueprint](https://www.gov.uk/government/publications/a-blueprint-for-modern-digital-government/a-blueprint-for-modern-digital-government-html) a read.
 
 Thoughts? Hurl them at https://bsky.app/profile/olizilla.bsky.social
