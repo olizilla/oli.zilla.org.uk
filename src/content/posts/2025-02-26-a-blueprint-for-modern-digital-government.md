@@ -17,7 +17,7 @@ In January 2025, GDS & DSIT published [A blueprint for modern digital government
 
 If you like to skim, I've collated the [list of just the 33 reforms as a separate post](/2025/02/25/all-the-priority-reforms-from-a-blueprint-for-modern-digital-government). 
 
-Despite it's length the blueprint is surprisingly coherent, tackling the problem from many angles. Channelling Wardley, if we begin the publicly visible part, the GOV.UK app, and trace it's dependencies we can start to see how the reforms serve to reinforce each other.
+Despite it's length the blueprint is surprisingly coherent, tackling the problem from many angles. Channelling [Wardley](https://en.wikipedia.org/wiki/Wardley_map), if we begin the publicly visible part, the GOV.UK app, and trace it's dependencies we can start to see how the reforms serve to reinforce each other.
 
 ## The GOV.UK App
 
@@ -44,9 +44,9 @@ From the private sector point of view, offering an app is the UK skating to wher
 The solid foundations of the GOV.UK web platform is exactly why Peter Kyle can promise that the 6 month old app will be ready for public use by June this year. It's open source and [published on github](https://github.com/alphagov/govuk-mobile-android-app), so let's take a look.
 
 The android app is a thin wrapper around the existing website; like a personalisable version of the https://gov.uk home page.
-The search feature is using an exiting gov.uk API to do the work of fetching search results:
+The search feature is using a gov.uk API to do the work of fetching search results:
 
-*Be Neo and see past the code. We're going to pick some words out, nothing more. Hold on.* 
+<p class='comment'># Be Neo and see past the code. We're going to pick some words out, nothing more. Hold on.</p>
 
 ```kotlin
 object SearchConfig {
@@ -73,8 +73,7 @@ The `title` for the first search result is *"Sign in to your Universal Credit ac
 
 If you select that item, it will open the https://gov.uk/sign-in-universal-credit web page [as a view in the app](https://github.com/alphagov/govuk-mobile-android-app/blob/49c1a3173a381e7f36b29d124c995f2bff9a04f0/feature/search/src/main/kotlin/uk/govuk/app/search/ui/SearchResults.kt#L99-L115), just as you would see it in your mobile web browser.
 
-<div class="max-w-full" style="width:380px">
-<div class="font-sans text-sm p-2" style="border:solid 10px black; border-radius:10px 10px 0 0;">https://gov.uk/sign-in-universal-credit</div><img src="/res/img/posts/2025-02-26-a-blueprint-for-modern-digital-government-2.png" style="width:100%;height:600px;border:solid 10px black; border-radius:0 0 10px 10px; border-top:0px; margin-top:0" /></div>
+<img src="/res/img/posts/2025-02-26-a-blueprint-for-modern-digital-government-2.png" style="width:380px; height:600px; border:solid 10px black; border-radius:10px;" />
 
 <!--    
 <div style="width:380px">
@@ -94,11 +93,11 @@ context.startActivity(intent)
 ```
 <small class="font-mono block -mt-7 bg-white rounded-b-md px-3 py-2">Source: <a href="https://github.com/alphagov/govuk-mobile-android-app/blob/49c1a3173a381e7f36b29d124c995f2bff9a04f0/feature/search/src/main/kotlin/uk/govuk/app/search/ui/SearchResults.kt#L99-L115">github.com/alphagov/govuk-mobile-android-app</a></small> -->
 
-This reuse of the website works because of all the effort that has gone into gov.uk to make it work well on any device, and the [Design System](https://design-system.service.gov.uk/) that allows the app builders to create buttons and links and a vibe that exactly matches the gov.uk web pages.
+There is work to do to make this feel seamless, but the point is that the app can reuse the web platform to become useful quickly because of all the effort that has gone into making the foundations; making gov.uk work well on any device, and the [Design System](https://design-system.service.gov.uk/) that allows the app builders to create buttons and links and a vibe that exactly matches the gov.uk web pages.
 
-This saves years of work. The task is not _"rebuild all 700,000 pages as features of the app"_, but instead to _"do only the work that makes apps interesting"_.
+This saves years of work. The task is not _"rebuild all 700,000 web pages as features of the app"_, but instead to _"do only the work that makes apps interesting"_.
 
-Just moving the gov.uk homepage into an app could have been a hard sell but they are following the growth-hacking, value-propositioning playbook and launching with a ~~killer app~~ exciting initial use-case: a **digital drivers licenses** including an eKYC feature that will let you prove only that you are old enough to by fireworks and alcohol without having to also share the address of that party. 
+Just moving the gov.uk homepage into an app could have been a hard sell but following the growth-hacking, value-propositioning playbook, they are launching with a ~~killer app~~ exciting initial use-case: a **digital drivers licenses** including an eKYC feature that will let you prove only that you are, for example, [old enough to buy fireworks](https://youtu.be/V5C5z45odYU?feature=shared&t=1542) and alcohol without having to also share the address the other details on your license, like the address of that party.
 
 [![Screenshot showing how to prove you're old enough to buy fireworks using the GOV.UK Wallet](/res/img/posts/2025-02-26-a-blueprint-for-modern-digital-government-1.jpg)](https://youtu.be/V5C5z45odYU?feature=shared&t=1542)
 
@@ -125,7 +124,7 @@ Digital transformation represents an opportunity to redesign government around p
 
 _...OK But what about treacherous operating conditions for running digital projects in a government setting?_
 
-Just last week [Mike Bracken](https://mikebracken.com/) reminded us that HM Treasury's process still strongly favours large up-front capital expense projects with a 3 to 5 year plan they can do the cost-benefit analysis on up front, and is completely at odds with the need to quickly spin up small teams for test-and-learn digital projects that may last months, or if successful, require on-going revenue funding. 
+Just last week [Mike Bracken](https://mikebracken.com/) reminded us that HM Treasury's process still strongly favours large up-front capital expense projects with a 3 to 5 year plan they can do the cost-benefit analysis on, and is completely at odds with the need to quickly spin up small teams for test-and-learn digital projects that may last months, or if successful, require on-going revenue funding. 
 
 This mismatch either kills agile projects before they start or forces them to role-play a waterfall project and pretend they can predict what they will need in 3 years time before they've even started talking to users.
 
@@ -138,6 +137,6 @@ __They want to fix that too!__
 
 ## And more...
 
-The promise of digital-first legislation, and a curious line about trialing [a new unique identifer on children]("strengthen-and-extend-our-digital-and-data-public-infrastructure") that would benefit from more context ...there really is something for everyone. I encourage you to give the blueprint a read.
+The promise of digital-first legislation, and a curious line about trialing [a new unique identifer on children]("strengthen-and-extend-our-digital-and-data-public-infrastructure") that would benefit from more context ...there really is something for everyone. I encourage you to give the [blueprint](https://www.gov.uk/government/publications/a-blueprint-for-modern-digital-government/a-blueprint-for-modern-digital-government-html) a read.
 
 Thoughts? Hurl them at https://bsky.app/profile/olizilla.bsky.social

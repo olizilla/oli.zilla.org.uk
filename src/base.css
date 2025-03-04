@@ -31,3 +31,7 @@ body {
 .prose .cite {
   @apply text-zinc-500 font-mono block mt-1 text-sm;
 }
+
+.prose .comment {
+  @apply text-zinc-600 font-mono text-sm;
+}
