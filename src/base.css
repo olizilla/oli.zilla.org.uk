@@ -33,5 +33,9 @@ body {
 }
 
 .prose .comment {
-  @apply text-zinc-600 font-mono text-sm;
+  @apply text-zinc-600 font-mono text-base;
+}
+
+.prose em {
+  @apply font-serif;
 }

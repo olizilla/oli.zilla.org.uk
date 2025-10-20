@@ -17,7 +17,7 @@ In January 2025, GDS & DSIT published [A blueprint for modern digital government
 
 If you like to skim, I've collated the [list of just the 33 reforms as a separate post](/2025/02/25/all-the-priority-reforms-from-a-blueprint-for-modern-digital-government). 
 
-Despite it's length the blueprint is surprisingly coherent, tackling the problem from many angles. Channelling [Wardley](https://en.wikipedia.org/wiki/Wardley_map), if we begin the publicly visible part, the GOV.UK app, and trace it's dependencies we can start to see how the reforms serve to reinforce each other.
+Despite it's length the blueprint is surprisingly coherent, tackling the problem from many angles. Channelling [Wardley](https://en.wikipedia.org/wiki/Wardley_map), if we begin with the publicly visible part, the GOV.UK app, and trace it's dependencies we can start to see how the reforms serve to reinforce each other.
 
 ## The GOV.UK App
 
