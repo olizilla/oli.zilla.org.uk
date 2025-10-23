@@ -17,7 +17,7 @@ Yet another difficult choice falls on the Trust. Do we pay to do the one off com
 
 _Bombastic? Yes. Based on multiple actual events? Also yes._
 
-You are never more powerful than the moment before you sign the contract. Take a moment. Wield the curious power of procurement. Per [Levin](https://doi.org/10.1007/s11077-012-9151-0), *(or a ships mast to Odysseus, for the Greeking Out crew)* look for firms that, explicitly constrain their future behaviour, by demonstrably committing to building on open standards.
+You are never more powerful than the moment before you sign the contract. Take a moment. Wield the curious power of procurement. Look for firms that explicitly [constrain their future behaviour](https://doi.org/10.1007/s11077-012-9151-0), by demonstrably committing to building on open standards *(like a ships mast to Odysseus, for the Greeking Out crew)*.
 
 Open standards offer a place to convert the energy of competition into useful collaboration. They are where difficult conversations about how things should work, happen. Haggling and consensus building. They can feel like a burden to the participants. They should! The alternative is each product imposes its incompatible opinions directly on the users rather than working through the trade-offs with competitors first.
 
@@ -29,6 +29,6 @@ Our physical paper medical records were slow to search and difficult to share bu
 
 At it's most dysfunctional we've swapped a [Lloyd George envelope](https://en.wikipedia.org/wiki/Lloyd_George_envelope) of notes and sharing at the speed of the postal system, for clinicians remotely operating other clinicians over a weekly MS Teams call to plug numbers into incompatible systems to bridge gaps in trust at unintentional system boundaries.
 
-An open standard for medical records gives us foothold. A place to build from. It is hard to get them off the ground, and good ones, like [openEHR](https://openehr.org/) and [FHIR](http://hl7.org/fhir/summary.html) should be cherished and supported. That means showing up. Visibly participating and financially sponsoring, no strings attached.
+An open standard for medical records gives us a foothold. A place to build from. It is hard to get them off the ground, and good ones, like [openEHR](https://openehr.org/) and [FHIR](http://hl7.org/fhir/summary.html) should be cherished and supported. That means showing up. Visibly participating and financially sponsoring, no strings attached.
 
 As a _"rules of engagement that allow diverse and heterogeneous actors to interact constructively over prolonged timespans"_ ([Ferraro et al.](https://doi.org/10.1177/0170840614563742)), the open standards process offers a path forwards, a _"robust action"_ to a complex, uncertain problem, rather than a prisoners dilemma to overcome. We do not have to wait for everyone to be convinced. Each system built on open standards by people willing to negotiate and trade some implementation freedom for coherent, reusable, interoperable output is a win.
