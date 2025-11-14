@@ -85,21 +85,21 @@ In an ideal deployment X-Road is fully responsible for authentication, providing
 
 A data provider only has to make their API available to their local Security Server and there is then a clear path for many other departments to make use of that data. Once there is a MoU between the departments, it can be codified in X-Road config, and the consumer can start working on integrating the providers data into their system.
 
-New APIs can be developed quickly with less pressure to write bespoke access control code. The non-reputable access logging encourages data providers to share everything, All the data is available, but consumers accessing data they should not will be evident in the logs.
+New APIs can be developed quickly with less pressure to write bespoke access control code. The non-repudiable access logging encourages data providers to share everything, All the data is available, but consumers accessing data they should not will be evident in the logs.
 
 <div style="page-break-after: always;"></div>
 
 ### Challenges to adopting X-Road in the UK today
 
 - Multiple sources of truth for authentication logic risks data security errors.
-- X-Road logs must either contain PII and auth tokens or have the non-reputable aspect disabled.
+- X-Road logs must either contain PII and auth tokens or have the non-repudiable aspect disabled.
 - Data consumers required to run unfamiliar software to access APIs.
 
 **Authentication:** The UK has hundreds of published APIs already. ([243 under gov.uk alone](https://www.api.gov.uk/index/#index).) Each API has its own authentication and authorisation flow established. If we roll out X-Road today, we would likely have to avoid using X-Roads support for the same features to ensure we retain a single source of truth. This reduces the value of one of X-Roads main features.
 
 Alternatively we would have to devote engineering time to removing auth logic from existing APIs and replacing it with the equivalent X-Road config. This would involve significant, high skill work, with no immediate improvement to end-user experience.
 
-**Logging:** X-Roads non-reputable logs that can be used as evidence under eIDAS are another key feature. That requires full message body logging to be enabled. This means the X-Road logs will contain PII data and any authentication tokens required for the consumer to access the provider system. This makes those logs a GDPR and security risk.
+**Logging:** X-Roads non-repudiable logs that can be used as evidence under eIDAS are another key feature. That requires full message body logging to be enabled. This means the X-Road logs will contain PII data and any authentication tokens required for the consumer to access the provider system. This makes those logs a GDPR and security risk.
 
 This problem is common enough that X-Road makes it simple to disable message body logging, such that only the metadata of the interaction is recorded, but this also means the logs are no longer verifiable. Their primary use becomes tracking metrics as they are no longer a strong deterrent to unauthorised data access. This diminishes the value of the other key feature. 
 
