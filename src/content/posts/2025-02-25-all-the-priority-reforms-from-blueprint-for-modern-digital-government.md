@@ -2,6 +2,8 @@
 layout: ../../layouts/2025.astro
 slug: 2025/02/25/all-the-priority-reforms-from-a-blueprint-for-modern-digital-government
 published: true
+tagline: "For those that like their data dense"
+emoji: "📋"
 ---
 
 # All the priority reforms from "a blueprint for modern digital government"

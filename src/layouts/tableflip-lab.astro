@@ -8,7 +8,7 @@ const { title } = Astro.props.frontmatter || Astro.props;
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>{title}</title>
-	<link href="http://www.gravatar.com/avatar/9d1124bf8f7fe1b93a92a7927accd9a9?s=80" rel="icon" type="image/png" />
+	<link href="https://secure.gravatar.com/avatar/9d1124bf8f7fe1b93a92a7927accd9a9?s=80" rel="icon" type="image/png" />
   <style>
   body {
     text-align:center;
@@ -34,8 +34,9 @@ const { title } = Astro.props.frontmatter || Astro.props;
     opacity: 1;
   }
   </style>
-  <body>
-    <a title="(╯°□°）╯︵ TABLEFLIP" class="tableflip" href="../../../">TABLEFLIP</a>
-    <slot/>
-  </body>
 </head>
+<body>
+  <a title="(╯°□°）╯︵ TABLEFLIP" class="tableflip" href="../../../">TABLEFLIP</a>
+  <slot/>
+</body>
+</html>

@@ -3,6 +3,7 @@ layout: ../../layouts/2025.astro
 slug: 2025/02/26/a-blueprint-for-modern-digital-government
 published: true
 tagline: The gov.uk app, the APIs, and the operating environment
+emoji: "🔍"
 ---
 
 # A blueprint for modern digital government

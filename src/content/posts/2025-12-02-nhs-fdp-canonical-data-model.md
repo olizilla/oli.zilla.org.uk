@@ -2,10 +2,11 @@
 layout: ../../layouts/2025.astro
 slug: 2025/12/02/nhs-fdp-canonical-data-model
 published: true
-tagline: "What does it mean to own an interface to a proprietary cloud platform"
+tagline: "What does it mean to own an interface to a proprietary cloud platform?"
+emoji: "🔌"
 ---
 
-# The Canonical Data Model, the FDP, and the NHS.
+# The Canonical Data Model and the FDP
 
 The NHS "owns" the Canonical Data Model (CDM), the interface to the Federated Data Platform that all existing systems are to integrate with and that new systems should build on. This is what the CDM interface looks like today.
 

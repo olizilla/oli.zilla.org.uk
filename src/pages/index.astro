@@ -5,6 +5,14 @@ import Time from '../components/Time.astro'
 import Quote from '../components/Quote.astro'
 import LinkItem from '../components/LinkItem.astro'
 const title = "Leave it better than you found it"
+const rawPosts = await getCollection('posts').then(posts => posts.filter(p => p.data.published === true))
+const posts = (await Promise.all(rawPosts.map(async p => {
+	const isoDateStr = p.id.slice(0, 10)
+	const date = new Date(isoDateStr)
+	const content = await p.render()
+	const title = p.data.title ?? content.headings.at(0)?.text ?? 'Untitled'
+	return { ...p, date, title }
+}))).sort((a, b) => b.date.getTime() - a.date.getTime()).slice(0, 5)
 ---
 <!doctype html>
 <html>
@@ -13,7 +21,7 @@ const title = "Leave it better than you found it"
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<title>{title}</title>
-	<link href="http://www.gravatar.com/avatar/9d1124bf8f7fe1b93a92a7927accd9a9?s=80" rel="icon" type="image/png"  />
+	<link href="https://secure.gravatar.com/avatar/9d1124bf8f7fe1b93a92a7927accd9a9?s=80" rel="icon" type="image/png"  />
 </head>
 <body class="font-serif min-h-screen">
 	<header>
@@ -73,36 +81,14 @@ const title = "Leave it better than you found it"
 		</Quote> -->
 
 		<h2 class="text-right text-sm font-mono uppercase tracking-widest text-zinc-400 -mb-1 pt-8">Blog</h2>
-		<LinkItem
-		title="Why use Open Standards for healthcare records"
-		desc="So you wanna procure some software?"
-		emoji="🤝"
-		href="/2025/10/20/why-open-standards-for-healthcare-records/" />
-		<LinkItem
-		title="Adopting X-Road in the UK"
-		desc="Reducing the time-tax of government services through digital interoperability"
-		emoji="💾"
-		href="/2025/04/30/x-road-in-uk-policy-memo/" />
-		<LinkItem
-		title="A blueprint for modern digital government"
-		desc="The gov.uk app, the APIs, and the operating environment"
-		emoji="🔍"
-		href="/2025/02/26/a-blueprint-for-modern-digital-government/" />
-		<LinkItem
-		title='All the priority reforms from "a blueprint for modern digital government"'
-		desc="For those that like their data dense"
-		emoji="📋"
-		href="/2025/02/25/all-the-priority-reforms-from-a-blueprint-for-modern-digital-government/" />
-		<LinkItem
-		title="Unicode"
-		desc="Visual memory across the Basic Multilingual Plane"
-		emoji="࿇"
-		href="/unicode/v1" />
-		<LinkItem
-		title="Rainbow"
-		desc="Sketching with animated SVGs"
-		emoji="🌈"
-		href="/2015/09/18/rainbow" />
+		{posts.map(post => (
+			<LinkItem
+				title={post.title}
+				desc={post.data.tagline}
+				emoji={post.data.emoji}
+				href={post.data.link ?? `/${post.slug}`}
+			/>
+		))}
 		<LinkItem
 			title="Older posts..."
 			emoji="☎️"
@@ -133,7 +119,7 @@ const title = "Leave it better than you found it"
 			title="Suena Bien Soundsystem"
 			desc="Making speakers. Playing music. Partying together."
 			img="https://suenabien.co/suenabien.png"
-			href="https://suenabien.co/" />
+			href="https://www.instagram.com/suenabien.soundsystem/" />
 
 		<LinkItem
 			title="Open Source Software - olizilla on github"
@@ -156,7 +142,7 @@ const title = "Leave it better than you found it"
 		<LinkItem
 			title="West Norwood Feast"
 			desc="I helped start a street party in 2011. Still partying today!"
-			img="https://media.licdn.com/dms/image/C560BAQEzlx-c_Hn53A/company-logo_200_200/0/1631358653466?e=2147483647&v=beta&t=jdQmatDNXBeWL7fLfjrzSRcL-COuyJf17ZP-iMUVIfo"
+			emoji="🧁"
 			href="https://westnorwoodfeast.com/" />
 	</div>
 

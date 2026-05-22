@@ -7,7 +7,9 @@ const posts = defineCollection({
     link: z.string().url().optional(),
     image: z.string().url().optional(),
     layout: z.string(),
-    published: z.boolean().optional().default(true)
+    published: z.boolean().optional().default(true),
+    tagline: z.string().optional(),
+    emoji: z.string().optional()
   }),
 })
 
