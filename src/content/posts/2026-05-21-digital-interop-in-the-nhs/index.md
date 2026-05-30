@@ -7,8 +7,8 @@ emoji: "🗣️"
 ---
 
 <style>
-article img { border: solid 1px #ddd;  }
-article > figure { background: white; padding: 8px; border: solid 1px #fff; border-radius: 4px;}
+article img { border-bottom: solid 1px #ddd; }
+article > figure { background: white; padding: 0px; border: solid 1px #ddd; border-radius: 4px;}
 article > figure > p > img { margin: 0 !important; }
 article > figure > figcaption { padding: 0 1em;}
 </style>
@@ -24,8 +24,8 @@ _A talk I presented in May 2026 to the [NHS DPSP](https://www.digital-prevention
 <figcaption>
 
 I’m going to talk about digital interop in the NHS, starting with my motivation:
-- the bad things that happen when it fails
-- The realities of what is holding up progress
+- The bad things that happen when interop fails.
+- The realities of what is holding up progress.
 - Some ideas from academia on patterns of nation scale digital transformation.
 - And then look at work that is happening here and in Catalonia.
 

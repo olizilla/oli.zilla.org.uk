@@ -3,7 +3,7 @@ import '../base.css'
 import Prose from '../components/Prose.astro';
 const { frontmatter, headings } = Astro.props;
 const title = frontmatter?.title || Astro.props.title || headings?.find(h => h.depth === 1)?.text;
-const tagline = frontmatter?.tagline || Astro.props.tagline || "Oli Evans (olizilla) — software engineer, co-operator, and writer. Thoughts on open source, open protocols, and web development.";
+const tagline = frontmatter?.tagline || Astro.props.tagline || "olizilla: software engineer, co-operator, and writer. Thoughts on open source, open protocols, and web development.";
 const logoLink = Astro.props.logoLink ?? '/'
 ---
 <!doctype html>
@@ -14,14 +14,15 @@ const logoLink = Astro.props.logoLink ?? '/'
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<title>{title}</title>
 	<meta name="description" content={tagline} />
-	<link href="https://secure.gravatar.com/avatar/9d1124bf8f7fe1b93a92a7927accd9a9?s=80" rel="icon" type="image/png"  />
+	<link href="/res/img/olizilla-trace.min.svg" rel="icon" type="image/svg+xml" />
+  <link href="/rss.xml" rel="alternate" title="RSS" type="application/rss+xml" />
 </head>
 <body class="min-h-screen inter-base">
   <div class="mx-auto px-2 max-w-[800px]">
     <header>
       <h1 class="text-2xl font-bold py-10">
         <a href={logoLink} class="inline-block cursor-crosshair">
-          <img title="❤️" alt="" src="/res/img/olizilla-trace.svg" style=" width:140px; height:140px; vertical-align:-92px;" class="inline-block"/>
+          <img title="❤️" alt="" src="/res/img/olizilla-trace.min.svg" style=" width:140px; height:140px; vertical-align:-92px;" class="inline-block"/>
         </a>
       </h1>
     </header>

@@ -17,14 +17,15 @@ export async function GET(context) {
   posts.sort((a, b) => b.date.getTime() - a.date.getTime());
 
   return rss({
-    title: 'Is that supposed to go there? A blog by olizilla',
-    description: 'Leave it better than you found it. Personal blog of olizilla.',
+    title: 'olizilla',
+    description: 'Building software 🤖 resilience ✊ enthusiasm 🎉 and community 👯‍♀️',
     site: context.site ?? 'https://oli.zilla.org.uk',
     items: posts.map((post) => ({
       title: post.title,
       pubDate: post.date,
       description: post.data.tagline ?? '',
       link: post.data.link ?? `/${post.slug}`,
+      commentsUrl: 'https://bsky.app/profile/oli.zilla.org.uk'
     })),
   });
 }
