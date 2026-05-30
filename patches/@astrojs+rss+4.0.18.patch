@@ -1,0 +1,25 @@
+diff --git a/node_modules/@astrojs/rss/dist/index.js b/node_modules/@astrojs/rss/dist/index.js
+index db49641..eb7472d 100644
+--- a/node_modules/@astrojs/rss/dist/index.js
++++ b/node_modules/@astrojs/rss/dist/index.js
+@@ -100,7 +100,8 @@ async function generateRSS(rssOptions) {
+     // when using `customData`
+     // https://github.com/withastro/astro/issues/5794
+     suppressEmptyNode: true,
+-    suppressBooleanAttributes: false
++    suppressBooleanAttributes: false,
++    cdataPropName: "__cdata"
+   };
+   const parser = new XMLParser(xmlOptions);
+   const root = { "?xml": { "@_version": "1.0", "@_encoding": "UTF-8" } };
+@@ -151,7 +152,9 @@ async function generateRSS(rssOptions) {
+       item.pubDate = result.pubDate.toUTCString();
+     }
+     if (typeof result.content === "string") {
+-      item["content:encoded"] = result.content;
++      item["content:encoded"] = {
++        "__cdata": result.content
++      };
+     }
+     if (typeof result.customData === "string") {
+       Object.assign(item, parser.parse(`<item>${result.customData}</item>`).item);

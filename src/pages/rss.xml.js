@@ -7,9 +7,14 @@ const parser = new MarkdownIt({
   html: true,
 });
 
-function makeUrlsAbsolute(html, postUrl, siteUrl) {
+const images = import.meta.glob('/src/content/posts/**/*.{png,jpg,jpeg,webp,gif}', { eager: true });
+
+function makeUrlsAbsolute(html, postUrl, siteUrl, postId) {
   const normalizedSiteUrl = siteUrl.endsWith('/') ? siteUrl.slice(0, -1) : siteUrl;
   const normalizedPostUrl = postUrl.endsWith('/') ? postUrl.slice(0, -1) : postUrl;
+
+  const lastSlashIndex = postId.lastIndexOf('/');
+  const postFileDir = lastSlashIndex !== -1 ? postId.substring(0, lastSlashIndex) : '';
 
   return html.replace(/(src|href)="([^"]+)"/g, (match, attr, val) => {
     if (val.startsWith('http://') || val.startsWith('https://') || val.startsWith('mailto:') || val.startsWith('#')) {
@@ -18,10 +23,16 @@ function makeUrlsAbsolute(html, postUrl, siteUrl) {
     let absoluteUrl = val;
     if (val.startsWith('/')) {
       absoluteUrl = normalizedSiteUrl + val;
-    } else if (val.startsWith('./')) {
-      absoluteUrl = normalizedPostUrl + '/' + val.slice(2);
     } else {
-      absoluteUrl = normalizedPostUrl + '/' + val;
+      const resolvedRelPath = val.startsWith('./') ? val.slice(2) : val;
+      const projectPath = `/src/content/posts/${postFileDir ? postFileDir + '/' : ''}${resolvedRelPath}`;
+      const importedImage = images[projectPath];
+      
+      if (importedImage && importedImage.default && importedImage.default.src) {
+        absoluteUrl = normalizedSiteUrl + importedImage.default.src;
+      } else {
+        absoluteUrl = normalizedPostUrl + '/' + resolvedRelPath;
+      }
     }
     return `${attr}="${absoluteUrl}"`;
   });
@@ -56,12 +67,14 @@ export async function GET(context) {
         : `${siteUrl.endsWith('/') ? siteUrl.slice(0, -1) : siteUrl}/${postPath.startsWith('/') ? postPath.slice(1) : postPath}`;
       
       const rawHtml = parser.render(post.body);
-      const absoluteHtml = makeUrlsAbsolute(rawHtml, postUrl, siteUrl);
+      const absoluteHtml = makeUrlsAbsolute(rawHtml, postUrl, siteUrl, post.id);
       const sanitizedHtml = sanitizeHtml(absoluteHtml, {
-        allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img', 'figure', 'figcaption']),
+        allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img', 'figure', 'figcaption', 'ul', 'li', 'ol']),
         allowedAttributes: {
           ...sanitizeHtml.defaults.allowedAttributes,
           img: ['src', 'alt', 'title', 'width', 'height', 'loading'],
+          abbr: ['title'],
+          a: ['href', 'name', 'target', 'rel'],
         }
       });
 
