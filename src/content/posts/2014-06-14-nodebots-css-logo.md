@@ -2,6 +2,7 @@
 link: http://jsbin.com/iKaGel/edit?css,output
 layout: ../../layouts/2025.astro
 slug: 2014/06/14/animated-css-logo-for-nodebots
+tagline: "An animated, pure CSS drawing of the Nodebots logo featuring a blinking eye animation."
 ---
 
 # Animated CSS logo for nodebots

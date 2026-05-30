@@ -1,6 +1,7 @@
 ---
 layout: ../../layouts/2025.astro
 slug: 2010/11/08/writing-scala
+tagline: "A comparison of Scala and Java syntax, highlighting pattern matching, companion objects, and potential pitfalls."
 ---
 Scala from Java
 ===============

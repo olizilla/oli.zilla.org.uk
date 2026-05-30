@@ -1,6 +1,7 @@
 ---
 slug: 2013/01/20/if-only-you-knew-plain-text
 layout: ../../layouts/2025.astro
+tagline: "to avoid formatting nightmares, vendor lock-in by writing plain text and markdown"
 ---
 
 If only you knew... plain text

@@ -1,6 +1,7 @@
 ---
 layout: ../../layouts/2025.astro
 slug: 2010/11/25/secure-surfing-on-someone-elses-socks
+tagline: "A tutorial on encrypting your browser traffic over unsecured public Wi-Fi using an SSH SOCKS proxy tunnel."
 ---
 
 Web by Proxy; Secure surfing on someone else's SOCKS

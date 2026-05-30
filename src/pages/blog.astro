@@ -3,6 +3,7 @@ import Layout from '../layouts/2025.astro'
 import { getCollection } from 'astro:content'
 import Time from '../components/Time.astro'
 const title = "Is that supposed to go there? A blog by olizilla"
+const tagline = "A blog by Oli Evans (olizilla) about open source, open protocols, digital public infrastructure, and web development."
 const rawPosts = (await getCollection('posts').then(posts => posts.filter(p => p.data.published === true))).reverse()
 const posts = await Promise.all(rawPosts.map(async p => {
 	const isoDateStr = p.id.slice(0, 10)
@@ -11,20 +12,22 @@ const posts = await Promise.all(rawPosts.map(async p => {
 	const title = p.data.title ?? content.headings.at(0)?.text
   const link = p.data.link ?? `/${p.slug}`
   const image = p.data.image
-	return { ...p, date, title, link, image }
+  const tagline = p.data.tagline
+	return { ...p, date, title, link, image, tagline }
 }))
 
 ---
-<Layout logoLink="/">
+<Layout title={title} tagline={tagline} logoLink="/">
 	<nav>
 		{ posts.map(post => (
 			<section>
 					<h1>
 						<a href={ post.link } class="font-extrabold">{ post.title ?? '?' }</a>
 					</h1>
+					{ post.tagline && <p class="text-zinc-600 pt-0 italic">{post.tagline}</p> }
 					{ post.image && <img src={post.image} /> }
 					<small class="block text-right text-sm font-mono uppercase tracking-wide text-zinc-400 -mb-1 pt-2"><Time date={post.date} /></small>
-					<hr />
+					<hr class="mt-2" />
 			</section>
 		)) }
 	</nav>

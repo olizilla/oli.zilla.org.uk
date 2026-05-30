@@ -1,6 +1,7 @@
 ---
 slug: 2011/02/19/scala-compiler-fictions-and-the-suprising-difficulties-asking-anyval-its-maxvalue
 layout: ../../layouts/2025.astro
+tagline: "Investigating Scala compiler magic, companion objects, and why duck-typing Numeric types for MaxValue fails in Scala 2.8.1."
 ---
 
 Scala's polite compiler fictions &amp; the surprising difficulties of asking an AnyVal it's MaxValue

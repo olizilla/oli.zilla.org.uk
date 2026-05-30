@@ -1,6 +1,7 @@
 ---
 layout: ../../layouts/2025.astro
 slug: 2010/12/07/installing-git-on-debian-lenny
+tagline: "A needlessly funny walkthrough on configuring lenny-backports to get Git 1.7 on Debian Lenny."
 ---
 
 Git on Lenny, a love story

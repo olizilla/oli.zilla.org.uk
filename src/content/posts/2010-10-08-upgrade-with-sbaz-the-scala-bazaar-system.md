@@ -1,6 +1,7 @@
 ---
 layout: ../../layouts/2025.astro
 slug: 2010/10/08/upgrade-with-sbaz-the-scala-bazaar-system
+tagline: "A guide to upgrading your Scala SDK installation and managing packages with the Scala Bazaar System (sbaz)."
 ---
 
 Upgrade with sbaz, the Scala Bazaar System
