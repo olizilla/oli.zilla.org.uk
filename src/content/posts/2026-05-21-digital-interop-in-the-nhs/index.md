@@ -2,7 +2,7 @@
 layout: ../../../layouts/2025.astro
 slug: 2026/05/21/digital-interop-in-the-nhs
 published: true
-tagline: "We need interop that is loosly coupled across a diverse ecosystem."
+tagline: "We need interop that is loosely coupled across a diverse ecosystem."
 emoji: "🗣️"
 ---
 
@@ -668,5 +668,7 @@ TAA DAA.
 ---
 
 _Original Deck: [docs.google.com](https://docs.google.com/presentation/d/1p-vwbdQgK_wU4Lzj75cWnt5rxd60FQexiFR76XqP5Mg/edit)_
+
+_Extracted via: [github.com/olizilla/slides-out](https://github.com/olizilla/slides-out)_
 
 _Published: 2026-05-28_
