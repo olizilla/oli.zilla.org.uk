@@ -12,7 +12,7 @@ const posts = (await Promise.all(rawPosts.map(async p => {
 	const content = await p.render()
 	const title = p.data.title ?? content.headings.at(0)?.text ?? 'Untitled'
 	return { ...p, date, title }
-}))).sort((a, b) => b.date.getTime() - a.date.getTime()).slice(0, 5)
+}))).sort((a, b) => b.date.getTime() - a.date.getTime()).slice(0, 7)
 ---
 <!doctype html>
 <html>
@@ -23,9 +23,9 @@ const posts = (await Promise.all(rawPosts.map(async p => {
 	<title>{title}</title>
 	<link href="https://secure.gravatar.com/avatar/9d1124bf8f7fe1b93a92a7927accd9a9?s=80" rel="icon" type="image/png"  />
 </head>
-<body class="font-serif min-h-screen">
+<body class="inter-base min-h-screen">
 	<header>
-		<div class="mx-auto max-w-2xl pt-8 px-2">
+		<div class="mx-auto max-w-[800px] pt-10 px-2">
 			<h1 class="border-b-0 border-double border-red-950 text-2xl font-bold">
 				<a href="/subconscious" class="inline-block cursor-crosshair">
 					<img title="❤️" alt="logo" src="/res/img/olizilla-trace.svg" style=" width:140px; height:140px; vertical-align:-92px;" class="inline-block"/>
@@ -40,7 +40,7 @@ const posts = (await Promise.all(rawPosts.map(async p => {
 			</p>
 		</div>
 	</header>
-	<div class="mx-auto max-w-2xl pt-4 px-2 text-base">
+	<div class="mx-auto max-w-[800px] pt-4 px-2 text-base font-serif">
 		<Quote by="Phoebe Tickell" year="2023" cite="https://open.spotify.com/episode/52GGqpGDgZTTYGTQ4sAwLa">
 			<p class="text-lg">The tool of imagination is looking at the two options on the table and saying: 
 				<br/>
@@ -79,6 +79,8 @@ const posts = (await Promise.all(rawPosts.map(async p => {
 				Talking about values and goals is a lost art waiting to be revived.
 			</p>
 		</Quote> -->
+	</div>
+	<section class="mx-auto max-w-[800px] pt-4 px-2 text-base">
 
 		<h2 class="text-right text-sm font-mono uppercase tracking-widest text-zinc-400 -mb-1 pt-8">Blog</h2>
 		{posts.map(post => (
@@ -94,6 +96,23 @@ const posts = (await Promise.all(rawPosts.map(async p => {
 			emoji="☎️"
 			desc="from a more or less civilised age"
 			href="/blog" />
+
+		<h2 class="text-right text-sm font-mono uppercase tracking-widest text-zinc-400 -mb-1 pt-10">Sketches</h2>
+		<LinkItem
+			title="Unicode"
+			desc="Visual memories across the multilingual planes"
+			emoji="⌧"
+			href="/unicode" />
+		<LinkItem
+			title="Rainbow"
+			desc="Sketching with animated SVGs"
+			emoji="🌈"
+			href="2015/09/18/rainbow" />
+		<LinkItem
+			title="Animated CSS logo for nodebots"
+			desc="CSS only Blinky bot for @gorhgorh"
+			emoji="🤖"
+			href="2014/06/14/animated-css-logo-for-nodebots" />
 
 		<h2 class="text-right text-sm font-mono uppercase tracking-widest text-zinc-400 -mb-1 pt-10">Work</h2>
 		<LinkItem
@@ -156,18 +175,10 @@ const posts = (await Promise.all(rawPosts.map(async p => {
 			desc="What if CVs could talk?"
 			emoji="😑"
 			href="https://www.linkedin.com/in/olizilla/" />
+	</section>
 
-	</div>
 	<footer class="pt-16 text-center text-2xl -mb-1">
 		🌻
 	</footer>
-	<!-- <div class="mx-auto max-w-2xl px-2 pt-8">
-		<h1 class="p-y-3 text-center">
-			<a class="block font-xl" href="/subconscious">
-				<img class="inline-block" title="is that supposed to go there?" alt="logo" src="/res/img/olizilla-trace.svg" style="width:90px; height:90px; vertical-align:-1.2em;" />
-				<span class="bg-gray-1 uppercase bolder" style="letter-spacing:1px; border-bottom: hsl(0,20%,20%) solid 25px;">olizilla</span>
-			</a>
-		</h1>
-	</div> -->
 </body>
 </html>

@@ -10,8 +10,13 @@ html {
 }
 body {
   background: hsl(65, 30%, 97%);
-  border: solid hsl(0, 20%, 20%) 9px;
   color: hsl(0, 15%, 15%);
+}
+
+@media (min-width: 768px) {
+  body {
+    border: solid hsl(0, 20%, 20%) 9px;
+  }
 }
 
 @font-face {

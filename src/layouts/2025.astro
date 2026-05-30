@@ -4,7 +4,7 @@ import Prose from '../components/Prose.astro';
 const { frontmatter, headings } = Astro.props;
 const title = frontmatter?.title || Astro.props.title || headings?.find(h => h.depth === 1)?.text;
 const tagline = frontmatter?.tagline || Astro.props.tagline || "Oli Evans (olizilla) — software engineer, co-operator, and writer. Thoughts on open source, open protocols, and web development.";
-const logoLink = Astro.props.logoLink ?? '/blog/'
+const logoLink = Astro.props.logoLink ?? '/'
 ---
 <!doctype html>
 <html>
