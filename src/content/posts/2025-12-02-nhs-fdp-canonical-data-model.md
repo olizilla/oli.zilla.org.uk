@@ -6,6 +6,7 @@ slug: 2025/12/02/nhs-fdp-canonical-data-model
 draft: false
 tagline: "What does it mean to own an interface to a proprietary cloud platform?"
 emoji: "🔌"
+atUri: "at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.document/3mn6cg67jyk2p"
 ---
 
 # The Canonical Data Model and the FDP

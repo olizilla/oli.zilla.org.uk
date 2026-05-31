@@ -5,6 +5,7 @@ publishDate: 2014-06-14
 title: "Animated CSS logo for nodebots"
 slug: 2014/06/14/animated-css-logo-for-nodebots
 tagline: "An animated, pure CSS drawing of the Nodebots logo featuring a blinking eye animation."
+atUri: "at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.document/3mn6cg6szx52c"
 ---
 
 # Animated CSS logo for nodebots

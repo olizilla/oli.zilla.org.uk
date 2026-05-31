@@ -6,6 +6,7 @@ slug: 2025/02/25/all-the-priority-reforms-from-a-blueprint-for-modern-digital-go
 draft: false
 tagline: "For those that like their data dense"
 emoji: "📋"
+atUri: "at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.document/3mn6cg6mqrn2c"
 ---
 
 # All the priority reforms from "a blueprint for modern digital government"

@@ -4,6 +4,7 @@ layout: ../../layouts/2025.astro
 publishDate: 2012-05-28
 title: "Conventions Vs Craftsmanship and Getting Things Done"
 tagline: "Yehuda Katz's RailsConf talk about convention over configuration, JSON APIs, do-ocracy, and bike-shedding."
+atUri: "at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.document/3mn6cg743422j"
 ---
 
 # Conventions Vs Craftsmanship and Getting Things Done

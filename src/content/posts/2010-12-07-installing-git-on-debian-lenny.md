@@ -4,6 +4,7 @@ title: "Git on Lenny, a love story"
 publishDate: 2010-12-07
 slug: 2010/12/07/installing-git-on-debian-lenny
 tagline: "A needlessly funny walkthrough on configuring lenny-backports to get Git 1.7 on Debian Lenny."
+atUri: "at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.document/3mn6cg7c6ke2p"
 ---
 
 ## Git on Lenny, a love story

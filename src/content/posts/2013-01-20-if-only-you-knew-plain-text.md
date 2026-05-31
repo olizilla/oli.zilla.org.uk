@@ -4,6 +4,7 @@ layout: ../../layouts/2025.astro
 title: "If only you knew... plain text"
 publishDate: 2013-01-20
 tagline: "to avoid formatting nightmares, vendor lock-in by writing plain text and markdown"
+atUri: "at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.document/3mn6cg6yyok2n"
 ---
 
 # If only you knew... plain text

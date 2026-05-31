@@ -6,6 +6,7 @@ slug: 2026/01/07/who-owns-nhs-data
 draft: false
 tagline: "Can we co-create and co-own our health records?"
 emoji: "💾"
+atUri: "at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.document/3mn6cg64gdv27"
 ---
 
 # Who owns NHS Data

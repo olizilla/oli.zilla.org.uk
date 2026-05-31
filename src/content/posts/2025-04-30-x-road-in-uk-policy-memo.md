@@ -6,6 +6,7 @@ slug: 2025/04/30/x-road-in-uk-policy-memo
 draft: false
 tagline: "Reducing the time-tax of government services through digital interoperability"
 emoji: "📝"
+atUri: "at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.document/3mn6cg6gwe72b"
 ---
 
 # Adopting X-Road in the UK

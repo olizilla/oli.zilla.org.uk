@@ -6,6 +6,7 @@ slug: 2025/10/20/why-open-standards-for-healthcare-records
 draft: false
 tagline: "so you wanna procure some software?"
 emoji: "🤝"
+atUri: "at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.document/3mn6cg6ckoc2p"
 ---
 
 # Why use Open Standards for Healthcare Records

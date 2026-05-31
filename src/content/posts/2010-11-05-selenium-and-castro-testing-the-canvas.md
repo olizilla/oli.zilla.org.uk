@@ -4,6 +4,7 @@ publishDate: 2010-11-05
 title: "Selenium and Castro testing the Canvas"
 slug: 2010/11/05/selenium-and-castro-testing-the-canvas
 tagline: "Notes on Jason Huggins' talk on testing HTML5 canvas-based apps with Selenium and recording tests with Castro."
+atUri: "at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.document/3mn6cg7l7i22j"
 ---
 
 # Selenium and Castro testing the Canvas

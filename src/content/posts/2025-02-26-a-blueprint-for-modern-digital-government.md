@@ -6,6 +6,7 @@ slug: 2025/02/26/a-blueprint-for-modern-digital-government
 draft: false
 tagline: The gov.uk app, the APIs, and the operating environment
 emoji: "🔍"
+atUri: "at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.document/3mn6cg6jvhf2o"
 ---
 
 # A blueprint for modern digital government

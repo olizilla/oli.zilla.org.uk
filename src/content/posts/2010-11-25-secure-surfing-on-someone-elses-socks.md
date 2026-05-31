@@ -4,6 +4,7 @@ title: "Web by Proxy; Secure surfing on someone else's SOCKS"
 publishDate: 2010-11-25
 slug: 2010/11/25/secure-surfing-on-someone-elses-socks
 tagline: "A tutorial on encrypting your browser traffic over unsecured public Wi-Fi using an SSH SOCKS proxy tunnel."
+atUri: "at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.document/3mn6cg7fcy22p"
 ---
 
 # Web by Proxy; Secure surfing on someone else's SOCKS

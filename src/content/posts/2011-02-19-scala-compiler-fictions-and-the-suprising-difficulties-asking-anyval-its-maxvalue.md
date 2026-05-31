@@ -4,6 +4,7 @@ layout: ../../layouts/2025.astro
 publishDate: 2011-02-19
 title: "Scala's polite compiler fictions &amp; the surprising difficulties of asking an AnyVal it's MaxValue"
 tagline: "Investigating Scala compiler magic, companion objects, and why duck-typing Numeric types for MaxValue fails in Scala 2.8.1."
+atUri: "at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.document/3mn6cg772lf2z"
 ---
 
 # Scala's polite compiler fictions &amp; the surprising difficulties of asking an AnyVal it's MaxValue

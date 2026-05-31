@@ -4,6 +4,7 @@ title: "Upgrade with sbaz, the Scala Bazaar System"
 publishDate: 2010-10-08
 slug: 2010/10/08/upgrade-with-sbaz-the-scala-bazaar-system
 tagline: "A guide to upgrading your Scala SDK installation and managing packages with the Scala Bazaar System (sbaz)."
+atUri: "at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.document/3mn6cg7ocdc24"
 ---
 
 # Upgrade with sbaz, the Scala Bazaar System
