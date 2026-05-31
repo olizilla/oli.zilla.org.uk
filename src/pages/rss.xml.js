@@ -41,7 +41,7 @@ function makeUrlsAbsolute(html, postUrl, siteUrl, postId) {
 export async function GET(context) {
   const blog = await getCollection('posts');
   
-  const rawPosts = blog.filter(post => post.data.published !== false);
+  const rawPosts = blog.filter(post => !post.data.draft);
   let posts = await Promise.all(
     rawPosts.map(async post => {
       const isoDateStr = post.id.slice(0, 10);

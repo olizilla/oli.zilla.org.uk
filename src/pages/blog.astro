@@ -4,7 +4,7 @@ import { getCollection } from 'astro:content'
 import Time from '../components/Time.astro'
 const title = "Is that supposed to go there? A blog by olizilla"
 const tagline = "A blog by Oli Evans (olizilla) about open source, open protocols, digital public infrastructure, and web development."
-const rawPosts = (await getCollection('posts').then(posts => posts.filter(p => p.data.published === true))).reverse()
+const rawPosts = (await getCollection('posts').then(posts => posts.filter(p => !p.data.draft))).reverse()
 const posts = await Promise.all(rawPosts.map(async p => {
 	const isoDateStr = p.id.slice(0, 10)
 	const date = new Date(isoDateStr)

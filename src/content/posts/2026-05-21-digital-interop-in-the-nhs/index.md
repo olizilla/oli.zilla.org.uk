@@ -1,7 +1,9 @@
 ---
 layout: ../../../layouts/2025.astro
+publishDate: 2026-05-21
+title: "Talk: Digital Interoperability in the NHS"
 slug: 2026/05/21/digital-interop-in-the-nhs
-published: true
+draft: false
 tagline: "We need interop that is loosely coupled across a diverse ecosystem."
 emoji: "🗣️"
 ---

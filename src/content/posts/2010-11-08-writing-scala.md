@@ -1,31 +1,30 @@
 ---
 layout: ../../layouts/2025.astro
+publishDate: 2010-11-08
 slug: 2010/11/08/writing-scala
+title: "Writing Scala after Java"
 tagline: "A comparison of Scala and Java syntax, highlighting pattern matching, companion objects, and potential pitfalls."
 ---
-Scala from Java
-===============
+
+# Writing Scala after Java
 
 Here is a list of rough edges that Scala polishes away, and the surprises that will stub the toe of expectation.
 
-Different and better
---------------------
+## Different and better
 
 * Pattern Matching. Just plain awesome. I hate switch blocks. I love matchers.
 * Generics isn't an after thought. I have always hated generics because dispite their utility they make my code look hideous.
 * Check preconditions with require (p99)
 
 
-Just different
---------------
+## Just different
 
 * No static members. Scala uses companion objects to store singleton state. In usage the effect is minimal but you need to know how to write it.
 * Operators are methods. Doesn't affect your day to day usage. Allows for DSL's. Precedence and notation are unchanged.
 * implicit conversions. like autoboxing but more generally useful, and controllable.
 * default scope is public, but who uses the default scope?
 
-Stubbed toe different
-----------------------
+## Stubbed toe different
 
 * equals and == is reversed.
 * If you forget to add the = in a def it means unit return. Combine

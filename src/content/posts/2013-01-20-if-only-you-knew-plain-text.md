@@ -1,11 +1,12 @@
 ---
 slug: 2013/01/20/if-only-you-knew-plain-text
 layout: ../../layouts/2025.astro
+title: "If only you knew... plain text"
+publishDate: 2013-01-20
 tagline: "to avoid formatting nightmares, vendor lock-in by writing plain text and markdown"
 ---
 
-If only you knew... plain text
-==============================
+# If only you knew... plain text
 
 Things web developers do that could ease your pain
 

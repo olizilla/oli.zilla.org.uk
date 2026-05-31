@@ -1,7 +1,9 @@
 ---
 layout: ../../layouts/2025.astro
+publishDate: 2025-02-26
+title: "A blueprint for modern digital government"
 slug: 2025/02/26/a-blueprint-for-modern-digital-government
-published: true
+draft: false
 tagline: The gov.uk app, the APIs, and the operating environment
 emoji: "🔍"
 ---

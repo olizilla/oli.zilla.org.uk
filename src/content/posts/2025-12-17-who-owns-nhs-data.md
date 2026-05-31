@@ -1,7 +1,9 @@
 ---
 layout: ../../layouts/2025.astro
+publishDate: 2025-12-17
+title: "Who owns NHS Data"
 slug: 2026/01/07/who-owns-nhs-data
-published: true
+draft: false
 tagline: "Can we co-create and co-own our health records?"
 emoji: "💾"
 ---

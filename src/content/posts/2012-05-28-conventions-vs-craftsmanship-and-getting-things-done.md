@@ -1,11 +1,12 @@
 ---
 slug: 2012/05/28/conventions-vs-craftsmanship-and-getting-things-done
 layout: ../../layouts/2025.astro
+publishDate: 2012-05-28
+title: "Conventions Vs Craftsmanship and Getting Things Done"
 tagline: "Yehuda Katz's RailsConf talk about convention over configuration, JSON APIs, do-ocracy, and bike-shedding."
 ---
 
-Conventions Vs Craftsmanship and Getting Things Done
-====================================================
+# Conventions Vs Craftsmanship and Getting Things Done
 
 [Yehuda Katz][5] makes an interesting point in his 2012 RailsConf talk.
 

@@ -1,7 +1,9 @@
 ---
 layout: ../../layouts/2025.astro
+publishDate: 2025-04-30
+title: "Adopting X-Road in the UK"
 slug: 2025/04/30/x-road-in-uk-policy-memo
-published: true
+draft: false
 tagline: "Reducing the time-tax of government services through digital interoperability"
 emoji: "📝"
 ---

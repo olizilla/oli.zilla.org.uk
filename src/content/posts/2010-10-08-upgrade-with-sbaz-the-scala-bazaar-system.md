@@ -1,11 +1,13 @@
 ---
 layout: ../../layouts/2025.astro
+title: "Upgrade with sbaz, the Scala Bazaar System"
+publishDate: 2010-10-08
 slug: 2010/10/08/upgrade-with-sbaz-the-scala-bazaar-system
 tagline: "A guide to upgrading your Scala SDK installation and managing packages with the Scala Bazaar System (sbaz)."
 ---
 
-Upgrade with sbaz, the Scala Bazaar System
-==========================================
+# Upgrade with sbaz, the Scala Bazaar System
+
 
 So you installed a Scala a while ago. Some shiny new features make you want more, but your install is just too old. Before reaching for the download button on the latest version, hear this!
 

@@ -1,7 +1,9 @@
 ---
 layout: ../../layouts/2025.astro
+publishDate: 2025-12-02
+title: "The Canonical Data Model and the FDP"
 slug: 2025/12/02/nhs-fdp-canonical-data-model
-published: true
+draft: false
 tagline: "What does it mean to own an interface to a proprietary cloud platform?"
 emoji: "🔌"
 ---

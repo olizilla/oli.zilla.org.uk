@@ -7,9 +7,11 @@ const posts = defineCollection({
     link: z.string().url().optional(),
     image: z.string().url().optional(),
     layout: z.string(),
-    published: z.boolean().optional().default(true),
+    draft: z.boolean().optional().default(false),
+    publishDate: z.date().optional(),
     tagline: z.string().optional(),
-    emoji: z.string().optional()
+    emoji: z.string().optional(),
+    atUri: z.string().optional()
   }),
 })
 

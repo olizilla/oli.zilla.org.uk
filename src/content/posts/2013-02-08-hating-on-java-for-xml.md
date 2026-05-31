@@ -1,7 +1,8 @@
 ---
 layout: ../../layouts/2025.astro
+publishDate: 2013-02-08
 slug: 2013/02/08/hating-on-java-for-xml
-published: false
+draft: true
 tagline: "A rant on the value of language-agnostic standards like XML over the explosion of custom, poorly-defined domain-specific languages (DSLs)."
 ---
 

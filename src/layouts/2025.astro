@@ -16,6 +16,9 @@ const logoLink = Astro.props.logoLink ?? '/'
 	<meta name="description" content={tagline} />
 	<link href="/res/img/olizilla-trace.min.svg" rel="icon" type="image/svg+xml" />
   <link href="/rss.xml" rel="alternate" title="RSS" type="application/rss+xml" />
+  {frontmatter?.atUri && (
+    <link rel="site.standard.document" href={frontmatter?.atUri} />
+  )}
 </head>
 <body class="min-h-screen inter-base">
   <div class="mx-auto px-2 max-w-[800px]">

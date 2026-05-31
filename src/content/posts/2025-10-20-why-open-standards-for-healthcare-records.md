@@ -1,7 +1,9 @@
 ---
 layout: ../../layouts/2025.astro
+publishDate: 2025-10-20
+title: "Why use Open Standards for Healthcare Records"
 slug: 2025/10/20/why-open-standards-for-healthcare-records
-published: true
+draft: false
 tagline: "so you wanna procure some software?"
 emoji: "🤝"
 ---

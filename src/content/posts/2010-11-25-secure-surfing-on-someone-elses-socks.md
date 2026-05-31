@@ -1,11 +1,12 @@
 ---
 layout: ../../layouts/2025.astro
+title: "Web by Proxy; Secure surfing on someone else's SOCKS"
+publishDate: 2010-11-25
 slug: 2010/11/25/secure-surfing-on-someone-elses-socks
 tagline: "A tutorial on encrypting your browser traffic over unsecured public Wi-Fi using an SSH SOCKS proxy tunnel."
 ---
 
-Web by Proxy; Secure surfing on someone else's SOCKS
-==========================================================
+# Web by Proxy; Secure surfing on someone else's SOCKS
 
 Today I found myself looking down the barrel of an unknown and unsecured wireless access point. Some kindly soul has gone to the trouble of geting an adsl line into Brixton Village Market and then gone the extra mile of leaving the wireless unsecured (no WAP or WEP password in sight) so anyone may connect, and I assume deliberately as the access point in question comes secured by default. (if not, sorry, I'll buy you a [federation coffee][fed].)
 
