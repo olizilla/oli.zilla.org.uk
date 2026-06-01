@@ -6,15 +6,9 @@ slug: 2026/05/21/digital-interop-in-the-nhs
 draft: false
 tagline: "We need interop that is loosely coupled across a diverse ecosystem."
 emoji: "🗣️"
+mainClass: "slides"
 atUri: "at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.document/3mn6cg5pz3e2p"
 ---
-
-<style>
-article img { border-bottom: solid 1px #ddd; }
-article > figure { background: white; padding: 0px; border: solid 1px #ddd; border-radius: 4px;}
-article > figure > p > img { margin: 0 !important; }
-article > figure > figcaption { padding: 0 1em;}
-</style>
 
 # Talk: Digital Interoperability in the NHS
 

@@ -5,6 +5,7 @@ const { frontmatter, headings } = Astro.props;
 const title = frontmatter?.title || Astro.props.title || headings?.find(h => h.depth === 1)?.text;
 const tagline = frontmatter?.tagline || Astro.props.tagline || "olizilla: software engineer, co-operator, and writer. Thoughts on open source, open protocols, and web development.";
 const logoLink = Astro.props.logoLink ?? '/'
+const mainClass = frontmatter?.mainClass|| Astro.props.mainClass
 ---
 <!doctype html>
 <html>
@@ -19,6 +20,7 @@ const logoLink = Astro.props.logoLink ?? '/'
   {frontmatter?.atUri && (
     <link rel="site.standard.document" href={frontmatter?.atUri} />
   )}
+  <link rel="site.standard.publication" href="at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.publication/3mn67n3cam32w" />
 </head>
 <body class="min-h-screen inter-base">
   <div class="mx-auto px-2 max-w-[800px]">
@@ -29,9 +31,11 @@ const logoLink = Astro.props.logoLink ?? '/'
         </a>
       </h1>
     </header>
+    <main class={mainClass}>
     <Prose>
       <slot/>
     </Prose>
+    </main>
   </div>
 	<footer class="pt-16 text-center text-2xl -mb-1">🌻</footer>
 </body>

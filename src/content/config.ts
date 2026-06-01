@@ -11,7 +11,8 @@ const posts = defineCollection({
     publishDate: z.date().optional(),
     tagline: z.string().optional(),
     emoji: z.string().optional(),
-    atUri: z.string().optional()
+    atUri: z.string().optional(),
+    mainClass: z.string().optional(),
   }),
 })
 

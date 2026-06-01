@@ -60,3 +60,8 @@ body {
 .caption {
   @apply font-mono block -mt-7 rounded-b-md px-3 py-2;
 }
+
+.slides article img { border-bottom: solid 1px #ddd; }
+.slides article > figure { background: white; padding: 0px; border: solid 1px #ddd; border-radius: 4px;}
+.slides article > figure > p > img { margin: 0 !important; }
+.slides article > figure > figcaption { padding: 0 1em;}
