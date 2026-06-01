@@ -289,7 +289,7 @@ There are many more ad-hoc shadow IT systems out there too.
 
 <figcaption>
 
-Using data from [6b.health](https://6b.health), I pieced together data on the EPR in use at every trust. So I built a chart to show the number of distinct EPR systems per county. Some have 10! That’s ok!
+Using data collected by [6b.health](https://6b.health), I built a chart to show the number of distinct EPR systems per county. Some have 10! That’s ok!
 
 This is a somewhat risky chart to share. One way to interpret it is that we should have fewer distinct EPR systems, and that we should standardise on one.
 
