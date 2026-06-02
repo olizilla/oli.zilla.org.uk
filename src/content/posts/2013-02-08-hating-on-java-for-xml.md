@@ -3,11 +3,11 @@ layout: ../../layouts/2025.astro
 publishDate: 2013-02-08
 slug: 2013/02/08/hating-on-java-for-xml
 draft: true
+title: "Hating on Java for XML? Your DSL is worse."
 tagline: "A rant on the value of language-agnostic standards like XML over the explosion of custom, poorly-defined domain-specific languages (DSLs)."
 ---
 
-Hating on Java for XML? Your DSL is worse.
-==========================================
+# Hating on Java for XML? Your DSL is worse.
 
 Do tell me again how you've dismissed Java as a waste of time due to it's XML fetish. How fascinating.
 

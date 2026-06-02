@@ -24,23 +24,38 @@ const posts = (await Promise.all(rawPosts.map(async p => {
 	<link href="/res/img/olizilla-trace.min.svg" rel="icon" type="image/svg+xml" />
 	<link href="/rss.xml" rel="alternate" title="RSS" type="application/rss+xml" />
 	<link rel="site.standard.publication" href="at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.publication/3mn67n3cam32w" />
+
+	<!-- Zotero & Generic Web Metadata -->
+	<meta name="author" content="Oli Evans" />
+	<meta name="description" content="olizilla: software, resilience, enthusiasm, community." />
+
+	<!-- Dublin Core Metadata -->
+	<meta name="dc.title" content={title} />
+	<meta name="dc.creator" content="Oli Evans" />
+	<meta name="dc.type" content="webpage" />
+	<meta name="dc.description" content="olizilla: software, resilience, enthusiasm, community." />
+
+	<!-- Open Graph Metadata -->
+	<meta property="og:title" content={title} />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content={Astro.url.href} />
+	<meta property="og:site_name" content="olizilla" />
+	<meta property="og:description" content="olizilla: software, resilience, enthusiasm, community." />
 </head>
 <body class="inter-base min-h-screen">
-	<header>
-		<div class="mx-auto max-w-[800px] pt-10 px-2">
-			<h1 class="border-b-0 border-double border-red-950 text-2xl font-bold">
-				<a href="/subconscious" class="inline-block cursor-crosshair">
-					<img title="❤️" alt="logo" src="/res/img/olizilla-trace.min.svg" style=" width:140px; height:140px; vertical-align:-92px;" class="inline-block"/>
-				</a>
-					<span class="text-3xl pb-2 font-bold font-mono">olizilla</span>
-			</h1>
-			<p class="font-mono text-xs py-3 leading-6 sm:hidden">
-				software 🤖 resilience ✊ enthusiasm 🎉 community 👯‍♀️
-			</p>
-			<p class="font-mono text-md py-3 leading-6 hidden sm:block">
-				Building software 🤖 resilience ✊ enthusiasm 🎉 and community 👯‍♀️
-			</p>
-		</div>
+	<header class="mx-auto max-w-[800px] pt-10 px-2">
+		<h1 class="text-2xl font-bold">
+			<a href="/subconscious" class="inline-block cursor-crosshair">
+				<img title="❤️" alt="logo" src="/res/img/olizilla-trace.min.svg" style="width:140px; height:140px; vertical-align:-92px;" class="inline-block"/>
+			</a>
+			<span class="text-3xl pb-2 font-bold font-mono">olizilla</span>
+		</h1>
+		<p class="font-mono text-xs py-3 leading-6 sm:hidden">
+			software 🤖 resilience ✊ enthusiasm 🎉 community 👯‍♀️
+		</p>
+		<p class="font-mono text-md py-3 leading-6 hidden sm:block">
+			Building software 🤖 resilience ✊ enthusiasm 🎉 and community 👯‍♀️
+		</p>
 	</header>
 	<div class="mx-auto max-w-[800px] pt-4 px-2">
 		<Quote by="Phoebe Tickell" year="2023" cite="https://open.spotify.com/episode/52GGqpGDgZTTYGTQ4sAwLa">
@@ -70,17 +85,6 @@ const posts = (await Promise.all(rawPosts.map(async p => {
 				'Fix the buildings, but leave the people.' 'No relocation outside the neighborhood.' These must be the slogans if public housing is to be popular.
 			</p> -->
 		</Quote>
-		<!-- <Quote by="Kate Raworth" year="2017" cite="https://uk.bookshop.org/p/books/seeing-like-a-state-how-certain-schemes-to-improve-the-human-condition-have-failed-james-c-scott/3456225?ean=9780300246759">
-			<p class="pb-3 text-lg">
-				When political economy was split up into political philosophy and economic science in the late nineteenth century, it opened up what the philosopher Michael Sandel has called a ‘moral vacancy’ at the heart of public policymaking. 
-			</p>
-			<p class="pb-3 text-lg">
-				Today economists and politicians debate with confident ease in the name of economic efficiency, productivity and growth – as if those values were self-explanatory – while hesitating to speak of justice, fairness and rights. 
-			</p>
-			<p class="text-lg">
-				Talking about values and goals is a lost art waiting to be revived.
-			</p>
-		</Quote> -->
 	</div>
 	<section class="mx-auto max-w-[800px] pt-4 px-2 text-base">
 
@@ -91,6 +95,7 @@ const posts = (await Promise.all(rawPosts.map(async p => {
 				desc={post.data.tagline}
 				emoji={post.data.emoji}
 				href={post.data.link ?? `/${post.slug}`}
+				publishDate={post.data.publishDate}
 			/>
 		))}
 		<LinkItem
@@ -179,8 +184,22 @@ const posts = (await Promise.all(rawPosts.map(async p => {
 			href="https://www.linkedin.com/in/olizilla/" />
 	</section>
 
-	<footer class="pt-16 text-center text-2xl -mb-1">
-		🌻
+	<!-- <section class="pt-48 mx-auto max-w-[800px] px-2">
+		<Quote by="Kate Raworth" year="2017" cite="https://uk.bookshop.org/p/books/doughnut-economics-seven-ways-to-think-like-a-21st-century-economist-kate-raworth/1572478?ean=9781847946044">
+			<p class="pb-3 text-lg">
+				When political economy was split up into political philosophy and economic science in the late nineteenth century, it opened up what the philosopher Michael Sandel has called a ‘moral vacancy’ at the heart of public policymaking. 
+			</p> 
+			<p class="pb-3 text-lg">
+				Today economists and politicians debate with confident ease in the name of economic efficiency, productivity and growth – as if those values were self-explanatory – while hesitating to speak of justice, fairness and rights. 
+			</p>
+			<p class="text-lg">
+				Talking about values and goals is a lost art waiting to be revived.
+			</p>
+		</Quote>
+	</section> -->
+
+	<footer class="pt-16 text-center text-3xl -mb-1">
+		<div class="pt-16">🌻</div>
 	</footer>
 </body>
 </html>

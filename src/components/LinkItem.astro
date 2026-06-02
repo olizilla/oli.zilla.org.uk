@@ -3,10 +3,10 @@ import { toDataUrl } from "./Emojimg.astro";
 const { href,img,title,desc,emoji = '⁂' } = Astro.props
 const src = img ?? toDataUrl(emoji)
 ---
-<a class="bg-white p-4 border-b border-zinc-100 flex -mx-2" href={href}>
-  <img class="h-14 w-14 rounded-xs" src={src} alt="">
-  <span class="pl-4 block">
-    <span class="font-semibold text-lg block text-zinc-600">{title}</span>
-    <span class="text-base text-zinc-600">{desc}</span>
+<a class="bg-white p-4 border-b border-zinc-100 flex items-center -mx-2" href={href}>
+  <img class="h-12 w-12 rounded-xs" src={src} alt="">
+  <span class="pl-4 align-middle">
+    <span class="block font-bold text-base text-zinc-800">{title}</span>
+    <span class="block text-sm text-zinc-500">{desc}</span>
   </span>
 </a>

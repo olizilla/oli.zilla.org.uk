@@ -6,37 +6,68 @@ const title = frontmatter?.title || Astro.props.title || headings?.find(h => h.d
 const tagline = frontmatter?.tagline || Astro.props.tagline || "olizilla: software engineer, co-operator, and writer. Thoughts on open source, open protocols, and web development.";
 const logoLink = Astro.props.logoLink ?? '/'
 const mainClass = frontmatter?.mainClass|| Astro.props.mainClass
+const publishDate = frontmatter?.publishDate || Astro.props.publishDate;
+const isoString = publishDate ? new Date(publishDate).toISOString() : null;
+const isoStringShort = publishDate ? new Date(publishDate).toISOString().slice(0, 10) : null;
+const slashDateString = isoStringShort ? isoStringShort.replace(/-/g, '/') : null;
+const siteName = 'oli.zilla.org.uk'
 ---
 <!doctype html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>{title}</title>
-	<meta name="description" content={tagline} />
-	<link href="/res/img/olizilla-trace.min.svg" rel="icon" type="image/svg+xml" />
-  <link href="/rss.xml" rel="alternate" title="RSS" type="application/rss+xml" />
-  {frontmatter?.atUri && (
-    <link rel="site.standard.document" href={frontmatter?.atUri} />
-  )}
-  <link rel="site.standard.publication" href="at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.publication/3mn67n3cam32w" />
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{title}</title>
+<meta name="description" content={tagline} />
+<link href="/res/img/olizilla-trace.min.svg" rel="icon" type="image/svg+xml" />
+<link href="/rss.xml" rel="alternate" title="RSS" type="application/rss+xml" />
+<link rel="site.standard.publication" href="at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.publication/3mn67n3cam32w" />
+{frontmatter?.atUri && (
+	<link rel="site.standard.document" href={frontmatter?.atUri} />
+)}
+<!-- Zotero & Bibliographic Metadata (HighWire Press) -->
+<meta name="citation_title" content={title} />
+<meta name="citation_author" content="Oli Evans" />
+{slashDateString && (
+	<meta name="citation_publication_date" content={slashDateString} />
+)}
+<!-- Dublin Core Metadata -->
+<meta name="dc.title" content={title} />
+<meta name="dc.creator" content="Oli Evans" />
+<meta name="dc.type" content="blogPost" />
+<meta name="dc.description" content={tagline} />
+{isoStringShort && (
+	<meta name="dc.date" content={isoStringShort} />
+)}
+<!-- Open Graph Metadata -->
+<meta property="og:title" content={title} />
+<meta property="og:type" content="article" />
+<meta property="og:url" content={Astro.url.href} />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:description" content={tagline} />
+<meta property="article:author" content="Oli Evans" />
+{isoString && (
+	<meta property="article:published_time" content={isoString} />
+)}
 </head>
 <body class="min-h-screen inter-base">
-  <div class="mx-auto px-2 max-w-[800px]">
-    <header>
-      <h1 class="text-2xl font-bold py-10">
-        <a href={logoLink} class="inline-block cursor-crosshair">
-          <img title="❤️" alt="" src="/res/img/olizilla-trace.min.svg" style=" width:140px; height:140px; vertical-align:-92px;" class="inline-block"/>
-        </a>
-      </h1>
-    </header>
-    <main class={mainClass}>
-    <Prose>
-      <slot/>
-    </Prose>
-    </main>
-  </div>
-	<footer class="pt-16 text-center text-2xl -mb-1">🌻</footer>
+	<div class="mx-auto px-2 max-w-[800px]">
+		<header class="py-8">
+			<h1 class="text-2xl font-bold">
+				<a href={logoLink} class="inline-block cursor-crosshair" title="home">
+					<img  alt="logo" src="/res/img/olizilla-trace.min.svg" style="width:80px; height:80px; vertical-align:-54px;" class="inline-block" />
+				</a>
+			</h1>
+		</header>
+		<main class={mainClass}>
+		<Prose>
+			<slot/>
+		</Prose>
+		</main>
+	</div>
+	<footer class="pt-16 text-center text-3xl -mb-1">
+		<a href="/">🌻</a>
+	</footer>
 </body>
 </html>

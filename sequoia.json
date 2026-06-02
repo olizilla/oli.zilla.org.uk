@@ -1,15 +1,21 @@
 {
+  "publicDir": "./public",
+  "outputDir": "./dist",
+  "pathPrefix": "",
+  "publishContent": true,
+  "removeIndexFromSlug": false,
+  "stripDatePrefix": false,
+  "autoSync": true,
   "$schema": "https://tangled.org/stevedylan.dev/sequoia/raw/main/sequoia.schema.json",
   "siteUrl": "https://oli.zilla.org.uk",
   "contentDir": "./src/content/posts",
-  "outputDir": "./dist",
   "publicationUri": "at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.publication/3mn67n3cam32w",
   "frontmatter": {
     "title": "title",
-    "description": "tagline"
+    "description": "tagline",
+    "slugField": "slug"
   },
   "pathTemplate": "/{slug}",
-  "publishContent": false,
   "bluesky": {
     "enabled": true,
     "maxAgeDays": 20
