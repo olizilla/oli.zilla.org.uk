@@ -42,7 +42,7 @@ const posts = (await Promise.all(rawPosts.map(async p => {
 			</p>
 		</div>
 	</header>
-	<div class="mx-auto max-w-[800px] pt-4 px-2 text-base font-serif">
+	<div class="mx-auto max-w-[800px] pt-4 px-2">
 		<Quote by="Phoebe Tickell" year="2023" cite="https://open.spotify.com/episode/52GGqpGDgZTTYGTQ4sAwLa">
 			<p class="text-lg">The tool of imagination is looking at the two options on the table and saying: 
 				<br/>
@@ -63,8 +63,8 @@ const posts = (await Promise.all(rawPosts.map(async p => {
 		<Quote by="Jane Jacobs via James C. Scott" year="1998" cite="https://uk.bookshop.org/p/books/seeing-like-a-state-how-certain-schemes-to-improve-the-human-condition-have-failed-james-c-scott/3456225?ean=9780300246759">
 			<p class="text-lg">
 				The next step will require great humility, since we are now so prone to confuse great building projects with great social achievements. 
-				We will have to admit that it is beyond the scope of anyone's imagination to create community. <br>
-				<strong>We must learn to cherish the communities we have</strong>, they are hard to come by.
+				We will have to admit that it is beyond the scope of anyone's imagination to create community.
+				<br/><br/>We must learn to <strong>cherish the communities we have</strong>, they are hard to come by.
 			</p>
 			<!-- <p>
 				'Fix the buildings, but leave the people.' 'No relocation outside the neighborhood.' These must be the slogans if public housing is to be popular.
@@ -84,7 +84,7 @@ const posts = (await Promise.all(rawPosts.map(async p => {
 	</div>
 	<section class="mx-auto max-w-[800px] pt-4 px-2 text-base">
 
-		<h2 class="text-right text-sm font-mono uppercase tracking-widest text-zinc-400 -mb-1 pt-8">Blog</h2>
+		<h2 class="text-right text-sm font-mono uppercase tracking-widest text-zinc-600 -mb-1 pt-8">Blog</h2>
 		{posts.map(post => (
 			<LinkItem
 				title={post.title}
@@ -99,7 +99,7 @@ const posts = (await Promise.all(rawPosts.map(async p => {
 			desc="from a more or less civilised age"
 			href="/blog" />
 
-		<h2 class="text-right text-sm font-mono uppercase tracking-widest text-zinc-400 -mb-1 pt-10">Sketches</h2>
+		<h2 class="text-right text-sm font-mono uppercase tracking-widest text-zinc-600 -mb-1 pt-10">Sketches</h2>
 		<LinkItem
 			title="Unicode"
 			desc="Visual memories across the multilingual planes"
@@ -116,7 +116,7 @@ const posts = (await Promise.all(rawPosts.map(async p => {
 			emoji="🤖"
 			href="2014/06/14/animated-css-logo-for-nodebots" />
 
-		<h2 class="text-right text-sm font-mono uppercase tracking-widest text-zinc-400 -mb-1 pt-10">Work</h2>
+		<h2 class="text-right text-sm font-mono uppercase tracking-widest text-zinc-600 -mb-1 pt-10">Work</h2>
 		<LinkItem
 			title="Institute of Innovation and Public Purpose"
 			desc="What should the state do?"
@@ -135,7 +135,7 @@ const posts = (await Promise.all(rawPosts.map(async p => {
 			img="https://avatars.githubusercontent.com/u/5347145?s=200&v=4"
 			href="https://tableflip.io" />
 
-		<h2 class="text-right text-sm font-mono uppercase tracking-widest text-zinc-400 -mb-1 pt-10">Play</h2>
+		<h2 class="text-right text-sm font-mono uppercase tracking-widest text-zinc-600 -mb-1 pt-10">Play</h2>
 		<LinkItem
 			title="Suena Bien Soundsystem"
 			desc="Making speakers. Playing music. Partying together."
@@ -166,7 +166,7 @@ const posts = (await Promise.all(rawPosts.map(async p => {
 			emoji="🧁"
 			href="https://westnorwoodfeast.com/" />
 
-		<h2 class="text-right text-sm font-mono uppercase tracking-widest text-zinc-400 -mb-1 pt-10">Elsewhere</h2>
+		<h2 class="text-right text-sm font-mono uppercase tracking-widest text-zinc-600 -mb-1 pt-10">Elsewhere</h2>
 		<LinkItem
 			title="Bluesky"
 			desc="Loose lips sink ships"

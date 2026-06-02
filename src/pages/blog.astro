@@ -26,7 +26,7 @@ const posts = await Promise.all(rawPosts.map(async p => {
 					</h1>
 					{ post.tagline && <p class="text-zinc-600 pt-0 italic">{post.tagline}</p> }
 					{ post.image && <img src={post.image} /> }
-					<small class="block text-right text-sm font-mono uppercase tracking-wide text-zinc-400 -mb-1 pt-2"><Time date={post.date} /></small>
+					<small class="block text-right text-sm font-mono uppercase tracking-wide text-zinc-600 -mb-1 pt-2"><Time date={post.date} /></small>
 					<hr class="mt-2" />
 			</section>
 		)) }
