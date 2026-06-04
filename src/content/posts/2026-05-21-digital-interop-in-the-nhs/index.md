@@ -14,9 +14,9 @@ atUri: "at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.document/3mn6cg5pz3e
 
 _A talk I presented in May 2026 to the [NHS DPSP](https://www.digital-prevention-services.nhs.uk/) team._
 
-<figure>
+<figure id="slide-1">
 
-![Slide 1](./slide-1.png)
+[![Slide 1](./slide-1.png)](#slide-1)
 
 <figcaption>
 
@@ -28,9 +28,9 @@ I’m going to talk about digital interop in the NHS, starting with my motivatio
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-2">
 
-![Slide 2](./slide-2.png)
+[![Slide 2](./slide-2.png)](#slide-2)
 
 <figcaption>
 
@@ -44,9 +44,9 @@ And for the last 2 years I’ve been studying a Masters of Public Administration
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-3">
 
-![Slide 3](./slide-3.png)
+[![Slide 3](./slide-3.png)](#slide-3)
 
 <figcaption>
 
@@ -58,9 +58,9 @@ The code is open source…
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-4">
 
-![Slide 4: A candle for open source](./slide-4.png)
+[![Slide 4: A candle for open source](./slide-4.png)](#slide-4)
 
 <figcaption>
 
@@ -73,9 +73,9 @@ NHS DPSP Team: I see your good open source work, and I support it.
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-5">
 
-![Slide 5: open source = collaboration at build time open formats + open protocols = collaboration at run time](./slide-5.png)
+[![Slide 5: open source = collaboration at build time open formats + open protocols = collaboration at run time](./slide-5.png)](#slide-5)
 
 <figcaption>
 
@@ -98,9 +98,9 @@ Using Open protocols let us
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-6">
 
-![Slide 6: Bad things happen when interop fails](./slide-6.png)
+[![Slide 6: Bad things happen when interop fails](./slide-6.png)](#slide-6)
 
 <figcaption>
 
@@ -113,9 +113,9 @@ Bad things happen when interop fails:
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-7">
 
-![Slide 7](./slide-7.png)
+[![Slide 7](./slide-7.png)](#slide-7)
 
 <figcaption>
 
@@ -126,9 +126,9 @@ In the meantime: I am going to share back to you what i have heard in interviews
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-8">
 
-![Slide 8](./slide-8.png)
+[![Slide 8](./slide-8.png)](#slide-8)
 
 <figcaption>
 
@@ -145,9 +145,9 @@ They signed off with “if you want to see more, just ask again next month”
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-9">
 
-![Slide 9](./slide-9.png)
+[![Slide 9](./slide-9.png)](#slide-9)
 
 <figcaption>
 
@@ -161,9 +161,9 @@ They signed off with “if you want to see more, just ask again next month”
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-10">
 
-![Slide 10](./slide-10.png)
+[![Slide 10](./slide-10.png)](#slide-10)
 
 <figcaption>
 
@@ -177,9 +177,9 @@ They signed off with “if you want to see more, just ask again next month”
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-11">
 
-![Slide 11](./slide-11.png)
+[![Slide 11](./slide-11.png)](#slide-11)
 
 <figcaption>
 
@@ -191,9 +191,9 @@ They signed off with “if you want to see more, just ask again next month”
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-12">
 
-![Staff are covering the Interoperability gaps. Gaps create errors that harm patients. Errors](./slide-12.png)
+[![Staff are covering the Interoperability gaps. Gaps create errors that harm patients. Errors](./slide-12.png)](#slide-12)
 
 <figcaption>
 
@@ -203,9 +203,9 @@ In summary:
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-13">
 
-![Loss: Data gets degraded. Health records are lost](./slide-13.png)
+[![Loss: Data gets degraded. Health records are lost](./slide-13.png)](#slide-13)
 
 <figcaption>
 
@@ -219,9 +219,9 @@ We have retention policies to keep health records for 30 years, and in places li
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-14">
 
-![Records moved between 2 EPRs: from the same vendor: 68% fidelity from the different vendors: 22% fidelity](./slide-14.png)
+[![Records moved between 2 EPRs: from the same vendor: 68% fidelity from the different vendors: 22% fidelity](./slide-14.png)](#slide-14)
 
 <figcaption>
 
@@ -233,9 +233,9 @@ When moved between EPRs from different vendors the mean score was 0.22.
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-15">
 
-![Bit List: Endangered Digital Materials. Immediate action required. Loss has already occurred.](./slide-15.png)
+[![Bit List: Endangered Digital Materials. Immediate action required. Loss has already occurred.](./slide-15.png)](#slide-15)
 
 <figcaption>
 
@@ -245,9 +245,9 @@ It lists medical records as “endangered”, with “immediate action required�
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-16">
 
-![Slide 16](./slide-16.png)
+[![Slide 16](./slide-16.png)](#slide-16)
 
 <figcaption>
 
@@ -257,9 +257,9 @@ Letting vendors pick our data formats causes degradation of our health records.
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-17">
 
-![Slide 17](./slide-17.png)
+[![Slide 17](./slide-17.png)](#slide-17)
 
 <figcaption>
 
@@ -271,9 +271,9 @@ This drains clinicians' time.
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-18">
 
-![Slide 18](./slide-18.png)
+[![Slide 18](./slide-18.png)](#slide-18)
 
 <figcaption>
 
@@ -283,9 +283,9 @@ There are many more ad-hoc shadow IT systems out there too.
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-19">
 
-![Distinct EPR Systems per County. Some have more than 10. That’s ok! Convergence on a single provider cannot be the goal. (Monopoly rent extraction!) Source: 6b.health](./slide-19.png)
+[![Distinct EPR Systems per County. Some have more than 10. That’s ok! Convergence on a single provider cannot be the goal. (Monopoly rent extraction!) Source: 6b.health](./slide-19.png)](#slide-19)
 
 <figcaption>
 
@@ -297,9 +297,9 @@ But economists would call that a market failure, a monopoly. Historically, monop
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-20">
 
-![Convergence on a single provider is not interoperability. Removing diversity is a failure mode.](./slide-20.png)
+[![Convergence on a single provider is not interoperability. Removing diversity is a failure mode.](./slide-20.png)](#slide-20)
 
 <figcaption>
 
@@ -315,9 +315,9 @@ This isn’t how it should work!
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-21">
 
-![Slide 21: Intermission](./slide-21.png)
+[![Slide 21: Intermission](./slide-21.png)](#slide-21)
 
 <figcaption>
 
@@ -325,9 +325,9 @@ How we doing? Any questions so far?
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-22">
 
-![Slide 22](./slide-22.png)
+[![Slide 22](./slide-22.png)](#slide-22)
 
 <figcaption>
 
@@ -337,9 +337,9 @@ And [6b.health](https://6b.health) — they just keep publishing really useful o
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-23">
 
-![Slide 23](./slide-23.png)
+[![Slide 23](./slide-23.png)](#slide-23)
 
 <figcaption>
 
@@ -349,9 +349,9 @@ I’m going to summarise some themes that came up in interviews.
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-24">
 
-![Slide 24](./slide-24.png)
+[![Slide 24](./slide-24.png)](#slide-24)
 
 <figcaption>
 
@@ -367,9 +367,9 @@ _Whack-a-mole interop. Case-by-case. Expensive. Politically viable._
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-25">
 
-![Organisational Churn: 2016 NHS Digital created (I deliver software now), 2019 NHS X created (I decide digital strategy now!), 2021 Now ICSs exist (Shift the focus of all interop work!), 2022 NHS X folds into NHSE (But!), 2023 NHS Digital folds into NHSE (Whut!?), 2025 NHSE to fold into DHSC in 2027. There has been a significant org change roughly every 2 years. Digital interop work at scale requires steady focus over a decade.](./slide-25.png)
+[![Organisational Churn: 2016 NHS Digital created (I deliver software now), 2019 NHS X created (I decide digital strategy now!), 2021 Now ICSs exist (Shift the focus of all interop work!), 2022 NHS X folds into NHSE (But!), 2023 NHS Digital folds into NHSE (Whut!?), 2025 NHSE to fold into DHSC in 2027. There has been a significant org change roughly every 2 years. Digital interop work at scale requires steady focus over a decade.](./slide-25.png)](#slide-25)
 
 <figcaption>
 
@@ -381,9 +381,9 @@ Digital interop work at scale requires steady focus over a decade! This reinforc
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-26">
 
-![Slide 26](./slide-26.png)
+[![Slide 26](./slide-26.png)](#slide-26)
 
 <figcaption>
 
@@ -397,9 +397,9 @@ Coercing all GPs to use the same EPR is not the way.
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-27">
 
-![Slide 27](./slide-27.png)
+[![Slide 27](./slide-27.png)](#slide-27)
 
 <figcaption>
 
@@ -409,9 +409,9 @@ I’m going to share some ideas from the digital transformation experts.
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-28">
 
-![Slide 28](./slide-28.png)
+[![Slide 28](./slide-28.png)](#slide-28)
 
 <figcaption>
 
@@ -427,9 +427,9 @@ Or you can “Come in low”: start with the data layer and build up. Estonia’
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-29">
 
-![Original slide by David Eaves](./slide-29.png)
+[![Original slide by David Eaves](./slide-29.png)](#slide-29)
 
 <figcaption>
 
@@ -441,9 +441,9 @@ But let’s update it for the NHS!
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-30">
 
-![National Healthcare: NHS App, NHS Notify, FDP, MAVIS](./slide-30.png)
+[![National Healthcare: NHS App, NHS Notify, FDP, MAVIS](./slide-30.png)](#slide-30)
 
 <figcaption>
 
@@ -459,9 +459,9 @@ The FDP represents the “Come in low” strategy: organise the data, and then b
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-31">
 
-![Slide 31](./slide-31.png)
+[![Slide 31](./slide-31.png)](#slide-31)
 
 <figcaption>
 
@@ -474,9 +474,9 @@ As a plan, it acknowledges that changing things at every trust may take too long
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-32">
 
-![Slide 32](./slide-32.png)
+[![Slide 32](./slide-32.png)](#slide-32)
 
 <figcaption>
 
@@ -492,9 +492,9 @@ So we are back in that single-vendor mode, that looks like interop but isn’t.
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-33">
 
-![Slide 33](./slide-33.png)
+[![Slide 33](./slide-33.png)](#slide-33)
 
 <figcaption>
 
@@ -509,9 +509,9 @@ It also cements in the old EPRs in the trusts as well:
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-34">
 
-![Slide 34](./slide-34.png)
+[![Slide 34](./slide-34.png)](#slide-34)
 
 <figcaption>
 
@@ -519,9 +519,9 @@ It also cements in the old EPRs in the trusts as well:
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-35">
 
-![Slide 35](./slide-35.png)
+[![Slide 35](./slide-35.png)](#slide-35)
 
 <figcaption>
 
@@ -529,9 +529,9 @@ The Catalonian national health service is also taking this “come in low” app
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-36">
 
-![Case: Catalonia’s knowledge-driven platform. Fix the data at the source: Upgrade the EPRs in hospitals to store data in an open format, split data store from apps, share access via open protocol, and copy good data to the centre (backup & share).](./slide-36.png)
+[![Case: Catalonia’s knowledge-driven platform. Fix the data at the source: Upgrade the EPRs in hospitals to store data in an open format, split data store from apps, share access via open protocol, and copy good data to the centre (backup & share).](./slide-36.png)](#slide-36)
 
 <figcaption>
 
@@ -547,9 +547,9 @@ They also copy that data up to a central regional repository for resilience and 
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-37">
 
-![Slide 37](./slide-37.png)
+[![Slide 37](./slide-37.png)](#slide-37)
 
 <figcaption>
 
@@ -566,9 +566,9 @@ Some of those vendors include:
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-38">
 
-![Slide 38](./slide-38.png)
+[![Slide 38](./slide-38.png)](#slide-38)
 
 <figcaption>
 
@@ -583,9 +583,9 @@ The result they are aiming for is incremental improvement at the edge, or “sem
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-39">
 
-![Slide 39](./slide-39.png)
+[![Slide 39](./slide-39.png)](#slide-39)
 
 <figcaption>
 
@@ -597,9 +597,9 @@ What’s going on elsewhere? I need to dig deeper on these, but at a high level:
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-40">
 
-![Slide 40](./slide-40.png)
+[![Slide 40](./slide-40.png)](#slide-40)
 
 <figcaption>
 
@@ -607,9 +607,9 @@ So, what should we do?
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-41">
 
-![Keep Calm and Open Source Open Format Open Protocol](./slide-41.png)
+[![Keep Calm and Open Source Open Format Open Protocol](./slide-41.png)](#slide-41)
 
 <figcaption>
 
@@ -619,9 +619,9 @@ The DPSP should keep on building high-quality end-to-end services that solve a p
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-42">
 
-![Slide 42](./slide-42.png)
+[![Slide 42](./slide-42.png)](#slide-42)
 
 <figcaption>
 
@@ -635,9 +635,9 @@ For healthcare, we’ll need well-governed, open protocols that are multiplayer�
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-43">
 
-![Slide 43](./slide-43.png)
+[![Slide 43](./slide-43.png)](#slide-43)
 
 <figcaption>
 
@@ -645,9 +645,9 @@ We need solutions that lead to a form of digital interoperability that is loosel
 
 </figcaption>
 </figure>
-<figure>
+<figure id="slide-44">
 
-![If you’ve spotted errors or have suggestions, please get in touch! mailto:oli@zilla.org.uk](./slide-44.png)
+[![If you’ve spotted errors or have suggestions, please get in touch! mailto:oli@zilla.org.uk](./slide-44.png)](#slide-44)
 
 <figcaption>
 
