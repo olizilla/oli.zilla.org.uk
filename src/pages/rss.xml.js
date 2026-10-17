@@ -38,7 +38,7 @@ function makeUrlsAbsolute(html, postUrl, siteUrl, postId) {
   });
 }
 
-export async function GET(context) {
+export async function GET(context, foo) {
   const blog = await getCollection('posts');
   
   const rawPosts = blog.filter(post => !post.data.draft);
@@ -54,7 +54,7 @@ export async function GET(context) {
   posts = posts.filter(p => p.date > new Date('2025-01-01'))
   posts.sort((a, b) => b.date.getTime() - a.date.getTime());
 
-  const siteUrl = context.site ?? 'https://oli.zilla.org.uk';
+  const siteUrl = context.site?.origin ?? 'https://oli.zilla.org.uk';
 
   return rss({
     title: 'olizilla',
