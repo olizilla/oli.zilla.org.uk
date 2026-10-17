@@ -8,5 +8,6 @@ export default defineConfig({
   integrations: [tailwind({
     applyBaseStyles: false
   })],
-  adapter: cloudflare()
+	adapter: cloudflare(),
+  site: 'https://oli.zilla.org.uk'
 });
