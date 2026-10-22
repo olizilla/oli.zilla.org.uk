@@ -1,18 +1,10 @@
 ---
 import '../base.css'
-import { getCollection } from 'astro:content'
-import Time from '../components/Time.astro'
+import { getPosts } from '../lib/posts'
 import Quote from '../components/Quote.astro'
 import LinkItem from '../components/LinkItem.astro'
 const title = "Leave it better than you found it"
-const rawPosts = await getCollection('posts').then(posts => posts.filter(p => !p.data.draft))
-const posts = (await Promise.all(rawPosts.map(async p => {
-	const isoDateStr = p.id.slice(0, 10)
-	const date = new Date(isoDateStr)
-	const content = await p.render()
-	const title = p.data.title ?? content.headings.at(0)?.text ?? 'Untitled'
-	return { ...p, date, title }
-}))).sort((a, b) => b.date.getTime() - a.date.getTime()).slice(0, 7)
+const posts = (await getPosts()).slice(0, 7)
 ---
 <!doctype html>
 <html>
@@ -91,11 +83,10 @@ const posts = (await Promise.all(rawPosts.map(async p => {
 		<h2 class="text-right text-sm font-mono uppercase tracking-widest text-zinc-600 -mb-1 pt-8">Blog</h2>
 		{posts.map(post => (
 			<LinkItem
-				title={post.title}
+				title={post.data.title}
 				desc={post.data.tagline}
 				emoji={post.data.emoji}
-				href={post.data.link ?? `/${post.slug}`}
-				publishDate={post.data.publishDate}
+				href={post.href}
 			/>
 		))}
 		<LinkItem

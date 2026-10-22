@@ -3,7 +3,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@plugin '@tailwindcss/typography';
 
 html {
   background: hsl(0, 20%, 20%);

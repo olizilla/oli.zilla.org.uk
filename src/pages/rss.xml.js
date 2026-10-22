@@ -1,5 +1,5 @@
 import rss from '@astrojs/rss';
-import { getCollection } from 'astro:content';
+import { getPosts } from '../lib/posts';
 import sanitizeHtml from 'sanitize-html';
 import MarkdownIt from 'markdown-it';
 
@@ -38,21 +38,8 @@ function makeUrlsAbsolute(html, postUrl, siteUrl, postId) {
   });
 }
 
-export async function GET(context, foo) {
-  const blog = await getCollection('posts');
-  
-  const rawPosts = blog.filter(post => !post.data.draft);
-  let posts = await Promise.all(
-    rawPosts.map(async post => {
-      const isoDateStr = post.id.slice(0, 10);
-      const date = new Date(isoDateStr);
-      const content = await post.render();
-      const title = post.data.title ?? content.headings.at(0)?.text ?? 'Untitled';
-      return { ...post, date, title };
-    })
-  );
-  posts = posts.filter(p => p.date > new Date('2025-01-01'))
-  posts.sort((a, b) => b.date.getTime() - a.date.getTime());
+export async function GET(context) {
+  const posts = (await getPosts()).filter(p => p.data.publishDate > new Date('2025-01-01'));
 
   const siteUrl = context.site?.origin ?? 'https://oli.zilla.org.uk';
 
@@ -61,7 +48,7 @@ export async function GET(context, foo) {
     description: 'Building software 🤖 resilience ✊ enthusiasm 🎉 and community 👯‍♀️',
     site: siteUrl,
     items: posts.map((post) => {
-      const postPath = post.data.link ?? `/${post.slug}`;
+      const postPath = post.href;
       const postUrl = postPath.startsWith('http') 
         ? postPath 
         : `${siteUrl.endsWith('/') ? siteUrl.slice(0, -1) : siteUrl}/${postPath.startsWith('/') ? postPath.slice(1) : postPath}`;
@@ -79,8 +66,8 @@ export async function GET(context, foo) {
       });
 
       return {
-        title: post.title,
-        pubDate: post.date,
+        title: post.data.title,
+        pubDate: post.data.publishDate,
         description: post.data.tagline ?? '',
         link: postPath,
         commentsUrl: 'https://bsky.app/profile/oli.zilla.org.uk',

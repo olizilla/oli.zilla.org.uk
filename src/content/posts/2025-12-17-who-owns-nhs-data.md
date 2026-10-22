@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/2025.astro
-publishDate: 2025-12-17
+publishDate: 2026-01-07
 title: "Who owns NHS Data"
 slug: 2026/01/07/who-owns-nhs-data
 draft: false

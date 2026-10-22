@@ -13,7 +13,6 @@
     "postinstall": "patch-package"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^8.1.0",
     "@astrojs/rss": "^4.0.18",
     "@astrojs/tailwind": "^5.1.0",
     "@tailwindcss/typography": "^0.5.16",
