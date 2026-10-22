@@ -44,6 +44,10 @@ body {
   font-style: normal;
 }
 
+.prose h1 em {
+	@apply font-serif font-extralight;
+}
+
 .prose .cite {
   @apply text-zinc-500 font-mono block mt-1 text-sm;
 }
