@@ -9,8 +9,6 @@ emoji: "💾"
 atUri: "at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.document/3mn6cg64gdv27"
 ---
 
-# Who owns NHS Data
-
 Our digital NHS health records are routinely degraded when a GP or Hospital Trust migrates from one 
 <abbr title="Electronic Patient Record">EPR</abbr> to another. _"We couldn't map that"_ gets coded as:
 

@@ -9,8 +9,6 @@ emoji: "🤝"
 atUri: "at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.document/3mn6cg6ckoc2p"
 ---
 
-# Why use Open Standards for Healthcare Records
-
 *So you wanna procure some software?* A firms oft stated goal is to maximise profit. The lesser spoken goal is to control its environment, to reduce risk, to persist ([Galbraith](https://en.wikipedia.org/wiki/The_New_Industrial_State)). Your needs are considered in so far as they can be profitably engaged. Profit is deployed to eliminate uncertainty.
 
 Yes, some people within firms really do want to deliver value to customers. They are typically deployed towards the front. You get to talk to them. Their empathy weaponised by nothing more malevolent than individuals preferring roles that resonate with them. Relationships with these specific trustworthy individuals only gets you so far. They leave. Or they stay while the firm does things they disagree with, but lack the control to prevent. *(Co-operatives help here, an open standard for corporate behaviour.)*
@@ -36,3 +34,15 @@ At it's most dysfunctional we've swapped a [Lloyd George envelope](https://en.wi
 An open standard for medical records gives us a foothold. A place to build from. It is hard to get them off the ground, and good ones, like [openEHR](https://openehr.org/) and [FHIR](http://hl7.org/fhir/summary.html) should be cherished and supported. That means showing up. Visibly participating and financially sponsoring, no strings attached.
 
 As a _"rules of engagement that allow diverse and heterogeneous actors to interact constructively over prolonged timespans"_ ([Ferraro et al.](https://doi.org/10.1177/0170840614563742)), the open standards process offers a path forwards, a _"robust action"_ to a complex, uncertain problem, rather than a prisoners dilemma to overcome. We do not have to wait for everyone to be convinced. Each system built on open standards by people willing to negotiate and trade some implementation freedom for coherent, reusable, interoperable output is a win.
+
+<div class="ledger references">
+
+## References
+
+Ferraro, F., Etzion, D. and Gehman, J. (2015) ‘Tackling grand challenges pragmatically: robust action revisited’, *Organization Studies*, 36(3), pp. 363–390. Available at: https://doi.org/10.1177/0170840614563742.
+
+Galbraith, J.K. (1967) *The New Industrial State*. Boston: Houghton Mifflin.
+
+Levin, K., Cashore, B., Bernstein, S. and Auld, G. (2012) ‘Overcoming the tragedy of super wicked problems: constraining our future selves to ameliorate global climate change’, *Policy Sciences*, 45(2), pp. 123–152. Available at: https://doi.org/10.1007/s11077-012-9151-0.
+
+</div>

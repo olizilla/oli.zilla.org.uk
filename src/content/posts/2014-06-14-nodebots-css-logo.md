@@ -8,8 +8,6 @@ tagline: "An animated, pure CSS drawing of the Nodebots logo featuring a blinkin
 atUri: "at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.document/3mn6cg6szx52c"
 ---
 
-# Animated CSS logo for nodebots
-
 <style>
 .nodebot{
   margin:0;

@@ -9,8 +9,6 @@ tagline: "A place to collect the problems with the FDP. Open issues to flag othe
 emoji: "🚩"
 ---
 
-# Problems with the Federated Data Platform
-
 _A place to collect the problems with the FDP. Open issues to flag others._
 
 Read the list at [github.com/olizilla/fdp](https://github.com/olizilla/fdp).

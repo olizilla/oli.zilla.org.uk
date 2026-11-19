@@ -1,0 +1,12 @@
+---
+// A sheet of paper laid on the page: white, with a dark top rule.
+// Start the slot with an h2 to give it a title (it also shows up in the
+// contents). A note sits on the right of the title: pass `note` as text,
+// e.g. "Draft 1 · Oct 2026", or use a `slot="note"` element for markup.
+const { note, class: className } = Astro.props
+const hasNote = note || Astro.slots.has('note')
+---
+<section class:list={['sheet', className]}>
+  {hasNote && <p class="sheet-note">{note}<slot name="note" /></p>}
+  <slot />
+</section>

@@ -1,8 +1,13 @@
 ---
 import '../base.css'
-import Prose from '../components/Prose.astro';
+import '../post.css'
+import Sheet from '../components/Sheet.astro';
+import MarkdownIt from 'markdown-it';
 const { frontmatter, headings } = Astro.props;
 const title = frontmatter?.title || Astro.props.title || headings?.find(h => h.depth === 1)?.text;
+// Posts get their h1, date and citation footer from frontmatter; pages like /blog bring their own.
+const heading = frontmatter ? new MarkdownIt().renderInline(frontmatter.heading ?? frontmatter.title) : null;
+const author = frontmatter?.author ?? 'Oli Evans';
 const tagline = frontmatter?.tagline || Astro.props.tagline || "olizilla: software engineer, co-operator, and writer. Thoughts on open source, open protocols, and web development.";
 const logoLink = Astro.props.logoLink ?? '/'
 const mainClass = frontmatter?.mainClass|| Astro.props.mainClass
@@ -10,6 +15,17 @@ const publishDate = frontmatter?.publishDate || Astro.props.publishDate;
 const isoString = publishDate ? new Date(publishDate).toISOString() : null;
 const isoStringShort = publishDate ? new Date(publishDate).toISOString().slice(0, 10) : null;
 const slashDateString = isoStringShort ? isoStringShort.replace(/-/g, '/') : null;
+const date = publishDate ? new Date(publishDate) : null;
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const shortDate = date ? `${date.getUTCDate()} ${months[date.getUTCMonth()].slice(0, 3)} ${date.getUTCFullYear()}` : null;
+// A document revised in drafts, like /nhs-data-strategy, names its version.
+const version = frontmatter?.version;
+// "Cite as" footer for posts, in APA style.
+const pageUrl = frontmatter?.citeUrl ?? new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
+const names = author.split(' ');
+const surname = names.pop();
+const apaAuthor = `${surname}, ${names.map(n => `${n[0]}.`).join(' ')}`;
+const apaDate = date ? `${date.getUTCFullYear()}, ${months[date.getUTCMonth()]} ${date.getUTCDate()}` : 'n.d.';
 const siteName = 'oli.zilla.org.uk'
 ---
 <!doctype html>
@@ -61,13 +77,54 @@ const siteName = 'oli.zilla.org.uk'
 			</h1>
 		</header>
 		<main class={mainClass}>
-		<Prose>
+		<article class="post">
+			{heading && <h1 set:html={heading} />}
+			{heading && shortDate && <p class="dateline">{version && `${version} · `}<time datetime={isoStringShort}>{shortDate}</time></p>}
 			<slot/>
-		</Prose>
+			{heading && (
+				<footer class="post-footer">
+					<Sheet class="cite-as">
+						<a slot="note" rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+						<h2>Cite as</h2>
+						<p class="citation">{apaAuthor} ({apaDate}). <i>{title}</i>{version && ` (${version})`}. {siteName}. <a href={pageUrl}>{pageUrl}</a></p>
+					</Sheet>
+				</footer>
+			)}
+		</article>
 		</main>
 	</div>
 	<footer class="pt-16 text-center text-3xl -mb-1">
 		<a href="/">🌻</a>
 	</footer>
+	{frontmatter?.toc && (
+		<script is:inline>
+			// Mark the contents entry for the section being read. Only its colour changes.
+			(() => {
+			const links = [...document.querySelectorAll('.toc a, .toc-m a')]
+			const targets = [...new Set(links.map(a => a.hash.slice(1)))]
+				.map(id => document.getElementById(id))
+				.filter(Boolean)
+			function update () {
+				if (targets.length === 0) return
+				const line = window.innerHeight * 0.25
+				let current = targets[0]
+				for (const target of targets) {
+					if (target.getBoundingClientRect().top <= line) current = target
+				}
+				for (const a of links) {
+					if (a.hash === `#${current.id}`) a.setAttribute('aria-current', 'location')
+					else a.removeAttribute('aria-current')
+				}
+			}
+			let queued = false
+			addEventListener('scroll', () => {
+				if (queued) return
+				queued = true
+				requestAnimationFrame(() => { queued = false; update() })
+			}, { passive: true })
+			update()
+			})()
+		</script>
+	)}
 </body>
 </html>

@@ -1,0 +1,16 @@
+---
+// Every version of the strategy, frozen at /nhs-data-strategy/vN/.
+import { getCollection } from 'astro:content'
+import StrategyPage from '../../components/StrategyPage.astro'
+
+export async function getStaticPaths () {
+  const versions = (await getCollection('strategy')).sort((a, b) => b.data.version - a.data.version)
+  return versions.map(entry => ({
+    params: { version: `v${entry.data.version}` },
+    props: { entry, versions },
+  }))
+}
+
+const { entry, versions } = Astro.props
+---
+<StrategyPage entry={entry} versions={versions} />

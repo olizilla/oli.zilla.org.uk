@@ -1,0 +1,52 @@
+---
+version: 2
+draft: true
+publishDate: 2026-11-19
+changes: "a sharper diagnosis and response from my thesis concept note. Adds the two markets, records staying where they are created, the Single Patient Record, and enforcement."
+references:
+  - "Mazzucato, M. (2016) 'From market fixing to market-creating: a new framework for innovation policy', *Industry and Innovation*, 23(2), pp. 140–156. Available at: https://doi.org/10.1080/13662716.2016.1146124."
+  - "medConfidential (2015) *A modern Lloyd George Envelope: CLASSIFIED when complete*. Available at: https://medconfidential.org/wp-content/uploads/2015/02/2015-02-16-A-modern-Lloyd-George-Envelope.pdf."
+  - "Wray, S. (2026) 'NHS England outlines path to Single Patient Record', *Global Government Forum*, 3 September. Available at: https://www.globalgovernmentforum.com/were-not-looking-to-reinvent-the-wheel-nhs-england-outlines-path-to-single-patient-record/."
+---
+import Sheet from '../../components/Sheet.astro'
+
+<p class="lede">I'm working on a strategy for NHS data as the focus of my resarch at [UCL IIPP](https://www.ucl.ac.uk/bartlett/public-purpose/about). I'm exploring what the NHS needs to govern, and how, to have a competitive market for the software it needs **and** fully interoperable patient records?</p>
+
+<Sheet note="Draft 2">
+
+## Work in progress
+
+**Diagnosis:** Digitisation of the NHS is being driven by the software vendors, and is moving at the pace of the procurement process: one multi-million pound, decade long contract at a time.
+
+For an individual trust or GP practice, interoperability is an "externality": the cost of its absence falls on the rest of the network. As a result, our medical records are routinely degraded and re-summarised as they move between sites.
+
+Both of the usual ways of fixing a market have been tried. Tight regulation of GP software enabled some interoperability (GP2GP, GP Connect) at the cost of reduced competition: a duopoly. Limited regulation of software for hospitals has sustained a more competitive market at the cost of making interoperability far more challenging. Neither has delivered interoperable patient records across the system as a whole. The larger flow, referrals to hospital and results back, crosses between the two markets and is governed by neither.
+
+The current policy space implies a choice between a competitive market and interoperability. I think this is a false trade-off, created by trying to govern the wrong objects with the wrong mechanism.
+
+**Response:** We need to *shape the market* (Mazzucato, 2016) with a clearly defined interface between the publicly funded core of the NHS and the privately funded market of software vendors. That line is currently drawn by the vendors.
+
+The right object for the NHS to govern is the data layer: the shape and meaning of our digital health records, and the open formats they are stored in. Records should stay with the GP practices and trusts that create them.
+
+This is not a proposal for a central database. When our health records were written on paper and stored in Lloyd George envelopes, the doctor retained their rights over the words but the state owned the stationery (medConfidential, 2015). In the NHS today, our records are split across as many proprietary databases as sites we have been seen in.
+
+**The test:** *Can a clinician A/B test two apps on live data, one patient to the next?*
+
+This is not currently possible. The test is deliberately provocative across all layers of technical, governance, and safety concerns, and answers of "it's not possible" are informative.
+
+The software market can work if we are genuinely free to choose. NHS sites must be able to seamlessly switch between providers, and try out alternatives. To get there we need to:
+
+1. **Separate our data from the apps:** Store health data in open formats that allow every site to try out digital systems without having to migrate our health records out of a proprietary database first.
+
+2. **Record data in shared public schemas at the point of care**: We need "semantic coherence at the edge". Records created anywhere must be meaningful everywhere, without translation. The shapes of that data should be governed by the public, through a non-profit steward. Sites can choose the shapes that suit them from shared building blocks, but any shape chosen must be legible and usable at full fidelity wherever the patient is seen.
+
+3. **Enforce the ground rules in a layer the vendors don't control:** Technically, by a record store that rejects data that doesn't conform, backed by a legal mandate. Implemented as a well-governed protocol with a clear brand name that co-ordinates buyers as simply as "we all use Oracle", without centring the network effects on a single vendor.
+
+**The goal** is to create a healthy digital ecosystem that delivers what we need:
+
+- Health records that retain their nuance over our lifetime; available wherever they are needed.
+- Software for clinicians that reduces toil rather than just enforcing rules. It must surface insights and highlight what matters, rather than simply permitting access to proprietary databases and PDFs.
+
+The current system has no intrinsic incentive for interoperability between sites, and lets private companies draw their moat around our data. The NHS must define the shape, storage and meaning of that data, and govern the protocol that sets the ground rules for its use, so that the market can compete on the software that creates and operationalises it.
+
+</Sheet>

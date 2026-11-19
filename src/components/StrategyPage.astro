@@ -1,0 +1,53 @@
+---
+// One version of /nhs-data-strategy, from src/content/strategy. Rendered at
+// /nhs-data-strategy/vN/, and at /nhs-data-strategy/ for the latest.
+import Layout from '../layouts/2025.astro'
+import Related from '../pages/nhs-data-strategy/_related.mdx'
+import MarkdownIt from 'markdown-it'
+
+const { entry, versions } = Astro.props
+const md = new MarkdownIt({ linkify: true, typographer: true })
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+const shortDate = d => `${d.getUTCDate()} ${months[d.getUTCMonth()]} ${d.getUTCFullYear()}`
+const label = v => v.data.draft ? `Draft ${v.data.version}` : `v${v.data.version}`
+const href = v => `/nhs-data-strategy/v${v.data.version}/`
+
+const latest = versions[0]
+const isLatest = entry.data.version === latest.data.version
+const { Content } = await entry.render()
+
+const frontmatter = {
+  title: 'Towards a strategy for NHS data',
+  tagline: 'My starting position on how patient data should be stored and moved around the NHS, and how it changes as I test it.',
+  publishDate: entry.data.publishDate,
+  version: label(entry),
+  citeUrl: new URL(href(entry), Astro.site).href,
+}
+---
+<Layout frontmatter={frontmatter}>
+  {!isLatest && (
+    <p class="version-note">You're reading {label(entry)}, from {shortDate(entry.data.publishDate)}. <a href="/nhs-data-strategy/">The latest is {label(latest)} →</a></p>
+  )}
+
+  <Content />
+
+  <div class="ledger changes">
+    <h2>Changes</h2>
+    <ul>
+      {versions.map(v => (
+        <li>{v.data.version === entry.data.version ? <strong>{label(v)}</strong> : <a href={href(v)}>{label(v)}</a>}: <Fragment set:html={md.renderInline(v.data.changes)} /> <span>{shortDate(v.data.publishDate)}</span></li>
+      ))}
+    </ul>
+  </div>
+
+  <Related />
+
+  {entry.data.references.length > 0 && (
+    <div class="ledger references">
+      <h2>References</h2>
+      <ul>
+        {entry.data.references.map(r => <li set:html={md.renderInline(r)} />)}
+      </ul>
+    </div>
+  )}
+</Layout>

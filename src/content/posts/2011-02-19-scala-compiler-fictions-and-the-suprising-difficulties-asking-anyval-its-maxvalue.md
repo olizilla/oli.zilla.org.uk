@@ -7,8 +7,6 @@ tagline: "Investigating Scala compiler magic, companion objects, and why duck-ty
 atUri: "at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.document/3mn6cg772lf2z"
 ---
 
-# Scala's polite compiler fictions &amp; the surprising difficulties of asking an AnyVal it's MaxValue
-
 In day to day programming I have found Scala allows me to make my code clearer and significantly more fun to write.
 
 Yet somehow a simple code demo to get the numeric types to print their max and min values turned into a multi-man-hour-brain-teaser. 

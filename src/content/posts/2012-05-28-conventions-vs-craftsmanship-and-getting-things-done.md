@@ -7,8 +7,6 @@ tagline: "Yehuda Katz's RailsConf talk about convention over configuration, JSON
 atUri: "at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.document/3mn6cg743422j"
 ---
 
-# Conventions Vs Craftsmanship and Getting Things Done
-
 [Yehuda Katz][5] makes an interesting point in his 2012 RailsConf talk.
 
 > Any convention is better than no convention…

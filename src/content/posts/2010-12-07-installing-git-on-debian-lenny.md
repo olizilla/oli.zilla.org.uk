@@ -7,8 +7,6 @@ tagline: "A needlessly funny walkthrough on configuring lenny-backports to get G
 atUri: "at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.document/3mn6cg7c6ke2p"
 ---
 
-## Git on Lenny, a love story
-
 > "You are running Debian stable, because you prefer the Debian stable tree. 
 > It runs great, there is just one problem: the software is a little bit outdated compared to other distributions."
 [http://backports.debian.org/][backports]

@@ -7,8 +7,6 @@ tagline: "A tutorial on encrypting your browser traffic over unsecured public Wi
 atUri: "at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.document/3mn6cg7fcy22p"
 ---
 
-# Web by Proxy; Secure surfing on someone else's SOCKS
-
 Today I found myself looking down the barrel of an unknown and unsecured wireless access point. Some kindly soul has gone to the trouble of geting an adsl line into Brixton Village Market and then gone the extra mile of leaving the wireless unsecured (no WAP or WEP password in sight) so anyone may connect, and I assume deliberately as the access point in question comes secured by default. (if not, sorry, I'll buy you a [federation coffee][fed].)
 
 Such a display of generosity warms the cockles, but alas, as a techno-noodler my thoughts immediately turned to the worrying, if over-simplified idea that connecting to such a device would force my laptop to start publicly smearing the contents of my browser, every request, url and search term, over everything in a several meter radius.

@@ -7,8 +7,6 @@ tagline: "Notes on Jason Huggins' talk on testing HTML5 canvas-based apps with S
 atUri: "at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.document/3mn6cg7l7i22j"
 ---
 
-# Selenium and Castro testing the Canvas
-
 Notes from [Painless product demos & how to test 'untestable' applications](http://www.meetup.com/london-software-craftsmanship/calendar/15118493/). Original talk by Jason Huggins ([@hugs][@]) of [Sauce Labs][1] presenting at the [London Software Craftsmanship Community][2], 4th Nov 2010.
 
 ## The Selenium toolbox

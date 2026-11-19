@@ -1,0 +1,8 @@
+---
+// The latest version of the strategy. Older ones live at /nhs-data-strategy/vN/.
+import { getCollection } from 'astro:content'
+import StrategyPage from '../../components/StrategyPage.astro'
+
+const versions = (await getCollection('strategy')).sort((a, b) => b.data.version - a.data.version)
+---
+<StrategyPage entry={versions[0]} versions={versions} />

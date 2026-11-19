@@ -7,8 +7,6 @@ tagline: "to avoid formatting nightmares, vendor lock-in by writing plain text a
 atUri: "at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.document/3mn6cg6yyok2n"
 ---
 
-# If only you knew... plain text
-
 Things web developers do that could ease your pain
 
 ## Plain text

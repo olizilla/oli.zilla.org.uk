@@ -47,13 +47,16 @@ export async function GET(context) {
     title: 'olizilla',
     description: 'Building software 🤖 resilience ✊ enthusiasm 🎉 and community 👯‍♀️',
     site: siteUrl,
+    customData: '<copyright>This work is licensed under CC BY 4.0: https://creativecommons.org/licenses/by/4.0/</copyright>',
     items: posts.map((post) => {
       const postPath = post.href;
       const postUrl = postPath.startsWith('http') 
         ? postPath 
         : `${siteUrl.endsWith('/') ? siteUrl.slice(0, -1) : siteUrl}/${postPath.startsWith('/') ? postPath.slice(1) : postPath}`;
       
-      const rawHtml = parser.render(post.body);
+      // MDX import/export lines are code, not content
+      const body = post.id.endsWith('.mdx') ? post.body.replace(/^(import|export) .*$/gm, '') : post.body;
+      const rawHtml = parser.render(body);
       const absoluteHtml = makeUrlsAbsolute(rawHtml, postUrl, siteUrl, post.id);
       const sanitizedHtml = sanitizeHtml(absoluteHtml, {
         allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img', 'figure', 'figcaption', 'ul', 'li', 'ol']),

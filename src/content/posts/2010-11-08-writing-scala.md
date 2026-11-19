@@ -7,8 +7,6 @@ tagline: "A comparison of Scala and Java syntax, highlighting pattern matching, 
 atUri: "at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.document/3mn6cg7iaq22p"
 ---
 
-# Writing Scala after Java
-
 Here is a list of rough edges that Scala polishes away, and the surprises that will stub the toe of expectation.
 
 ## Different and better

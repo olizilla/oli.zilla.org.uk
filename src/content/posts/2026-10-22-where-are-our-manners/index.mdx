@@ -2,34 +2,42 @@
 layout: ../../../layouts/2025.astro
 publishDate: 2026-10-22
 title: "Where are our manners? A protocol for NHS software"
+heading: "*Where are our manners?* A protocol for NHS software"
 slug: 2026/10/22/where-are-our-manners
 draft: false
 tagline: "The NHS must draw the line between its data and the software market, not the vendors."
 emoji: "🩺"
+toc: true
 ---
+import Sheet from '../../../components/Sheet.astro'
 
-# *Where are our manners?* A protocol for NHS software
+<p class="lede">I'm working on a strategy for NHS data as the focus of my resarch at [UCL IIPP](https://www.ucl.ac.uk/bartlett/public-purpose/about). I'm exploring what the NHS needs to govern, and how, to have a competitive market for the software it needs **and** fully interoperable patient records?</p>
+
+<p class="lede">I'm sharing my understanding and opinons as they develop, so my bias is on record and can be checked as we go.</p>
+
+<Sheet>
+
+<a slot="note" href="/nhs-data-strategy/v2/">Draft 2</a>
+
+### Towards a strategy for NHS data
 
 **Diagnosis:** Digitisation of the NHS is being driven by the software vendors, and is moving at the pace of the procurement process: one multi-million pound, decade long contract at a time.
 
-The market has not delivered interoperable patient record systems. The incentives are wrong and a clear boundary or protocol where co-ordination and enforcement could happen is missing.
+**Response:** We need to *shape the market* with a clearly defined interface between the publicly funded core of the NHS and the privately funded market of software vendors.
 
-**Response:** We need to *shape the market* with a clearly defined interface between the publicly funded core of the NHS and the privately funded market of software vendors. That line is currently drawn by the vendors.
+**The test:** *Can a clinician A/B test two apps on live data, one patient to the next?*
 
-**The test:** Can a clinician A/B test two apps on live data, one patient to the next?
+**The goal** is to create a healthy digital ecosystem that delivers: 
+- Software for clinicians that reduces toil rather than just enforcing rules.
+- Health records that retain their nuance over our lifetime; available wherever they are needed. 
 
-The software market can work if we are genuinely free to choose. NHS sites must be able to seamlessly switch between providers, and try out alternatives. To get there we need to:
+[Read more →](/nhs-data-strategy/v2/)
 
-1. **Separate our data from the apps:** Store health data in open formats that allow every site to try out digital systems without having to migrate our health records out of a proprietary database first.  
-     
-2. **Record data in shared public schemas at the point of care**: We need "semantic coherence at the edge". Records created anywhere must be meaningful everywhere, without translation. The alternatives cost too much: Translating the data at the centre moves too much power there with it ([FDP](https://github.com/olizilla/fdp#problems-with-the-federated-data-platform)). Crafting lower fidelity summaries or bespoke translations between the many sites creates a vast amount of expensive work that degrades our health records with each translation.
+</Sheet>
 
-**The goal** is to create a healthy digital ecosystem that delivers what we need:
+<p class="lede">This essay is explores software protocols as a mechanism for governance, and as a shared resource that must provide affordances for governance.</p>
 
-- Health records that retain their nuance over our lifetime; available wherever they are needed.  
-- Software for clinicians that reduces toil rather than just enforcing rules. It must surface insights and highlight what matters, rather than simply permitting access to proprietary databases and PDFs.
-
-The current system has no intrinsic incentive for interoperability between sites, and lets private companies draw their moat around our data. The NHS must define the shape, storage and meaning of that data, and govern the protocol that sets the ground rules for its use, so that the market can compete on the software that creates and operationalises it.
+<div class="divider">The essay</div>
 
 ## Following protocol
 
@@ -41,11 +49,13 @@ Software protocols are not APIs or digital platforms. They are the ground rules 
 
 > a protocol is an “engineered argument”, in contrast with an API, which ...is an “engineered agreement” enforced by one dominant actor.
 
-This is the difference between: *"You may use our API if you agree to our terms"* versus *"here are the rules of the road, let's drive"*. The former is what you get if one actor provides a platform; the latter is what you get when you design public infrastructure.
+It's the difference between: *you may use our API if you agree to our terms* versus *here are the rules of the road, let's drive*. The former is what you get if one actor provides a platform; the latter is what you get when you design public infrastructure.
+
+NHS patient records currently get the former. Each vendor sets its own terms for our data.
 
 ## Market shaping
 
-Done well, protocols can create a level playing field for healthy competition. Done badly, without an embedded social purpose or clear mechanisms for long term governance, they are susceptible to market capture. Email sits on open protocols that are multiplayer (the ground rules of an "engineered argument" between equals), but the rise of Gmail has transformed it into an API; an owned platform for which they set the terms.
+Done well, protocols can create a level playing field for healthy competition. Done badly, without an embedded social purpose or clear mechanisms for long term governance, they are susceptible to market capture. Email sits on open protocols that are multiplayer (the ground rules of an "engineered argument" between equals), but the rise of Gmail has transformed it into something much closer to a platform for which they set the terms.
 
 The UCL Institute for Innovation and Public Purpose (IIPP) has a motto for it: Innovation is political. Our choices have consequences. Choices that assign authority, create shared resources, and impact people that often lack a voice at the decision making table are all political. Here the motto rings true again: *protocols are political*, and should be treated as such.
 
@@ -128,5 +138,3 @@ When the software lacks a shared protocol the staff have to bridge the gaps betw
 The question I'm using as a guide is: What would need to be true for a clinician to A/B test two apps on live data, one patient to the next?
 
 Up next: Semantic convergence for the data across the NHS is the hard part. We already have things like SNOMED-CT for coding and GP Connect and FHIR for transport, openEHR for decentralised schemas for medical data, and OMOP for analytics. So what's missing? In the next essay I'm going to follow Laurens Hof's example and analyse the protocols we have already to see if they fit.
-
-_This work is licensed under CC BY 4.0_

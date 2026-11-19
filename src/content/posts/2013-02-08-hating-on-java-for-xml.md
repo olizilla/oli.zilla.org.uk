@@ -7,8 +7,6 @@ title: "Hating on Java for XML? Your DSL is worse."
 tagline: "A rant on the value of language-agnostic standards like XML over the explosion of custom, poorly-defined domain-specific languages (DSLs)."
 ---
 
-# Hating on Java for XML? Your DSL is worse.
-
 Do tell me again how you've dismissed Java as a waste of time due to it's XML fetish. How fascinating.
 
 __Hating on Java for it's XML love is like hating on a government for wanting transparency.__

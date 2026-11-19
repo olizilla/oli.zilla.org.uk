@@ -9,8 +9,6 @@ emoji: "🔌"
 atUri: "at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.document/3mn6cg67jyk2p"
 ---
 
-# The Canonical Data Model and the FDP
-
 The NHS "owns" the Canonical Data Model (CDM), the interface to the Federated Data Platform that all existing systems are to integrate with and that new systems should build on. This is what the CDM interface looks like today.
 
 <div class="bg-white">
@@ -47,7 +45,9 @@ Scotland is building their own National Digital Platform and building on OpenEHR
 
 Original thread on Bluesky: https://bsky.app/profile/oli.zilla.org.uk/post/3m6zfgerb3k2i
 
-## Sources
+<div class="ledger references">
+
+## References
 
 Dunscombe, R. (2025). Maximising the impact of the NHS Federated Data Platform. Public Policy Project. https://publicpolicyprojects.com/wp-content/uploads/2025/09/PPP_DDT-RT2-Report_06_25.pdf
 
@@ -64,3 +64,5 @@ Lovell, T. (2025, May 19). NHSE quizzed on the link between single patient recor
 Moss, B. (2025, February 26). Chief Data and Analytical Officer Network position on the Federated Data Platform (FDP). AphA - Association of Professional Healthcare Analysts. https://www.aphanalysts.org/cdao-network-news/chief-data-and-analytical-officer-network-position-on-the-federated-data-platform-fdp/
 
 Palantir Foundry. (n.d.). Palantir. Retrieved 2 December 2025, from https://www.palantir.com/platforms/foundry/
+
+</div>

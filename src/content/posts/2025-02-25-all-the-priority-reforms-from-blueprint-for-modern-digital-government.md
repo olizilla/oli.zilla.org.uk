@@ -9,8 +9,6 @@ emoji: "📋"
 atUri: "at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.document/3mn6cg6mqrn2c"
 ---
 
-# All the priority reforms from "a blueprint for modern digital government"
-
 For those that like their data dense, this is all **33 priority reforms** scraped from the GDS & DSIT [blueprint for modern digital government](https://www.gov.uk/government/publications/a-blueprint-for-modern-digital-government/a-blueprint-for-modern-digital-government-html).
 
 <ol>

@@ -10,8 +10,6 @@ mainClass: "slides"
 atUri: "at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.document/3mn6cg5pz3e2p"
 ---
 
-# Talk: Digital Interoperability in the NHS
-
 _A talk I presented in May 2026 to the [NHS DPSP](https://www.digital-prevention-services.nhs.uk/) team._
 
 <figure id="slide-1">

@@ -8,8 +8,6 @@ tagline: "Using Lukes' three views of power to analyse the decision to award the
 emoji: "💷"
 ---
 
-# Procuring legibility: Power, Palantir, and the NHS
-
 > This transformative power resides not in the map, of course,   
 > but rather in the power possessed by those who deploy  
 > the perspective of that particular map.
@@ -123,6 +121,8 @@ When our digital street-level bureaucrats are only trained in rational, system e
 User-centered design is encouraged! Encodings that value and centre “metis” are possible, but practitioners must push against the norms here. This, I think, is close to the root of why I am studying [this course](https://www.ucl.ac.uk/bartlett/public-purpose/study/mpa).
 
 
+<div class="ledger references">
+
 ## Bibliography
 
 Betton, V. (2022) *Towards a Digital Health Ecology: NHS Digital Adoption through the COVID-19 Looking Glass*. First edition. Boca Raton: CRC Press. Available at: [https://doi.org/10.1201/9781032198798](https://doi.org/10.1201/9781032198798).
@@ -170,3 +170,5 @@ Roll, K. (2018) ‘Street Level Bureaucrats and Post-conflict Policy-making: Cor
 Scott, J.C. (2020) *Seeing like a state: how certain schemes to improve the human condition have failed*. New Haven: Yale University Press (Veritas Paperbacks Ser).
 
 *Who can use the NHS Identity?* (no date) *NHS England*. Available at: [https://www.england.nhs.uk/nhsidentity/identity-guidelines/who-can-use-the-nhs-identity/](https://www.england.nhs.uk/nhsidentity/identity-guidelines/who-can-use-the-nhs-identity/) (Accessed: 11 January 2026).
+
+</div>

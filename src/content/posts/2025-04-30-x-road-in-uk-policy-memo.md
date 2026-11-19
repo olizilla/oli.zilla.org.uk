@@ -9,8 +9,6 @@ emoji: "📝"
 atUri: "at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.document/3mn6cg6gwe72b"
 ---
 
-# Adopting X-Road in the UK
-
 _An essay for the IIPP Innovation and Public Purpose MPA: Digital Transformation module._
 
 The ask was to *"Write an extended policy memo to your head of government explaining the risks and opportunities associated with adopting the X-Road for your country."*
@@ -170,7 +168,7 @@ Chief Digital Advisor
 1. X-road is not a light: "even if the Security Server is containerized, the footprint of the Sidecar container is still relatively massive compared to the footprint of average containers." - https://www.niis.org/blog/2020/9/1/security-server-sidecar-part-3
 2. X-road 8 promises a "light context" to reduce the burden on consumers : https://x-road.global/development-roadmap
 
----
+<div class="ledger references">
 
 ## Bibliography
 
@@ -208,4 +206,4 @@ Nordic APIs. (2019, November 5). _X-Road – Open source Data Exchange Layer_ [V
 
 nordic-institute. (2025, April 11). _X-Road/doc/Architecture/arc-sec_x_road_security_architecture.md at develop · nordic-institute/X-Road_. GitHub. https://github.com/nordic-institute/X-Road/blob/develop/doc/Architecture/arc-sec_x_road_security_architecture.md
 
-
+</div>

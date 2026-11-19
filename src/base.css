@@ -18,6 +18,37 @@ body {
   }
 }
 
+/* Charter, hosted here so the serif is the same on every device (Android
+   has no Charter of its own). Bitstream's licence: fonts/charter/LICENSE.txt */
+@font-face {
+  font-family: "Charter";
+  src: url("fonts/charter/charter_regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Charter";
+  src: url("fonts/charter/charter_italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Charter";
+  src: url("fonts/charter/charter_bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Charter";
+  src: url("fonts/charter/charter_bold_italic.woff2") format("woff2");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
 @font-face {
   font-family: "courier_prime_sans";
   src: url("courier_prime_sans-webfont.woff2") format("woff2");
@@ -43,28 +74,3 @@ body {
   font-weight: 400;
   font-style: normal;
 }
-
-.prose h1 em {
-	@apply font-serif font-extralight;
-}
-
-.prose .cite {
-  @apply text-zinc-500 font-mono block mt-1 text-sm;
-}
-
-.prose .comment {
-  @apply text-zinc-600 font-mono text-base;
-}
-
-.prose em {
-  @apply font-serif;
-}
-
-.caption {
-  @apply font-mono block -mt-7 rounded-b-md px-3 py-2;
-}
-
-.slides article img { border-bottom: solid 1px #ddd; }
-.slides article > figure { background: white; padding: 0px; border: solid 1px #ddd; border-radius: 4px;}
-.slides article > figure img { margin: 0 !important; }
-.slides article > figure > figcaption { padding: 0 1em;}

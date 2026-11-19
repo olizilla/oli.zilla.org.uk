@@ -1,0 +1,582 @@
+/* Posts: typography for markdown in the 2025 layout, then the components
+   posts use. Loaded by src/layouts/2025.astro, after base.css.
+
+   Element styles sit inside :where(.post), so they carry no weight: Tailwind
+   classes in a post and the component classes below always win. */
+
+.post {
+  --ink: #18181b;        /* headings, bold, the current contents entry */
+  --text: #3f3f46;       /* body text */
+  --soft: #27272a;       /* serif intros and quotes */
+  --muted: #52525b;      /* labels, comments */
+  --rule: #d4d4d8;
+  --hairline: #e4e4e7;
+  --link: #1e3a8a;
+  --frame: hsl(0, 20%, 20%);
+  --page: hsl(65, 30%, 97%);
+  --paper: #ffffff;
+  --serif: Charter, "Bitstream Charter", "Sitka Text", Cambria, ui-serif, serif;
+  --mono: courier_prime_sans, ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text);
+  overflow-wrap: break-word;
+}
+@media (min-width: 640px) {
+  .post {
+    font-size: 1.125rem;
+  }
+}
+
+/* --- Markdown ----------------------------------------------------------- */
+
+:where(.post) > :first-child {
+  margin-top: 0;
+}
+:where(.post) :is(p, ul, ol) {
+  margin: 1.25em 0;
+}
+
+:where(.post) :is(h1, h2, h3, h4) {
+  color: var(--ink);
+}
+:where(.post) h1 {
+  margin: 0 0 0.8em;
+  font-size: 1.625rem;
+  line-height: 1.25;
+  font-weight: 800;
+}
+:where(.post) h1 em {
+  font-family: var(--serif);
+  font-weight: 300;
+}
+:where(.post) h2 {
+  margin: 1.8em 0 0.8em;
+  font-size: 1.5rem;
+  line-height: 1.3;
+  font-weight: 700;
+}
+:where(.post) h3 {
+  margin: 1.6em 0 0.6em;
+  font-size: 1.25rem;
+  line-height: 1.4;
+  font-weight: 600;
+}
+:where(.post) h4 {
+  margin: 1.5em 0 0.5em;
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  font-weight: 600;
+}
+@media (min-width: 640px) {
+  :where(.post) h1 {
+    font-size: 1.875rem;
+    line-height: 1.2;
+  }
+  :where(.post) h2 {
+    font-size: 1.875rem;
+  }
+  :where(.post) h3 {
+    font-size: 1.5rem;
+  }
+  :where(.post) h4 {
+    font-size: 1.25rem;
+  }
+}
+:where(.post) :is(h2, h3, h4) + * {
+  margin-top: 0;
+}
+
+:where(.post) a {
+  color: var(--link);
+  font-weight: 500;
+  text-decoration: none;
+}
+:where(.post) a:where(:hover) {
+  text-decoration: underline;
+}
+:where(.post) strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+:where(.post) em {
+  font-family: var(--serif);
+}
+:where(.post) code {
+  font-family: var(--mono);
+  font-size: 0.9em;
+  color: var(--ink);
+}
+
+:where(.post) ul {
+  list-style: disc;
+  padding-left: 1.5em;
+}
+:where(.post) ol {
+  list-style: decimal;
+  padding-left: 1.5em;
+}
+:where(.post) li {
+  margin: 0.5em 0;
+  padding-left: 0.25em;
+}
+:where(.post) li > :is(p, ul, ol) {
+  margin: 0.75em 0;
+}
+:where(.post) ul > li::marker {
+  color: #a1a1aa;
+}
+:where(.post) ol > li::marker {
+  color: #71717a;
+}
+
+/* Quotes: a quiet snippet of paper, in serif at full strength. End one with
+   a line that starts with a dash to give its source:
+
+     > We ransomed our dignity to the clouds
+     >
+     > — Tom Stoppard, *Rosencrantz and Guildenstern are dead*
+
+   src/lib/remark-cited-quotes.mjs turns that line into the quote's footer. */
+:where(.post) blockquote {
+  margin: 1.25em 0;
+  padding: 0.625em 1em;
+  border-left: 3px solid var(--rule);
+  background: rgb(255 255 255 / 0.55);
+  font-family: var(--serif);
+  font-size: 1em;
+  line-height: 1.6;
+  color: var(--soft);
+}
+/* The last line's descenders leave less room than the first line's capitals,
+   so a quote without a source gets a touch more below to look even. */
+:where(.post) blockquote:not(:has(> footer)) {
+  padding-bottom: calc(0.625em + 3px);
+}
+:where(.post) blockquote > :first-child {
+  margin-top: 0;
+}
+:where(.post) blockquote > :last-child,
+:where(.post) blockquote > :has(+ footer) {
+  margin-bottom: 0;
+}
+:where(.post) blockquote > footer {
+  /* As on the homepage quotes. */
+  margin-top: 1rem;
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+:where(.post) blockquote > footer::before {
+  content: "— ";
+}
+:where(.post) blockquote > footer :is(a, em) {
+  color: inherit;
+  font: inherit;
+}
+/* On phones, quotes run to the screen edges like a sheet, to give the words
+   the room, and their line breaks go: they're for wide screens. */
+@media (max-width: 639px) {
+  :where(.post) blockquote {
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  :where(.post) blockquote br {
+    display: none;
+  }
+}
+
+/* Code blocks. Shiki sets their colours; 2rem below leaves room for a
+   .caption tucked underneath. */
+:where(.post) pre {
+  margin: 2rem 0;
+  padding: 1em 1.25em;
+  overflow-x: auto;
+  border-radius: 0.375rem;
+  background: #27272a;
+  color: #e4e4e7;
+  font-size: 0.875em;
+  line-height: 1.7;
+}
+:where(.post) pre code {
+  font-size: inherit;
+  color: inherit;
+}
+
+:where(.post) :is(img, video, figure) {
+  margin: 2rem 0;
+}
+/* Embeds never push the page wider than the column. */
+:where(.post) iframe {
+  max-width: 100%;
+}
+:where(.post) iframe.aspect-video {
+  height: auto;
+}
+:where(.post) figure > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+:where(.post) figcaption {
+  margin-top: 1em;
+  font-size: 0.9em;
+  line-height: 1.6;
+}
+
+:where(.post) hr {
+  margin: 3em 0;
+  border: 0;
+  border-top: 1px solid var(--hairline);
+}
+
+:where(.post) table {
+  width: 100%;
+  margin: 2em 0;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.875em;
+  line-height: 1.6;
+}
+:where(.post) :is(th, td) {
+  padding: 0.5em 0.75em;
+  vertical-align: top;
+}
+:where(.post) :is(th, td):first-child {
+  padding-left: 0;
+}
+:where(.post) :is(th, td):last-child {
+  padding-right: 0;
+}
+:where(.post) thead th {
+  vertical-align: bottom;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink);
+  font-weight: 600;
+}
+:where(.post) tbody tr {
+  border-bottom: 1px solid var(--hairline);
+}
+
+/* --- Small pieces of voice ---------------------------------------------- */
+
+/* A programmer's # comment: a dry aside in another tone. */
+.post .comment {
+  font-family: var(--mono);
+  font-size: 0.9em;
+  color: var(--muted);
+}
+
+/* A source line tucked under an image or code block. */
+.caption {
+  display: block;
+  margin-top: -1.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0 0 0.375rem 0.375rem;
+  font-family: var(--mono);
+}
+
+/* The essay's opening line, and an intro in the author's own voice. Charter
+   runs small, so these read at body size: the change of face is enough. */
+.lede {
+  margin: 2rem 0 1rem;
+  font-family: var(--serif);
+  font-size: 1.125em;
+  line-height: 1.55;
+  color: var(--ink);
+}
+.standfirst {
+  margin-bottom: 2rem;
+  font-family: var(--serif);
+  font-size: 1.125em;
+  line-height: 1.6;
+  color: var(--soft);
+}
+
+/* On an older version of a document: which one, and where the latest is. */
+.version-note {
+  margin: 1.5rem 0 0;
+  padding: 0.75em 1em;
+  border-left: 3px solid var(--frame);
+  background: var(--paper);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+/* --- Labels and dividers ------------------------------------------------ */
+
+/* Small mono labels: the date, dividers, sheet titles, contents and footer. */
+.label, .dateline, .divider, .toc-label, .toc-m summary, .sheet-note,
+.sheet > :is(h2, h3):first-child, .sheet > .sheet-note + :is(h2, h3),
+.ledger > h2:first-child, .ledger li > span {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.dateline {
+  margin: -0.75rem 0 0;
+}
+
+/* Text between two hairlines, e.g. <div class="divider">The essay</div> */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 3rem 0 0.5rem;
+}
+.divider::before, .divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+
+/* --- <Sheet> -------------------------------------------------------------- */
+
+/* A sheet of paper laid on the page. Its text lines up with the column, so
+   the white reaches out into the margins. */
+.sheet {
+	font-size: 1rem;
+  display: flow-root;
+  margin: 2rem -0.5rem 0;
+  padding: 0 0.5rem 1.75rem;
+  border-top: 3px solid var(--frame);
+  background: var(--paper);
+}
+@media (min-width: 900px) {
+  .sheet {
+    margin-left: -2rem;
+    margin-right: -2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+.sheet > .sheet-note {
+  float: right;
+  margin: 0;
+  padding: 0.875rem 0 0.75rem 1rem;
+  border-bottom: 1px solid var(--hairline);
+  white-space: nowrap;
+}
+.sheet > .sheet-note a {
+  color: inherit;
+  font-weight: inherit;
+}
+.sheet > .sheet-note a:hover {
+  color: var(--ink);
+  text-decoration: none;
+}
+/* A sheet's title: its first heading, h2 or h3, after any note. One line,
+   cut short with an ellipsis where it meets the note. Title and note each
+   carry the hairline below them, so it runs the full width. */
+.sheet > :is(h2, h3):first-child,
+.sheet > .sheet-note + :is(h2, h3) {
+  margin: 0;
+  padding: 0.875rem 0 0.75rem;
+  border-bottom: 1px solid var(--hairline);
+  color: var(--ink);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.sheet > :is(h2, h3):first-child + *,
+.sheet > .sheet-note + :is(h2, h3) + * {
+  margin-top: 1.25rem;
+}
+.sheet > :last-child {
+  margin-bottom: 0;
+}
+
+/* --- Contents --------------------------------------------------------------- */
+
+/* Added by src/lib/rehype-toc.mjs for posts with `toc: true`. Entries never
+   move: the current one only changes colour. */
+.toc ol, .toc-m ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.toc li, .toc-m li {
+  margin: 0;
+  padding: 0;
+}
+.toc a, .toc-m a {
+  display: block;
+  padding: 5px 0 5px 12px;
+  border-left: 2px solid var(--rule);
+  color: var(--muted);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.4;
+  text-decoration: none;
+}
+.toc a:hover, .toc-m a:hover,
+.toc a[aria-current], .toc-m a[aria-current] {
+  color: var(--ink);
+}
+.toc a[aria-current], .toc-m a[aria-current] {
+  border-left-color: var(--frame);
+}
+
+/* Wide screens: a rail in the right margin, level with its first entry. */
+.toc {
+  display: none;
+}
+@media (min-width: 1260px) {
+  .toc {
+    display: block;
+    float: right;
+    width: 152px;
+    margin: 0 -208px 0 0;
+    position: sticky;
+    top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #a1a1aa;
+  }
+  .toc .toc-label {
+    margin: 0 0 0.75rem;
+  }
+  .toc-m {
+    display: none;
+  }
+}
+
+/* Small screens: one line, opening to the same list. */
+.toc-m {
+  margin: 2rem 0 0;
+  border-top: 1px solid var(--rule);
+}
+.toc-m summary {
+  cursor: pointer;
+  /* Capitals sit high in their line, so a little less below looks even. */
+  padding: 0.875rem 0 0.6875rem;
+}
+.toc-m ol {
+  margin-bottom: 1.25rem;
+}
+.toc-m a {
+  padding-top: 9px;
+  padding-bottom: 9px;
+  font-size: 0.9375rem;
+}
+/* A sheet's top rule closes the contents on small screens. */
+.toc-m + .sheet {
+  margin-top: 0;
+}
+.toc-m + h2 {
+  margin-top: 1.5rem;
+}
+
+/* --- Ledger and references ---------------------------------------------- */
+
+/* Short dated lists, like a strategy's changes and related essays:
+   <div class="ledger"> around an h2 and a list. A <span> at the end of an
+   item is its date or note. */
+.ledger {
+  margin-top: 3rem;
+}
+.ledger > h2:first-child {
+  margin: 0;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--rule);
+}
+.ledger ul, .ledger ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.ledger li {
+  position: relative;
+  margin: 0;
+  padding: 0.875rem 0;
+  border-bottom: 1px solid var(--hairline);
+}
+/* The date sits in its own column on the right; the text stops short of it. */
+.ledger li:has(> span) {
+  padding-right: 8.5rem;
+}
+.ledger li > span {
+  position: absolute;
+  top: 0.875rem;
+  right: 0;
+  /* Down onto the baseline of the item's first line. */
+  padding-top: var(--date-nudge, 0.5rem);
+}
+@media (max-width: 639px) {
+  .ledger li:has(> span) {
+    padding-right: 0;
+  }
+  .ledger li > span {
+    position: static;
+    display: block;
+    margin-top: 0.25rem;
+    padding-top: 0;
+  }
+}
+/* A smaller face for the record: changes and references. */
+.changes li {
+  --date-nudge: 0.25rem;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+/* References and bibliographies: <div class="ledger references"> around an
+   h2 and the entries, as a list or one paragraph each. Entries hang, as in a
+   printed bibliography; numbered lists keep their numbers. */
+.references > p,
+.references li {
+  margin: 0;
+  padding: 0.875rem 0 0.875rem 1.5em;
+  border-bottom: 1px solid var(--hairline);
+  text-indent: -1.5em;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+.references ol {
+  list-style: decimal inside;
+}
+.references ol > li {
+  padding-left: 0;
+  text-indent: 0;
+}
+.references li > p {
+  display: inline;
+  margin: 0;
+}
+
+/* --- Cite box --------------------------------------------------------------- */
+
+/* After a post: how to cite it, on a <Sheet class="cite-as">. */
+.post-footer {
+  margin-top: 4rem;
+}
+.cite-as .citation {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+.cite-as .citation i {
+  font-family: var(--serif);
+}
+/* The URL moves to the next line whole rather than breaking, unless it's
+   wider than the box. */
+.cite-as .citation a {
+  display: inline-block;
+  max-width: 100%;
+}
+
+/* --- The talk ----------------------------------------------------------- */
+
+/* Slides with notes: `mainClass: "slides"` in a post's frontmatter. */
+.slides article img { border-bottom: solid 1px #ddd; }
+.slides article > figure { background: white; padding: 0px; border: solid 1px #ddd; border-radius: 4px; }
+.slides article > figure img { margin: 0 !important; }
+.slides article > figure > figcaption { padding: 0 1em; }

@@ -7,8 +7,6 @@ tagline: "A guide to upgrading your Scala SDK installation and managing packages
 atUri: "at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.document/3mn6cg7ocdc24"
 ---
 
-# Upgrade with sbaz, the Scala Bazaar System
-
 
 So you installed a Scala a while ago. Some shiny new features make you want more, but your install is just too old. Before reaching for the download button on the latest version, hear this!
 

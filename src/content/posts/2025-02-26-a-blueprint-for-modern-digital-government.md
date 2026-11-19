@@ -9,8 +9,6 @@ emoji: "🔍"
 atUri: "at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.document/3mn6cg6jvhf2o"
 ---
 
-# A blueprint for modern digital government
-
 In January 2025, GDS & DSIT published [A blueprint for modern digital government](https://www.gov.uk/government/publications/a-blueprint-for-modern-digital-government/a-blueprint-for-modern-digital-government-html), a 6 point plan for digital reform. 
 
 **It's fantastic.** It's also very long, and you have much to do. Here are 3 of the 33 _"priority reforms"_ that stand out, ordered from the achievable to the transformative.
@@ -28,12 +26,14 @@ Despite it's length the blueprint is surprisingly coherent, tackling the problem
 In the blueprints own words, the government will:
 
 > Introduce a Digital Wallet to store government credentials, and require services to issue a digital verified credential alongside any paper/card based credential or proof of entitlement eligibility by the end of 2027.
-> <a class='cite' href="https://www.gov.uk/government/publications/a-blueprint-for-modern-digital-government/a-blueprint-for-modern-digital-government-html#priority-reforms">&mdash; Blueprint: Point 1. Join up public sector services</a>
+>
+> — [Blueprint: Point 1. Join up public sector services](https://www.gov.uk/government/publications/a-blueprint-for-modern-digital-government/a-blueprint-for-modern-digital-government-html#priority-reforms)
 
 ...but this doesn't give the full story. The [launch event video](https://youtu.be/V5C5z45odYU?si=BT5FKR7F2WySw9H7) goes into more detail: the Digital Wallet will be rolled out as a feature of the new GOV.UK app. \[[source](https://youtu.be/V5C5z45odYU?si=BT5FKR7F2WySw9H7&t=1271)\]. It also offers a bold statement of intent:
 
 > "We are going to transform the relationship between citizen and the state."
-> <a class="cite" href="https://www.youtube.com/watch?v=V5C5z45odYU">&mdash; Rt Hon Peter Kyle MP</a>
+>
+> — [Rt Hon Peter Kyle MP](https://www.youtube.com/watch?v=V5C5z45odYU)
 
 ### Why an app, why now?
 
@@ -113,7 +113,8 @@ And they stick the landing, with a clear statement that it [will be available by
 ## APIs Everywhere
 
 > Mandate the publication of a standard set of APIs and events by public sector organisations. Starting with an expectation that every new service in central government departments will have an open API.
-> <a class='cite' href="https://www.gov.uk/government/publications/a-blueprint-for-modern-digital-government/a-blueprint-for-modern-digital-government-html#priority-reforms-2">&mdash; Blueprint: Point 3. Strengthen and extend our digital and data public infrastructure</a>
+>
+> — [Blueprint: Point 3. Strengthen and extend our digital and data public infrastructure](https://www.gov.uk/government/publications/a-blueprint-for-modern-digital-government/a-blueprint-for-modern-digital-government-html#priority-reforms-2)
 
 Apps use APIs to get things done. The gov.uk app needs departments to offer APIs so it can connect users with the service they provide. In return The app will give the new APIs an in-house customer that can provide early feedback. Meanwhile, reframing departments around open, documented APIs nudges them towards digital-first and service-first delivery. Hey, [it worked for Amazon](https://gist.github.com/chitchcock/1281611).
 
@@ -122,9 +123,8 @@ To calibrate how significant a change "APIs for everything" could be at this poi
 Digital transformation represents an opportunity to redesign government around providing services that work well for the users who need it most. The section in the blueprint that proposes a performance metric around reducing the 'time tax' of public services will hopefully focus the effort where it is most needed.
 
 > Modern digital government should reduce the 'time tax' on people using public services. Not just the time it takes to use a service, but the time to understand what needs to be done.
-> <a class='cite' href="https://www.gov.uk/government/publications/a-blueprint-for-modern-digital-government/a-blueprint-for-modern-digital-government-html#what-we-want-to-deliver">&mdash; Blueprint: What we want to deliver</a>
-
-
+>
+> — [Blueprint: What we want to deliver](https://www.gov.uk/government/publications/a-blueprint-for-modern-digital-government/a-blueprint-for-modern-digital-government-html#what-we-want-to-deliver)
 ## Fixing funding
 
 _...OK But what about treacherous operating conditions for running digital projects in a government setting?_
@@ -138,8 +138,8 @@ __They want to fix that too!__
 > The digital centre will work with HM Treasury to reform the government's funding approach...
 >
 > Launch tailored funding models for digital products and services, legacy remediation and risk reduction, and staged, agile funding that better enables exploratory work with new technologies.
-> <a class='cite' href="https://www.gov.uk/government/publications/a-blueprint-for-modern-digital-government/a-blueprint-for-modern-digital-government-html#priority-reforms-4">&mdash; Blueprint: Point 5. Fund for outcomes, procure for growth and innovation</a>
-
+>
+> — [Blueprint: Point 5. Fund for outcomes, procure for growth and innovation](https://www.gov.uk/government/publications/a-blueprint-for-modern-digital-government/a-blueprint-for-modern-digital-government-html#priority-reforms-4)
 ## And more...
 
 The promise of ['digital ready' legislation](https://www.gov.uk/government/publications/a-blueprint-for-modern-digital-government/a-blueprint-for-modern-digital-government-html#priority-reforms), a line about trialing [a new unique identifier on children](https://www.gov.uk/government/publications/a-blueprint-for-modern-digital-government/a-blueprint-for-modern-digital-government-html#priority-reforms-4#strengthen-and-extend-our-digital-and-data-public-infrastructure) that would benefit from more context …there really is something for everyone. 
