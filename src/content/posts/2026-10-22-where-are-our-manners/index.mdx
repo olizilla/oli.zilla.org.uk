@@ -13,7 +13,7 @@ import Sheet from '../../../components/Sheet.astro'
 
 <p class="lede">Our medical records degrade as they move between sites. Interoperability is an externality, and private companies derive competitive advantage from holding our data.</p>
 
-_[I'm researching](/nhs-data-strategy/v2/) what the NHS must govern, and how, to have a competitive market for the software it needs **and** fully interoperable patient records. This post explores software protocols as a mechanism for that, joining the dots between Rahul Matthan's work on Digital Public Infrastructure and Laurens Hof's investigation into the politics of protocols._
+_[I'm researching](/nhs-data-strategy/v2/) what the NHS must govern, and how, to have a competitive market for the software it needs **and** fully interoperable patient records. This post explores software protocols as a mechanism for that, joining the dots between [Rahul Matthan's](https://www.juggernaut.in/products/the-third-way-india-s-revolutionary-approach-to-data-governance) work on Digital Public Infrastructure and [Laurens Hof's](https://connectedplaces.online/the-purpose-of-protocols/) investigation into the purpose of protocols._
 
 ## Following protocol
 
@@ -39,7 +39,7 @@ That line represents the interface between two completely different incentive mo
 
 ## Protocols as policy
 
-Protocols that shape markets should be designed as Digital Public Infrastructure (DPI), like a common rail gauge that public and private services build on. This is not new ground. Rahul Matthan, an expert at the intersection of law and technology, documented it extensively in 2023 in The Third Way:
+Protocols that shape markets should be designed as Digital Public Infrastructure (DPI), like a common rail gauge that public and private services build on. This is not new ground. Rahul Matthan, an expert at the intersection of law and technology, documented it extensively in 2023 in [*The Third Way*](https://www.juggernaut.in/products/the-third-way-india-s-revolutionary-approach-to-data-governance):
 
 > Market forces can be leveraged to keep the tech industry in check. But in order to do that we need to create the playground in which these private entrepreneurs can play. We need to do this the old fashioned way - by designing the protocols within which they are constrained to operate.
 
@@ -61,13 +61,13 @@ Those goals are worth the effort, but there is also the opportunity to reduce th
 
 ## Codified behaviour
 
-Demonstrating compliance is a significant burden for primary care electronic patient software vendors. So much so that the space is now essentially a duopoly. The survivors are the ones that were best set up to jump through those hoops.
+Demonstrating compliance is a significant burden for primary care electronic patient software vendors. So much so that the space is now [essentially a duopoly](https://www.england.nhs.uk/2025/06/nhs-approves-new-it-system-for-gps-to-help-transform-care/). The survivors are the ones that were best set up to jump through those hoops.
 
 For Matthan, as a lawyer who deeply understands the tech, this is the payoff: get lawyers into the protocol design so the system ensures that illegal moves are impossible, or are so visible that they are trivial to enforce.
 
 In return, once the engineers demonstrate that the protocol only allows legal moves, and the "engineered argument" delivers the desired social outcomes, then the regulation can shrink to just "must implement the protocol" and the set of issues that cannot be codified.
 
-Drafting law is slow work. As Jennifer Pahlka shows in Recoding America, the real impact of a new law takes years to discover. Implementers are left to fill in the blanks for all those edge cases the law as written cannot possibly cover, and there's no mechanism for iterating on the law using feedback from those trying to enforce it.
+Drafting law is slow work. As Jennifer Pahlka shows in [*Recoding America*](https://www.recodingamerica.us/), the real impact of a new law takes years to discover. Implementers are left to fill in the blanks for all those edge cases the law as written cannot possibly cover, and there's no mechanism for iterating on the law using feedback from those trying to enforce it.
 
 Getting the state to co-create the protocols it needs can provide the missing loop. It would allow the market the freedom to innovate, and the state the chance to iterate on the rules of the game in an open forum, to ensure the ecosystem remains balanced and continues to deliver public value as it evolves.
 
@@ -95,7 +95,7 @@ In the NHS case this means being responsible for a "thin-waist" protocol for its
 
 Intrinsic enforcement of the ground rules is essential. The current mess of partially adopted standards happens when any software stack gets to mark its own homework by bundling together the creation, storage, and display of data all in the same app. It can claim full conformance to any standard, but we won't know for sure until we try and use it somewhere else, which is the exception rather than rule, and within the NHS it is currently *the* reason why integrating systems takes ages and requires bespoke translation work every time, between every site.
 
-Compare that with how browsers and websites work, our largest experiment to date in open world interoperability. A handful of browsers are rigorously tested by the Web Platform Test suite to demonstrate the set of web standards they support. That is still out-of-band, certification style enforcement, but it works here because it is applied rigorously, automatically, and continuously.
+Compare that with how browsers and websites work, our largest experiment to date in open world interoperability. A handful of browsers are rigorously tested by the [Web Platform Test](https://web-platform-tests.org/) suite to demonstrate the set of web standards they support. That is still out-of-band, certification style enforcement, but it works here because it is applied rigorously, automatically, and continuously.
 
 Then those browsers enforce those web standards in-band by sitting as an enforcement boundary between you and billions of websites. An entity outside the control of the website intrinsically enforces the rules of what a "valid" document is. If the website does not follow the rules, it's either an error, or visibly corrupted. Browsers are notoriously tolerant, but that is a choice you make for an open web, not a requirement of an enforcing boundary object.
 
@@ -137,6 +137,24 @@ I'm working in the open, publishing what I find here to see if it resonates or s
 
 - [Talk: Digital Interoperability in the NHS](/2026/05/21/digital-interop-in-the-nhs/) <span>21 May 2026</span>
 - [Procuring legibility: Power, Palantir, and the NHS](/2026/01/15/procuring-legibility/) <span>15 Jan 2026</span>
+
+</div>
+
+<div class="ledger references">
+
+## References
+
+Hof, L. (2026) ‘The Purpose of Protocols’, *connectedplaces.online*, 18 March. Available at: [https://connectedplaces.online/the-purpose-of-protocols/](https://connectedplaces.online/the-purpose-of-protocols/) (Accessed: 22 September 2026).
+
+Matthan, R. (2023) *The third way: India’s revolutionary approach to data governance*. New Delhi: Juggernaut Books.
+
+Mazzucato, M., Eaves, D. and Vasconcellos, B. (2024) *Digital public infrastructure and public value: what is ‘public’ about DPI?* UCL Institute for Innovation and Public Purpose, Working Paper Series (IIPP WP 2024-05). Available at: [https://www.ucl.ac.uk/bartlett/publications/2024/mar/digital-public-infrastructure-and-public-value-what-public-about-dpi](https://www.ucl.ac.uk/bartlett/publications/2024/mar/digital-public-infrastructure-and-public-value-what-public-about-dpi) (Accessed: 20 November 2026).
+
+NHS England (2025) *NHS approves new IT system for GPs to help transform care*, 26 June. Available at: [https://www.england.nhs.uk/2025/06/nhs-approves-new-it-system-for-gps-to-help-transform-care/](https://www.england.nhs.uk/2025/06/nhs-approves-new-it-system-for-gps-to-help-transform-care/) (Accessed: 20 November 2026).
+
+O’Reilly, T. (2026) ‘The Missing Mechanisms of the Agentic Economy’, *O’Reilly Media*, 23 March. Available at: [https://www.oreilly.com/radar/the-missing-mechanisms-of-the-agentic-economy/](https://www.oreilly.com/radar/the-missing-mechanisms-of-the-agentic-economy/) (Accessed: 16 September 2026).
+
+Pahlka, J. (2023) *Recoding America: why government is failing in the digital age and how we can do better*. New York: Metropolitan Books.
 
 </div>
 

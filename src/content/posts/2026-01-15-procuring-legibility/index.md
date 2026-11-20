@@ -121,6 +121,16 @@ When our digital street-level bureaucrats are only trained in rational, system e
 
 User-centered design is encouraged! Encodings that value and centre “metis” are possible, but practitioners must push against the norms here. This, I think, is close to the root of why I am studying [this course](https://www.ucl.ac.uk/bartlett/public-purpose/study/mpa).
 
+<div class="ledger">
+
+## Related
+
+- [*Where are our manners?* A protocol for NHS software](/2026/10/22/where-are-our-manners/) <span>22 Oct 2026</span>
+- [Talk: Digital Interoperability in the NHS](/2026/05/21/digital-interop-in-the-nhs/) <span>21 May 2026</span>
+- [The NHS Federated Data Platform Memo](/2026/01/08/fdp-memo/) <span>8 Jan 2026</span>
+
+</div>
+
 
 <div class="ledger references">
 
