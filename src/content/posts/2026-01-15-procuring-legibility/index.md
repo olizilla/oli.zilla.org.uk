@@ -6,6 +6,7 @@ slug: 2026/01/15/procuring-legibility
 draft: false
 tagline: "Using Lukes' three views of power to analyse the decision to award the FDP contract to Palantir."
 emoji: "💷"
+toc: true
 ---
 
 > This transformative power resides not in the map, of course,   
