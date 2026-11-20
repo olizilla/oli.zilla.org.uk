@@ -11,33 +11,9 @@ toc: true
 ---
 import Sheet from '../../../components/Sheet.astro'
 
-<p class="lede">I'm working on a strategy for NHS data as the focus of my resarch at [UCL IIPP](https://www.ucl.ac.uk/bartlett/public-purpose/about). I'm exploring what the NHS needs to govern, and how, to have a competitive market for the software it needs **and** fully interoperable patient records?</p>
+<p class="lede">Our medical records degrade as they move between sites. Interoperability is an externality, and private companies derive competative advantage from holding our data.</p>
 
-<p class="lede">I'm sharing my understanding and opinons as they develop, so my bias is on record and can be checked as we go.</p>
-
-<Sheet>
-
-<a slot="note" href="/nhs-data-strategy/v2/">Draft 2</a>
-
-### Towards a strategy for NHS data
-
-**Diagnosis:** Digitisation of the NHS is being driven by the software vendors, and is moving at the pace of the procurement process: one multi-million pound, decade long contract at a time.
-
-**Response:** We need to *shape the market* with a clearly defined interface between the publicly funded core of the NHS and the privately funded market of software vendors.
-
-**The test:** *Can a clinician A/B test two apps on live data, one patient to the next?*
-
-**The goal** is to create a healthy digital ecosystem that delivers: 
-- Software for clinicians that reduces toil rather than just enforcing rules.
-- Health records that retain their nuance over our lifetime; available wherever they are needed. 
-
-[Read more →](/nhs-data-strategy/v2/)
-
-</Sheet>
-
-<p class="lede">This essay is explores software protocols as a mechanism for governance, and as a shared resource that must provide affordances for governance.</p>
-
-<div class="divider">The essay</div>
+_[I'm researching](/nhs-data-strategy/v2/) what the NHS must govern, and how, to have a competitive market for the software it needs **and** fully interoperable patient records. This post explores software protocols as a mechanism for that; joining dots between Rahul Mattan's work on Digital Public Infrastructure and Laurens Hofs investigation into the politics of protocols._
 
 ## Following protocol
 
@@ -50,8 +26,6 @@ Software protocols are not APIs or digital platforms. They are the ground rules 
 > a protocol is an “engineered argument”, in contrast with an API, which ...is an “engineered agreement” enforced by one dominant actor.
 
 It's the difference between: *you may use our API if you agree to our terms* versus *here are the rules of the road, let's drive*. The former is what you get if one actor provides a platform; the latter is what you get when you design public infrastructure.
-
-NHS patient records currently get the former. Each vendor sets its own terms for our data.
 
 ## Market shaping
 
@@ -71,9 +45,9 @@ Protocols that shape markets should be designed as Digital Public Infrastructure
 
 And the design of that playground is where policy work lives:
 
-> When DPI implements in code various regulatory objectives, it presents an opportunity to reflect ideals of governance into code. ...it is important to ensure that the *correct* principles are reflected in the protocol and the standards that describe this infrastructure.
+> When DPI implements in code various regulatory objectives, it presents an opportunity to reflect ideals of governance into code. ...it is important to ensure that the correct principles are reflected in the protocol and the standards that describe this infrastructure.
 
-The big judgement call is: who gets to define "correct" in this context.
+The important judgement call is: who gets to define *"correct"* in this context.
 
 ## Good manners
 
@@ -131,10 +105,38 @@ Any system for health records must intrinsically enforce the rules at a layer th
 
 The payoffs, once we have such a protocol, are decentralised co-ordination without meetings, health records that don't degrade with every software update, and a radical simplification of the integration work to get that data to where it needs to be.
 
-## Next
+### Next
 
-When the software lacks a shared protocol the staff have to bridge the gaps between systems that won't talk to each other. When a step is missed, [bad things happen](https://oli.zilla.org.uk/2026/05/21/digital-interop-in-the-nhs/). We have to give them better tech. This is well known. What is missing is a strategy to deliver it at scale. I'm going to keep working on that. I'm surfacing my thinking and assumptions to see if they resonate or so you can tell me where I am wrong. If either of those applies to you, or you are working on this too, then please [get in touch](mailto:oli@zilla.org.uk).
+Semantic convergence for the data across the NHS is the hard part. We already have things like SNOMED-CT for coding and GP Connect and FHIR for transport, openEHR for decentralised schemas for medical data, and OMOP for analytics. So what's missing? In the next essay I'm going to follow Laurens Hof's example and analyse the protocols we have already to see if they fit.
 
-The question I'm using as a guide is: What would need to be true for a clinician to A/B test two apps on live data, one patient to the next?
+When the software lacks a shared protocol the staff have to bridge the gaps between systems that won't talk to each other. When a step is missed, [bad things happen](https://oli.zilla.org.uk/2026/05/21/digital-interop-in-the-nhs/). 
 
-Up next: Semantic convergence for the data across the NHS is the hard part. We already have things like SNOMED-CT for coding and GP Connect and FHIR for transport, openEHR for decentralised schemas for medical data, and OMOP for analytics. So what's missing? In the next essay I'm going to follow Laurens Hof's example and analyse the protocols we have already to see if they fit.
+We have to give them better tech. This is well known. What is missing is a strategy to deliver it at scale. I'm going to keep working on that.
+
+<Sheet note="WIP">
+
+## Strategy
+
+**The goal** is to create a healthy digital ecosystem that delivers: 
+- Software for clinicians that reduces toil rather than just enforcing workflows.
+- Health records that retain their nuance over our lifetime; available wherever they are needed. 
+
+**Diagnosis:** Digitisation of the NHS is being driven by the software vendors, and is moving at the pace of the procurement process: one multi-million pound, decade long contract at a time.
+
+**The test:** _Can a clinician A/B test two apps on live data, one patient to the next?_
+
+[Read more →](/nhs-data-strategy/v2/)
+
+</Sheet>
+
+I'm working in the open, publishing what I find here to see if they resonate or so you can tell me where I'm wrong. If either of those applies to you, or you are working on this too, then please [get in touch](mailto:oli@zilla.org.uk).
+
+<div class="ledger">
+
+## Related
+
+- [Talk: Digital Interoperability in the NHS](/2026/05/21/digital-interop-in-the-nhs/) <span>21 May 2026</span>
+- [Procuring legibility: Power, Palantir, and the NHS](/2026/01/15/procuring-legibility/) <span>15 Jan 2026</span>
+
+</div>
+
