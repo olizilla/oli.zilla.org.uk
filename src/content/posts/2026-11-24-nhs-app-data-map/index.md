@@ -13,9 +13,9 @@ emoji: '📲'
 
 In the meantime **patients are showing the NHS App on their phone directly to clinicians** as a quick way to share their info. _Let's pave that cow path!_
 
-If their app explains that it shows a more complete view than any one clinician has access to, it will create a more useful mental model, and set us up for a consent based information sharing flow where they choose to hand over their phone or show a QR code, that lets the records be read by a clinician on the spot.
+If their app explains that it shows a more complete view than any one clinician has access to, it would give a more accurate mental model, reduce frustration, and may even be seen as a _good thing_. 
 
-A dedicated mode could be added that lets the patient scope the data to share if they wish, or simply logs what aspects of the full record the clinician views in a way that both parties can see.
+It also sets us up for consent-based sharing where they choose to hand over their phone, or show a QR code, that lets a clinician read the records on the spot. A dedicated sharing mode could let the patient scope the data to be shared if they wish, or simply log what aspects of the full record the clinician views in a way that both parties can see.
 
 ### How data gets into the NHS App
 
