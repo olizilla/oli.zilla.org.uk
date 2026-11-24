@@ -28,7 +28,13 @@ A dedicated mode could be added that lets the patient scope the data to share if
 
 _Drawn from the public sources listed under References. The main ones are NHS England's data protection impact assessment (DPIA) for the NHS App (NHS England, 2026f), its master data specification (MDS) (NHS England, 2026g) and its technical specification (NHS England, 2026j)._
 
-### Findings _(WIP! May change)_
+### Recommendations
+
+- When patients download or share their record, give them a patient summary in one published UK profile of the [International Patient Summary](https://international-patient-summary.net/).
+- Have the App coerce supplier data into that profile for now, and publish a validator that suppliers can test their own output against. As suppliers converge on it, the App can delete its translation code.
+  - Shared care record providers already produce IPS-shaped summaries with coded medicines, but they claim different profiles: the international IPS profiles, UK Core, or their own. See the [samples collected at INTEROPen's Hack Heavy](https://github.com/INTEROPen/uk-ps-examples) in March 2026.
+
+### Findings
 
 - Data from over 99% of GP practices, using EPRs from EMIS or TPP, reaches the App over IM1: supplier-specific, not FHIR, specs under licence.
 - Medicus EPR uses GP Connect (FHIR), but GP Connect's record API lists production as "Not yet available", yet "in use with the NHS App as the consumer".
@@ -43,12 +49,6 @@ _Drawn from the public sources listed under References. The main ones are NHS En
 - User actions stored keyed on NHS number, for up to 8 years.
 - Usage analytics stored for up to 8 years (10 if needed for NHS England's National Digital Channels programme).
 - Email, consents, nominated pharmacy, stored for 12 months.
-
-### Recommendations
-
-- When patients download or share their record, give them a patient summary in one published UK profile of the [International Patient Summary](https://international-patient-summary.net/).
-- Have the App coerce supplier data into that profile for now, and publish a validator that suppliers can test their own output against. As suppliers converge on it, the App can delete its translation code.
-  - Shared care record providers already produce IPS-shaped summaries with coded medicines, but they claim different profiles: the international IPS profiles, UK Core, or their own. See the [samples collected at INTEROPen's Hack Heavy](https://github.com/INTEROPen/uk-ps-examples) in March 2026.
 
 ### Gaps in public sources
 
