@@ -4,18 +4,18 @@ publishDate: 2026-11-24
 title: "The NHS App"
 slug: 2026/11/24/nhs-app-data-map
 draft: false
-tagline: "Mapping how our data gets there. Recommendations for what to do next"
+tagline: "Mapping how our data gets there. Recommendations for what to do next."
 toc: false
 emoji: '📲'
 ---
 
-<p class="lede">The NHS App shows us an aggregated view of our interactions with the NHS. Patients assume the NHS staff can trivially see the same view. They can't and it's frustrating for both parties. <i>What would need to happen to make that possible?</i></p>
+<p class="lede">The NHS App shows us an aggregated view of our interactions with the NHS. Patients assume NHS staff can see the same view. They can't, and it's frustrating for both parties. <i>What would need to happen to make that possible?</i></p>
 
 In the meantime **patients are showing the NHS App on their phone directly to clinicians** as a quick way to share their info. _Let's pave that cow path!_
 
-If their app explains that it shows a more complete view than any one clinician has access to, it would give a more accurate mental model, reduce frustration, and may even be seen as a _good thing_. 
+If their app explained that it shows a more complete view than any one clinician has access to, it would give a more accurate mental model, reduce frustration, and may even be seen as a _good thing_.
 
-It also sets us up for consent-based sharing where they choose to hand over their phone, or show a QR code, that lets a clinician read the records on the spot. A dedicated sharing mode could let the patient scope the data to be shared if they wish, or simply log what aspects of the full record the clinician views in a way that both parties can see.
+It also sets us up for _consent-based sharing_ where they choose to hand over their phone, or show a QR code, that lets a clinician read the records on the spot. A dedicated sharing mode could let the patient scope the data to be shared if they wish, or simply log what aspects of the full record the clinician views in a way that both parties can see.
 
 ### How data gets into the NHS App
 
@@ -26,7 +26,7 @@ It also sets us up for consent-based sharing where they choose to hand over thei
 
 [Open the image full size](/res/img/posts/2026-11-24-nhs-app-data-map.svg)
 
-_Drawn from the public sources listed under References. The main ones are NHS England's data protection impact assessment (DPIA) for the NHS App (NHS England, 2026f), its master data specification (MDS) (NHS England, 2026g) and its technical specification (NHS England, 2026j)._
+_Drawn from the public sources listed under References. The main ones are NHS England's data protection impact assessment (DPIA) for the NHS App (NHS England, 2026e), its master data specification (MDS) (NHS England, 2026f) and its technical specification (NHS England, 2026i)._
 
 ### Recommendations
 
@@ -73,7 +73,7 @@ _Drawn from the public sources listed under References. The main ones are NHS En
 
 ## References
 
-<!-- nhs-app-map:references: generated from views/data-in.json --also PDM,NRL-SERVICE,IPS,COMMREQ-DRAFT,UKPS-EXAMPLES by scripts/post-sources.mjs; edits between these markers are overwritten -->
+<!-- nhs-app-map:references: generated from views/data-in.json --also IPS,UKPS-EXAMPLES by scripts/post-sources.mjs; edits between these markers are overwritten -->
 
 6B (no date) *Most commonly used Patient Portal in NHS trusts*. NHS Tech Register. Available at: [https://nhs-tech.6b.health/lists/10/most-common-in-nhs-trusts/patient-portal](https://nhs-tech.6b.health/lists/10/most-common-in-nhs-trusts/patient-portal) (Accessed: 23 November 2026).
 
@@ -84,8 +84,6 @@ Evans, O. (2026) *nhs-app-data*. GitHub repository, commit 3dc82ff, 30 June 2026
 INTEROPen (2026) *uk-ps-examples*. GitHub repository, commit bc738b6, 3 April 2026. Available at: [https://github.com/INTEROPen/uk-ps-examples](https://github.com/INTEROPen/uk-ps-examples) (Accessed: 24 November 2026).
 
 IPS Web Editorial Team (no date) *The International Patient Summary: key health data, worldwide*. Available at: [https://international-patient-summary.net/](https://international-patient-summary.net/) (Accessed: 24 November 2026).
-
-NHS Digital (2021) *NHSDigital-CommunicationRequest*. FHIR profile, status draft. NHS England FHIR Implementation Guide (Deprecated), Simplifier. Last updated 2 July 2021. Available at: [https://simplifier.net/NHSDigital/NHSDigital-CommunicationRequest](https://simplifier.net/NHSDigital/NHSDigital-CommunicationRequest) (Accessed: 24 November 2026).
 
 NHS Digital (2026) *nhs-app-api*. GitHub repository, commit c8e61ab, 20 November 2026. Available at: [https://github.com/NHSDigital/nhs-app-api](https://github.com/NHSDigital/nhs-app-api) (Accessed: 23 November 2026).
 
@@ -101,27 +99,23 @@ NHS England (2026c) *IM1 pairing integration*. Last edited 16 November 2026. Ava
 
 NHS England (2026d) *Interface Mechanism 1 PFS Auth*. Last edited 24 September 2026. Available at: [https://digital.nhs.uk/developer/api-catalogue/im1-pfs-auth-api](https://digital.nhs.uk/developer/api-catalogue/im1-pfs-auth-api) (Accessed: 23 November 2026).
 
-NHS England (2026e) *National Record Locator (NRL)*. Last edited 9 November 2026. Available at: [https://digital.nhs.uk/services/national-record-locator](https://digital.nhs.uk/services/national-record-locator) (Accessed: 24 November 2026).
+NHS England (2026e) *NHS App data protection impact assessment*. Version 3.00, 5 October 2026. Available at: [https://digital.nhs.uk/binaries/content/assets/website-assets/services/nhs-app/documents/261007-nhs-app-dpia.pdf](https://digital.nhs.uk/binaries/content/assets/website-assets/services/nhs-app/documents/261007-nhs-app-dpia.pdf) (Accessed: 23 November 2026).
 
-NHS England (2026f) *NHS App data protection impact assessment*. Version 3.00, 5 October 2026. Available at: [https://digital.nhs.uk/binaries/content/assets/website-assets/services/nhs-app/documents/261007-nhs-app-dpia.pdf](https://digital.nhs.uk/binaries/content/assets/website-assets/services/nhs-app/documents/261007-nhs-app-dpia.pdf) (Accessed: 23 November 2026).
+NHS England (2026f) *NHS App master data specification*. Version 2.00, 5 October 2026. Available at: [https://digital.nhs.uk/binaries/content/assets/website-assets/services/nhs-app/documents/nhs_app_master_data_specification_v2.00.xlsx](https://digital.nhs.uk/binaries/content/assets/website-assets/services/nhs-app/documents/nhs_app_master_data_specification_v2.00.xlsx) (Accessed: 23 November 2026).
 
-NHS England (2026g) *NHS App master data specification*. Version 2.00, 5 October 2026. Available at: [https://digital.nhs.uk/binaries/content/assets/website-assets/services/nhs-app/documents/nhs_app_master_data_specification_v2.00.xlsx](https://digital.nhs.uk/binaries/content/assets/website-assets/services/nhs-app/documents/nhs_app_master_data_specification_v2.00.xlsx) (Accessed: 23 November 2026).
+NHS England (2026g) *NHS App privacy notice: messaging services*. Page last reviewed 6 January 2026. Available at: [https://www.nhs.uk/nhs-app/about/privacy-legal-information/privacy-notices/messaging-services/](https://www.nhs.uk/nhs-app/about/privacy-legal-information/privacy-notices/messaging-services/) (Accessed: 23 November 2026).
 
-NHS England (2026h) *NHS App privacy notice: messaging services*. Page last reviewed 6 January 2026. Available at: [https://www.nhs.uk/nhs-app/about/privacy-legal-information/privacy-notices/messaging-services/](https://www.nhs.uk/nhs-app/about/privacy-legal-information/privacy-notices/messaging-services/) (Accessed: 23 November 2026).
+NHS England (2026h) *NHS App roadmap*. Last edited 5 November 2026. Available at: [https://digital.nhs.uk/services/nhs-app/roadmap](https://digital.nhs.uk/services/nhs-app/roadmap) (Accessed: 23 November 2026).
 
-NHS England (2026i) *NHS App roadmap*. Last edited 5 November 2026. Available at: [https://digital.nhs.uk/services/nhs-app/roadmap](https://digital.nhs.uk/services/nhs-app/roadmap) (Accessed: 23 November 2026).
+NHS England (2026i) *NHS App technical specification*. Last edited 2 July 2026. Available at: [https://digital.nhs.uk/services/nhs-app/nhs-app-documents/nhs-app-technical-specification](https://digital.nhs.uk/services/nhs-app/nhs-app-documents/nhs-app-technical-specification) (Accessed: 23 November 2026).
 
-NHS England (2026j) *NHS App technical specification*. Last edited 2 July 2026. Available at: [https://digital.nhs.uk/services/nhs-app/nhs-app-documents/nhs-app-technical-specification](https://digital.nhs.uk/services/nhs-app/nhs-app-documents/nhs-app-technical-specification) (Accessed: 23 November 2026).
+NHS England (2026j) *Patient Care Aggregator - FHIR API*. Last edited 29 September 2026. Available at: [https://digital.nhs.uk/developer/api-catalogue/patient-care-aggregator-fhir](https://digital.nhs.uk/developer/api-catalogue/patient-care-aggregator-fhir) (Accessed: 23 November 2026).
 
-NHS England (2026k) *Patient Care Aggregator - FHIR API*. Last edited 29 September 2026. Available at: [https://digital.nhs.uk/developer/api-catalogue/patient-care-aggregator-fhir](https://digital.nhs.uk/developer/api-catalogue/patient-care-aggregator-fhir) (Accessed: 23 November 2026).
+NHS England (2026k) *PDS FHIR API - integrated products*. Last edited 14 October 2026. Available at: [https://digital.nhs.uk/developer/api-catalogue/personal-demographics-service-fhir/integrated-products](https://digital.nhs.uk/developer/api-catalogue/personal-demographics-service-fhir/integrated-products) (Accessed: 23 November 2026).
 
-NHS England (2026l) *Patient Data Manager (PDM)*. Last edited 4 November 2026. Available at: [https://digital.nhs.uk/services/patient-data-manager](https://digital.nhs.uk/services/patient-data-manager) (Accessed: 23 November 2026).
+NHS England (2026l) *Personal Demographics Service - FHIR API*. Last edited 25 August 2026. Available at: [https://digital.nhs.uk/developer/api-catalogue/personal-demographics-service-fhir](https://digital.nhs.uk/developer/api-catalogue/personal-demographics-service-fhir) (Accessed: 23 November 2026).
 
-NHS England (2026m) *PDS FHIR API - integrated products*. Last edited 14 October 2026. Available at: [https://digital.nhs.uk/developer/api-catalogue/personal-demographics-service-fhir/integrated-products](https://digital.nhs.uk/developer/api-catalogue/personal-demographics-service-fhir/integrated-products) (Accessed: 23 November 2026).
-
-NHS England (2026n) *Personal Demographics Service - FHIR API*. Last edited 25 August 2026. Available at: [https://digital.nhs.uk/developer/api-catalogue/personal-demographics-service-fhir](https://digital.nhs.uk/developer/api-catalogue/personal-demographics-service-fhir) (Accessed: 23 November 2026).
-
-NHS England (2026o) *Prescriptions for Patients FHIR API v2*. Last edited 19 November 2026. Available at: [https://digital.nhs.uk/developer/api-catalogue/prescriptions-for-patients-fhir-api-v2](https://digital.nhs.uk/developer/api-catalogue/prescriptions-for-patients-fhir-api-v2) (Accessed: 23 November 2026).
+NHS England (2026m) *Prescriptions for Patients FHIR API v2*. Last edited 19 November 2026. Available at: [https://digital.nhs.uk/developer/api-catalogue/prescriptions-for-patients-fhir-api-v2](https://digital.nhs.uk/developer/api-catalogue/prescriptions-for-patients-fhir-api-v2) (Accessed: 23 November 2026).
 
 NHS England (no date) *GP Connect Prescriptions Management FHIR API*. OpenAPI specification. Available at: [https://digital.nhs.uk/restapi/oas/503471](https://digital.nhs.uk/restapi/oas/503471) (Accessed: 23 November 2026).
 
