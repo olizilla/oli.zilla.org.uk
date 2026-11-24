@@ -573,6 +573,29 @@
   max-width: 100%;
 }
 
+/* A band the full width of the window, with the image centred in it. */
+.letterbox {
+  margin-inline: calc(50% - 50vw);
+  padding: 2rem 0rem;
+}
+.letterbox img {
+  display: block;
+  margin: 0 auto;
+  max-width: min(100%, 1200px);
+}
+.letterbox > p {
+  margin: 0;
+}
+
+@media (min-width: 1040px) {
+  .wider {
+  	margin-left: -100px;
+    margin-right: -100px;
+    width: calc(100% + 200px);
+    max-width: none;
+  }
+}
+
 /* --- The talk ----------------------------------------------------------- */
 
 /* Slides with notes: `mainClass: "slides"` in a post's frontmatter. */
