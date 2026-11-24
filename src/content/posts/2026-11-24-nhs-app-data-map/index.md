@@ -44,15 +44,11 @@ _Drawn from the public sources listed under References. The main ones are NHS En
 - Usage analytics stored for up to 8 years (10 if needed for NHS England's National Digital Channels programme).
 - Email, consents, nominated pharmacy, stored for 12 months.
 
+### Recommendations
 
-### Recommendations _(WIP! May change)_
-
-- Make "download or share your record" emit FHIR, ideally the [International Patient Summary](https://international-patient-summary.net/).
-- Publish the NHS App API's extension and identifier systems as FHIR artefacts, and bind it to the [draft CommunicationRequest profile](https://simplifier.net/NHSDigital/NHSDigital-CommunicationRequest).
-- Publish what the App shows as UK Core profiles, mapping supplier codes to SNOMED concepts.
-- Pin one UK Core version across the App's feeds.
-- Send clinical documents as documents ([National Record Locator](https://digital.nhs.uk/services/national-record-locator) or [Patient Data Manager](https://digital.nhs.uk/services/patient-data-manager) pointers), not as inbox text.
-- Publish the Patient Care Aggregator's DPIA.
+- When patients download or share their record, give them a patient summary in one published UK profile of the [International Patient Summary](https://international-patient-summary.net/).
+- Have the App coerce supplier data into that profile for now, and publish a validator that suppliers can test their own output against. As suppliers converge on it, the App can delete its translation code.
+  - Shared care record providers already produce IPS-shaped summaries with coded medicines, but they claim different profiles: the international IPS profiles, UK Core, or their own. See the [samples collected at INTEROPen's Hack Heavy](https://github.com/INTEROPen/uk-ps-examples) in March 2026.
 
 ### Gaps in public sources
 
@@ -77,13 +73,15 @@ _Drawn from the public sources listed under References. The main ones are NHS En
 
 ## References
 
-<!-- nhs-app-map:references: generated from views/data-in.json --also PDM,NRL-SERVICE,IPS,COMMREQ-DRAFT by scripts/post-sources.mjs; edits between these markers are overwritten -->
+<!-- nhs-app-map:references: generated from views/data-in.json --also PDM,NRL-SERVICE,IPS,COMMREQ-DRAFT,UKPS-EXAMPLES by scripts/post-sources.mjs; edits between these markers are overwritten -->
 
 6B (no date) *Most commonly used Patient Portal in NHS trusts*. NHS Tech Register. Available at: [https://nhs-tech.6b.health/lists/10/most-common-in-nhs-trusts/patient-portal](https://nhs-tech.6b.health/lists/10/most-common-in-nhs-trusts/patient-portal) (Accessed: 23 November 2026).
 
 Enlivio Health (2026) 'Enlivio: a bold new chapter begins', 11 August. Available at: [https://www.enliviohealth.com/news-insights/enlivio-a-bold-new-chapter-begins](https://www.enliviohealth.com/news-insights/enlivio-a-bold-new-chapter-begins) (Accessed: 23 November 2026).
 
 Evans, O. (2026) *nhs-app-data*. GitHub repository, commit 3dc82ff, 30 June 2026. Available at: [https://github.com/olizilla/nhs-app-data](https://github.com/olizilla/nhs-app-data) (Accessed: 23 November 2026).
+
+INTEROPen (2026) *uk-ps-examples*. GitHub repository, commit bc738b6, 3 April 2026. Available at: [https://github.com/INTEROPen/uk-ps-examples](https://github.com/INTEROPen/uk-ps-examples) (Accessed: 24 November 2026).
 
 IPS Web Editorial Team (no date) *The International Patient Summary: key health data, worldwide*. Available at: [https://international-patient-summary.net/](https://international-patient-summary.net/) (Accessed: 24 November 2026).
 
