@@ -9,7 +9,7 @@ toc: false
 emoji: '📲'
 ---
 
-<p class="lede">The NHS App shows us an aggregated view of our interactions with the NHS. Patients assume NHS staff can see the same view. They can't, and it's frustrating for both parties. <i>What would need to happen to make that possible?</i></p>
+<p class="lede">The NHS App shows us an aggregated view of our interactions with the NHS. Patients assume NHS staff can see the same view. They can't, and it's frustrating for both parties. <i>What would need to happen to <a href="/nhs-data-strategy/v2/">make that possible</a>?</i></p>
 
 In the meantime **patients are showing the NHS App on their phone directly to clinicians** as a quick way to share their info. _Let's pave that cow path!_
 
@@ -43,7 +43,7 @@ It also sets us up for _consent-based sharing_ where they choose to hand over th
 - FHIR is used at several versions: STU3 (GP Connect record), R4 on UK Core 0.5.1, a 2022 pre-release (EPS; claimed by the NHS App API), 1.0.0 (PDS), 1.1.3 (GP Connect repeats), Wayfinder profiles with no stated UK Core version (PCA).
 - Hospital data comes through the Patient Care Aggregator (FHIR R4), or as web views where the data stays in the portal.
 - Inbox messages arrive over the NHS App API as FHIR R4 CommunicationRequests with free-text Markdown. Its extension and identifier systems are defined only in OpenAPI, not published as FHIR artefacts.
-- Backend to App: app-specific JSON. It looks like codes are passed through as supplied: SNOMED description IDs, not concept IDs (Evans, 2026).
+- Backend to App: app-specific JSON. Codes are passed through as supplied: in my own record, all codes are SNOMED description IDs, not concept IDs (Evans, 2026).
 - ICS shared care records are not in the DPIA's list of integrations.
 - User actions stored keyed on NHS number, for up to 8 years.
 - Usage analytics stored for up to 8 years (10 if needed for NHS England's National Digital Channels programme).
@@ -106,17 +106,18 @@ Hospital referrals, bookings and waiting lists. FHIR R4, Wayfinder profiles (pub
 Prescriptions for Patients. FHIR R4, UK Core 0.5.1 (2022 pre-release): prescriptions and barcodes; status tracking rolling out.
 
 - [*Prescriptions for Patients FHIR API v2*](https://digital.nhs.uk/developer/api-catalogue/prescriptions-for-patients-fhir-api-v2):
-  - [Overview](https://digital.nhs.uk/developer/api-catalogue/prescriptions-for-patients-fhir-api-v2#:~:text=For%20use%20in%20patient%2Dfacing,view%20their%20digital%20prescriptions.): “For use in patient-facing applications such as NHS App, to allow patients to view their digital prescriptions. ... limited information about the status of their prescriptions” _The words are in the specification text on the page (the OpenAPI file), not in the page body._
-  - [Technology](https://digital.nhs.uk/developer/api-catalogue/prescriptions-for-patients-fhir-api-v2#:~:text=It%20conforms%20to%20the,to%20FHIR%20UK%20Core.): “It conforms to the FHIR global standard for health care data exchange, specifically to FHIR UK Core. ... It includes some country-specific FHIR extensions, which are built against FHIR UK Core, specifically UKcore.stu1 0.5.1.” _The page text never says "R4" in words; the package it links for UKcore.stu1 0.5.1 is simplifier.net/packages/fhir.r4.ukcore.stu1/0.5.1. The words are in the specification text on the page (the OpenAPI file), not in the page body._
+  - [Overview](https://digital.nhs.uk/developer/api-catalogue/prescriptions-for-patients-fhir-api-v2#:~:text=For%20use%20in%20patient%2Dfacing,view%20their%20digital%20prescriptions.): “For use in patient-facing applications such as NHS App, to allow patients to view their digital prescriptions. ... limited information about the status of their prescriptions”
+  - [Technology](https://digital.nhs.uk/developer/api-catalogue/prescriptions-for-patients-fhir-api-v2#:~:text=It%20conforms%20to%20the,to%20FHIR%20UK%20Core.): “It conforms to the FHIR global standard for health care data exchange, specifically to FHIR UK Core. ... It includes some country-specific FHIR extensions, which are built against FHIR UK Core, specifically UKcore.stu1 0.5.1.”
+- [*fhir.r4.ukcore.stu1*](https://simplifier.net/packages/fhir.r4.ukcore.stu1/0.5.1#:~:text=fhir.r4.ukcore.stu1%200.5.1%20UK%20Core,and%20Assets%20FHIR%20R4): “fhir.r4.ukcore.stu1 0.5.1 UK Core FHIR profiles and Assets FHIR R4 ... Created: 2022-05-17 11:45 Organization HL7 UK ... updating to the latest versions of the FHIR assets for Sprint 5 of the UK Core Clinical and Technical Assurance.”
 
 </div>
 
 <div id="src-pds" class="box-sources" hidden="until-found" data-title="PDS" data-line="fhir" data-line-colour="#d68910" data-line-text="#9c640c" data-line-shape="FHIR">
 
-Nominated pharmacy. Read and update: nominated pharmacy; FHIR R4, UK Core 1.0.0.
+Read and update: nominated pharmacy; FHIR R4, UK Core 1.0.0.
 
-- [*NHS App technical specification*](https://digital.nhs.uk/services/nhs-app/nhs-app-documents/nhs-app-technical-specification#:~:text=A%20user%20can%20find,change%20their%20nominated%20pharmacy.), section 3.2.4, Nominated pharmacy: “A user can find out which pharmacy their prescriptions will be sent to. They can also change their nominated pharmacy. ... API integrations to Personal Demographics Service (PDS) and NHS Service Search.” _The interaction table in section 2 also lists the Personal Demographics Service (PDS) with "Retrieve and change nominated pharmacy" and integration style "API"._
-- [*Personal Demographics Service - FHIR API*](https://digital.nhs.uk/developer/api-catalogue/personal-demographics-service-fhir#:~:text=It%20conforms%20to%20the,support%20the%20capabilities%20interaction.), Technology: “It conforms to the FHIR global standard for health care data exchange, specifically to FHIR R4 (v4.0.1), except that it does not support the capabilities interaction. ... It includes some country-specific FHIR extensions, which are built against FHIR UK Core, specifically UK.core.r4 1.0.0.” _The words are in the specification text on the page (the OpenAPI file), not in the page body._
+- [*NHS App technical specification*](https://digital.nhs.uk/services/nhs-app/nhs-app-documents/nhs-app-technical-specification#:~:text=A%20user%20can%20find,change%20their%20nominated%20pharmacy.), section 3.2.4, Nominated pharmacy: “A user can find out which pharmacy their prescriptions will be sent to. They can also change their nominated pharmacy. ... API integrations to Personal Demographics Service (PDS) and NHS Service Search.”
+- [*Personal Demographics Service - FHIR API*](https://digital.nhs.uk/developer/api-catalogue/personal-demographics-service-fhir#:~:text=It%20conforms%20to%20the,support%20the%20capabilities%20interaction.), Technology: “It conforms to the FHIR global standard for health care data exchange, specifically to FHIR R4 (v4.0.1), except that it does not support the capabilities interaction. ... It includes some country-specific FHIR extensions, which are built against FHIR UK Core, specifically UK.core.r4 1.0.0.”
 
 </div>
 
@@ -133,7 +134,7 @@ Relays messages from GPs, trusts and programmes. FHIR R4, claims UK Core 0.5.1, 
 
 E.g. vaccination invitations. Direct, or via a communications supplier: FHIR R4 CommunicationRequest.
 
-- [*NHS App data protection impact assessment*](https://digital.nhs.uk/binaries/content/assets/website-assets/services/nhs-app/documents/261007-nhs-app-dpia.pdf#page=94), p. 94: “The sending service will curate all messages and send them to NHS App Messaging ... Appointed by the Sending Service, a 3rd party Communication Supplier could: ... Have the integration with NHS App Messaging to process the sending of messages” _Read from the scanned page._
+- [*NHS App data protection impact assessment*](https://digital.nhs.uk/binaries/content/assets/website-assets/services/nhs-app/documents/261007-nhs-app-dpia.pdf#page=94), p. 94: “The sending service will curate all messages and send them to NHS App Messaging ... Appointed by the Sending Service, a 3rd party Communication Supplier could: ... Have the integration with NHS App Messaging to process the sending of messages”
 - [*NHS App API*](https://digital.nhs.uk/developer/api-catalogue/nhs-app#:~:text=send%20in%2Dapp%20messages%20to,of%20the%20NHS%20App), Overview; in-app message endpoint description: “send in-app messages to specific users of the NHS App ... The body of requests made to this endpoint are instances of HL7 FHIR R4 CommunicationRequest resources.”
 
 </div>
@@ -143,7 +144,7 @@ E.g. vaccination invitations. Direct, or via a communications supplier: FHIR R4 
 P5 or P9 identity: name, DOB, address, NHS number. OAuth sign-in: name, DOB, address, contact details; NHS number via PDS match.
 
 - [*NHS App technical specification*](https://digital.nhs.uk/services/nhs-app/nhs-app-documents/nhs-app-technical-specification#:~:text=The%20authentication%20is%20handed%2Doff,using%20the%20OAuth%20protocol.), section 3.1.2, User login: “The authentication is handed-off to NHS login using the OAuth protocol.”
-- [*NHS App master data specification*](https://digital.nhs.uk/binaries/content/assets/website-assets/services/nhs-app/documents/nhs_app_master_data_specification_v2.00.xlsx), sheet Master, rows 130 (First Name), 126 (Date of Birth), 123 (Street Address) and 127 (Email Address): “Retrieved from NHS Login identity data and displayed in the App interface. Not derived ... Supplied through NHS Login identity data; consumed directly by the NHS App for verification. Not derived ... Retrieved from the NHS Login identity service during authentication or profile retrieval. ... Captured and maintained through NHS Login; the App uses it for correspondence and authentication.” _The text is the "Processing or derivation nature" cell of each row._
+- [*NHS App master data specification*](https://digital.nhs.uk/binaries/content/assets/website-assets/services/nhs-app/documents/nhs_app_master_data_specification_v2.00.xlsx), Master sheet, how each item is processed: first name, date of birth, street address, email address (rows 130, 126, 123, 127): “Retrieved from NHS Login identity data and displayed in the App interface. Not derived ... Supplied through NHS Login identity data; consumed directly by the NHS App for verification. Not derived ... Retrieved from the NHS Login identity service during authentication or profile retrieval. ... Captured and maintained through NHS Login; the App uses it for correspondence and authentication.”
 
 </div>
 
@@ -161,7 +162,7 @@ Data opt-out, 111 online, vaccine booking, NIHR research. Web integration, mostl
 
 - [*NHS App technical specification*](https://digital.nhs.uk/services/nhs-app/nhs-app-documents/nhs-app-technical-specification):
   - [section 2, System context](https://digital.nhs.uk/services/nhs-app/nhs-app-documents/nhs-app-technical-specification#:~:text=Web%20integrations%20%2D%20where,to%20continue%20their%20journey.): “Web integrations - where the NHS App directs a user to another NHS or third-party website. Many of these include single sign-on with NHS login, which means that the user does not need to re-authenticate to continue their journey.”
-  - [section 3.4.7, Health data sharing; section 4, integration patterns table (Link out)](https://digital.nhs.uk/services/nhs-app/nhs-app-documents/nhs-app-technical-specification#:~:text=Users%20can%20view%20or,for%20research%20and%20planning.): “Users can view or change their National Data Opt-Out choice at any time and to decide whether their confidential patient information can be used for research and planning. ... The NHS App opens an external web application in a new web browser window. ... Health data sharing preferences” _The page text runs the columns of the section 4 table together; Health data sharing preferences is read as the Link out example._
+  - [section 3.4.7, Health data sharing; section 4, integration patterns table (Link out)](https://digital.nhs.uk/services/nhs-app/nhs-app-documents/nhs-app-technical-specification#:~:text=Users%20can%20view%20or,for%20research%20and%20planning.): “Users can view or change their National Data Opt-Out choice at any time and to decide whether their confidential patient information can be used for research and planning. ... The NHS App opens an external web application in a new web browser window. ... Health data sharing preferences”
 
 </div>
 
@@ -176,13 +177,16 @@ IM1 PFS: not FHIR, supplier-specific API, licensed spec: record, results, appoin
 
 <div id="src-medicus" class="box-sources" hidden="until-found" data-title="Medicus" data-line="fhir" data-line-colour="#d68910" data-line-text="#9c640c" data-line-shape="FHIR">
 
-GP Connect PF (FHIR): record: STU3, live status unclear; repeats: R4, UK Core 1.1.3.
+GP Connect Patient Facing APIs, FHIR. GP record: Access Record API, STU3, live status unclear. Repeat prescriptions: Prescriptions Management API, R4, UK Core 1.1.3.
 
-The App documents say Medicus records come via GP Connect; the Access Record API says 'in development', production 'Not yet available', yet 'in use with the NHS App as the consumer'.
+The App's documents say Medicus practices' records come over GP Connect. GP Connect's Access Record API page says the API is 'in development', with production 'Not yet available', yet 'in use with the NHS App as the consumer'.
 
 - [*GP Connect (Patient Facing) Access Record - FHIR API*](https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-access-record-fhir):
   - [API status and roadmap; Environments and testing](https://digital.nhs.uk/restapi/oas/503861): “This API is in development. ... Production | Not yet available”
   - [Onboarding](https://digital.nhs.uk/restapi/oas/503861): “The GP Connect Patient Facing APIs are currently only available for New Market Entrant suppliers as data providers, and are in use with the NHS App as the consumer.”
+- [*GP Connect Prescriptions Management FHIR API*](https://digital.nhs.uk/restapi/oas/503471):
+  - [Overview; Technology](https://digital.nhs.uk/restapi/oas/503471): “Use this API to manage a patient's prescriptions as held by their GP practice. ... request a new instance of a repeat prescription ... specifically to FHIR R4 (v4.0.1)”
+  - [Technology](https://digital.nhs.uk/restapi/oas/503471): “It includes some country-specific FHIR extensions, which are built against FHIR UK Core, specifically UKcore.stu2 1.1.3”
 - [*NHS App technical specification*](https://digital.nhs.uk/services/nhs-app/nhs-app-documents/nhs-app-technical-specification#:~:text=GP%20Connect%20PFS%20API,that%20use%20Medicus%20software), section 3.2, Primary care: “GP Connect PFS API integration for GP practices that use Medicus software”
 
 </div>
@@ -191,7 +195,7 @@ The App documents say Medicus records come via GP Connect; the Access Record API
 
 Via suppliers, e.g. Accurx, iPlato, MJOG. Direct, or via a communications supplier: FHIR R4 CommunicationRequest.
 
-- [*NHS App data protection impact assessment*](https://digital.nhs.uk/binaries/content/assets/website-assets/services/nhs-app/documents/261007-nhs-app-dpia.pdf#page=94), p. 94: “The sending service will curate all messages and send them to NHS App Messaging ... Appointed by the Sending Service, a 3rd party Communication Supplier could: ... Have the integration with NHS App Messaging to process the sending of messages” _Read from the scanned page._
+- [*NHS App data protection impact assessment*](https://digital.nhs.uk/binaries/content/assets/website-assets/services/nhs-app/documents/261007-nhs-app-dpia.pdf#page=94), p. 94: “The sending service will curate all messages and send them to NHS App Messaging ... Appointed by the Sending Service, a 3rd party Communication Supplier could: ... Have the integration with NHS App Messaging to process the sending of messages”
 - [*NHS App API*](https://digital.nhs.uk/developer/api-catalogue/nhs-app#:~:text=send%20in%2Dapp%20messages%20to,of%20the%20NHS%20App), Overview; in-app message endpoint description: “send in-app messages to specific users of the NHS App ... The body of requests made to this endpoint are instances of HL7 FHIR R4 CommunicationRequest resources.”
 
 </div>
@@ -200,7 +204,7 @@ Via suppliers, e.g. Accurx, iPlato, MJOG. Direct, or via a communications suppli
 
 Ask your GP, e.g. Accurx, eConsult, Patchs, Engage, iPlato. Web view in the App, NHS login SSO; hosted by the supplier.
 
-- [*NHS App technical specification*](https://digital.nhs.uk/services/nhs-app/nhs-app-documents/nhs-app-technical-specification#:~:text=Web%20integrations%20with%20Online,NHS%20App%20mobile%20app.), section 3.3.2, Online consultations: “Web integrations with Online Consultation (OLC) tools, displayed within the NHS App mobile app. ... NHS login integration so that the user's identity is securely handed over to the OLC tool and they do not need to re-authenticate.” _The page numbers this section 3.3.2, between 3.2.1 and 3.2.3._
+- [*NHS App technical specification*](https://digital.nhs.uk/services/nhs-app/nhs-app-documents/nhs-app-technical-specification#:~:text=Web%20integrations%20with%20Online,NHS%20App%20mobile%20app.), section 3.3.2, Online consultations: “Web integrations with Online Consultation (OLC) tools, displayed within the NHS App mobile app. ... NHS login integration so that the user's identity is securely handed over to the OLC tool and they do not need to re-authenticate.”
 - [*NHS App privacy notice: messaging services*](https://www.nhs.uk/nhs-app/about/privacy-legal-information/privacy-notices/messaging-services/#:~:text=Although%20accessed%20through%20your,service%20and%20see%20messages.), Online consultation services: “Although accessed through your NHS App, they are hosted by a supplier contracted by your healthcare provider. You may be taken to the supplier's system to access this service and see messages.”
 
 </div>
@@ -210,7 +214,7 @@ Ask your GP, e.g. Accurx, eConsult, Patchs, Engage, iPlato. Web view in the App,
 DrDoctor, Zesty, PKB, Healthcall. Web view: letters, questionnaires, booking changes, paperless preference.
 
 - [*How the Patient Care Aggregator works*](https://digital.nhs.uk/services/patient-care-aggregator/how-the-patient-care-aggregator-works#:~:text=The%20hyperlink%20takes%20them,the%20portal%20web%20application.), Bookings and referrals, how it works: “The hyperlink takes them to a ‘patient portal’ - an NHS-styled, standardised web application within the secondary care booking system (or e-RS) that shows them the details for the booking. In some cases, the patient can amend or cancel their booking via the portal web application.”
-- [*NHS App data protection impact assessment*](https://digital.nhs.uk/binaries/content/assets/website-assets/services/nhs-app/documents/261007-nhs-app-dpia.pdf#page=99), p. 99: “Zesty ... Appointments (2); Paperless preference; Documents (2); Questionnaires (2)” _Read from the scanned page. One table row (Induction Healthcare, PCA (2)): product, functionality; "..." marks the cell boundary._
+- [*NHS App data protection impact assessment*](https://digital.nhs.uk/binaries/content/assets/website-assets/services/nhs-app/documents/261007-nhs-app-dpia.pdf#page=99), p. 99: “Zesty ... Appointments (2); Paperless preference; Documents (2); Questionnaires (2)” _The row for Induction Healthcare's Zesty portal._
 
 </div>
 
@@ -218,7 +222,7 @@ DrDoctor, Zesty, PKB, Healthcall. Web view: letters, questionnaires, booking cha
 
 Via patient portals, e.g. DrDoctor. Direct, or via a communications supplier: FHIR R4 CommunicationRequest.
 
-- [*NHS App data protection impact assessment*](https://digital.nhs.uk/binaries/content/assets/website-assets/services/nhs-app/documents/261007-nhs-app-dpia.pdf#page=94), p. 94: “The sending service will curate all messages and send them to NHS App Messaging ... Appointed by the Sending Service, a 3rd party Communication Supplier could: ... Have the integration with NHS App Messaging to process the sending of messages” _Read from the scanned page._
+- [*NHS App data protection impact assessment*](https://digital.nhs.uk/binaries/content/assets/website-assets/services/nhs-app/documents/261007-nhs-app-dpia.pdf#page=94), p. 94: “The sending service will curate all messages and send them to NHS App Messaging ... Appointed by the Sending Service, a 3rd party Communication Supplier could: ... Have the integration with NHS App Messaging to process the sending of messages”
 - [*NHS App API*](https://digital.nhs.uk/developer/api-catalogue/nhs-app#:~:text=send%20in%2Dapp%20messages%20to,of%20the%20NHS%20App), Overview; in-app message endpoint description: “send in-app messages to specific users of the NHS App ... The body of requests made to this endpoint are instances of HL7 FHIR R4 CommunicationRequest resources.”
 
 </div>
@@ -228,7 +232,7 @@ Via patient portals, e.g. DrDoctor. Direct, or via a communications supplier: FH
 Patients Know Best, Universal Care Plan. Web integration; hosted by the supplier, may need its own log-in.
 
 - [*NHS App privacy notice: messaging services*](https://www.nhs.uk/nhs-app/about/privacy-legal-information/privacy-notices/messaging-services/#:~:text=Although%20accessed%20through%20your,sent%20through%20this%20service.), Personal health record services: “Although accessed through your NHS App, they are hosted by a supplier contracted by your healthcare provider. You'll often be taken to the supplier's system to log in and view any messages sent through this service.”
-- [*NHS App data protection impact assessment*](https://digital.nhs.uk/binaries/content/assets/website-assets/services/nhs-app/documents/261007-nhs-app-dpia.pdf#page=100), p. 100: “Care Plans: Access to shared care planning, including collaborative care plans with the ability for all parties involved to access and update” _Read from the scanned page._
+- [*NHS App data protection impact assessment*](https://digital.nhs.uk/binaries/content/assets/website-assets/services/nhs-app/documents/261007-nhs-app-dpia.pdf#page=100), p. 100: “Care Plans: Access to shared care planning, including collaborative care plans with the ability for all parties involved to access and update”
 
 </div>
 
@@ -237,14 +241,14 @@ Patients Know Best, Universal Care Plan. Web integration; hosted by the supplier
 Inbox messages stored. Clinical data fetched on demand.
 
 - [*NHS App data protection impact assessment*](https://digital.nhs.uk/binaries/content/assets/website-assets/services/nhs-app/documents/261007-nhs-app-dpia.pdf):
-  - [p. 19](https://digital.nhs.uk/binaries/content/assets/website-assets/services/nhs-app/documents/261007-nhs-app-dpia.pdf#page=19): “when users use the App to access their GP health record, the data is retrieved in real-time from the GP surgery's systems of the user. It is then displayed on their device.” _Read from the scanned page._
-  - [p. 22](https://digital.nhs.uk/binaries/content/assets/website-assets/services/nhs-app/documents/261007-nhs-app-dpia.pdf#page=22): “The NHS App maintains and stores only the following types of data to ensure its functionality and improve user experience. ... Messaging Data: The content of messages sent and received through NHS Notify and viewed using the App's messaging service.” _Read from the scanned page. The table on this page lists audit, messaging and performance data; session data is described on the next page and on page 20._
+  - [p. 19](https://digital.nhs.uk/binaries/content/assets/website-assets/services/nhs-app/documents/261007-nhs-app-dpia.pdf#page=19): “when users use the App to access their GP health record, the data is retrieved in real-time from the GP surgery's systems of the user. It is then displayed on their device.”
+  - [p. 22](https://digital.nhs.uk/binaries/content/assets/website-assets/services/nhs-app/documents/261007-nhs-app-dpia.pdf#page=22): “The NHS App maintains and stores only the following types of data to ensure its functionality and improve user experience. ... Messaging Data: The content of messages sent and received through NHS Notify and viewed using the App's messaging service.”
 
 App-specific JSON, not FHIR; GET /v1/patient/my-record; codes as supplied; medicines, clinician and place as text.
 
 - [*nhs-app-data*](https://github.com/olizilla/nhs-app-data):
   - [README.md, line 149](https://github.com/olizilla/nhs-app-data/blob/3dc82ffedb4927c5e50c7004c891bdaccbb51ca2/README.md#L149): “That app pulls down data from \`https://api.nhsapp.service.nhs.uk/v1/patient/my-record\`, which returns a JSON object containing the same medical records you see in the NHS App.”
-  - [synthetic\_emis.json, lines 89-91](https://github.com/olizilla/nhs-app-data/blob/3dc82ffedb4927c5e50c7004c891bdaccbb51ca2/tests/fixtures/synthetic_emis.json#L89-L91): `"term": "Renal profile", "supplierTypeCode": "132851000000110", "snomedConceptId": null,` _Synthetic data. The code sits in a field named supplierTypeCode and the snomedConceptId field is null._
+  - [synthetic\_emis.json, lines 89-91](https://github.com/olizilla/nhs-app-data/blob/3dc82ffedb4927c5e50c7004c891bdaccbb51ca2/tests/fixtures/synthetic_emis.json#L89-L91): `"term": "Renal profile", "supplierTypeCode": "132851000000110", "snomedConceptId": null,` _From the tool's EMIS test fixture, a cut-down copy of the author's own NHS App record with personal details replaced. The GP system's code is in supplierTypeCode; snomedConceptId is empty._
 
 </div>
 
