@@ -666,8 +666,15 @@
   color: var(--ink);
 }
 .box-panel-arrow {
+  display: inline-block;
+  margin: 0 0.35em;
   color: var(--muted);
-  font-weight: normal;
+}
+.box-panel-arrow svg {
+  display: block;
+  width: 0.85em;
+  height: 0.85em;
+  transform: translateY(0.05em);
 }
 .box-panel-close {
   color: var(--link);
@@ -704,8 +711,23 @@
 .sources-table th:nth-child(1) {
   width: 36%;
 }
+/* Wide enough for "NHS England", the author of most sources; longer names wrap. */
+.sources-table th:nth-child(2) {
+  width: 7.5em;
+}
 .sources-table td:nth-child(3) {
   white-space: nowrap;
+}
+/* On a phone the table keeps its sources, years and authors; the boxes each
+   source describes are a select away in the diagram. */
+@media (max-width: 700px) {
+  .sources-table th:nth-child(4),
+  .sources-table td:nth-child(4) {
+    display: none;
+  }
+  .sources-table th:nth-child(1) {
+    width: auto;
+  }
 }
 
 @media (min-width: 1040px) {

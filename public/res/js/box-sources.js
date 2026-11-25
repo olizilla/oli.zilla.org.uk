@@ -49,7 +49,13 @@
       shape.className = 'box-panel-shape'
       shape.textContent = lineShape
       shape.style.color = lineText ?? ''
-      const arrow = () => Object.assign(document.createElement('span'), { className: 'box-panel-arrow', textContent: ' \u2192 ' })
+      // A drawn arrow: the arrow character sits small and low in some phone fonts.
+      const arrow = () => {
+        const span = document.createElement('span')
+        span.className = 'box-panel-arrow'
+        span.innerHTML = '<svg viewBox="0 0 16 16" role="img" aria-label="to"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+        return span
+      }
       title.replaceChildren(name, arrow(), shape)
     } else {
       title.textContent = name
