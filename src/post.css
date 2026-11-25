@@ -586,6 +586,127 @@
 .letterbox > p {
   margin: 0;
 }
+/* An inlined SVG (data-inline): scale it like the image it replaces. Its boxes
+   are links to their sources, so keep the post's link styles off them and show
+   which box the pointer is on. */
+.letterbox svg {
+  display: block;
+  margin: 0 auto;
+  max-width: min(100%, 1200px);
+  height: auto;
+}
+/* Below 800px wide the diagram's text gets too small to read, so it keeps that
+   width and scrolls sideways on its own. */
+.inline-svg {
+  overflow-x: auto;
+}
+.inline-svg svg {
+  min-width: 800px;
+}
+.letterbox svg a {
+  text-decoration: none;
+}
+/* A box outlines in its line's colour and dash (set by box-sources.js). */
+.letterbox svg a:hover rect,
+.letterbox svg a:focus-visible rect,
+.letterbox svg g.selected rect {
+  stroke: var(--line-colour, #2b6cb0) !important;
+  stroke-width: 3px !important;
+  stroke-dasharray: var(--line-dash, none);
+}
+
+/* A diagram box's sources (public/res/js/box-sources.js): a card below the
+   diagram, centred, pinned to the foot of the screen while the diagram runs past
+   it. Its top bar takes the colour and dash of the box's line. Dense, for
+   people checking the sources; out of the way otherwise. On a phone it is a
+   sheet across the foot of the screen. */
+.box-panel {
+  position: sticky;
+  bottom: 0.5rem;
+  z-index: 2;
+  margin: 0.75rem auto 0;
+  width: min(100% - 1rem, 600px);
+  max-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--line-colour, #2b6cb0);
+  box-shadow: 0 -6px 24px rgb(0 0 0 / 0.12);
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--text);
+}
+.box-panel[data-dashed] {
+  border-top-style: dashed;
+}
+@media (max-width: 700px) {
+  .box-panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: auto;
+    margin: 0;
+    max-height: 50vh;
+  }
+}
+.box-panel[hidden] {
+  display: none;
+}
+.box-panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.5rem 0.9rem;
+  border-bottom: 1px solid var(--hairline);
+}
+.box-panel-title {
+  color: var(--ink);
+}
+.box-panel-arrow {
+  color: var(--muted);
+  font-weight: normal;
+}
+.box-panel-close {
+  color: var(--link);
+  font-size: 0.8rem;
+}
+.box-panel-body {
+  overflow-y: auto;
+  padding: 0.5rem 0.9rem 0.75rem;
+}
+
+.box-panel-body p,
+.box-panel-body ul {
+  margin: 0.3rem 0;
+}
+.box-panel-body li {
+  margin: 0.15rem 0;
+}
+
+/* The references table: dense, with room for the titles. */
+.sources-table {
+  padding: 0.75rem 0;
+}
+.sources-table table {
+  max-width: min(100% - 2rem, 1200px);
+  margin: 0 auto;
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+.sources-table td,
+.sources-table th {
+  padding: 0.25rem 0.5rem;
+  vertical-align: top;
+}
+.sources-table th:nth-child(1) {
+  width: 36%;
+}
+.sources-table td:nth-child(3) {
+  white-space: nowrap;
+}
 
 @media (min-width: 1040px) {
   .wider {
