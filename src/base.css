@@ -1,5 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap')
-layer(base);
+/* Inter, served from the site rather than Google Fonts: the same subsets,
+   from the @fontsource-variable/inter package, with the weight and
+   optical-size axes. Its family is called "Inter Variable". */
+@import '@fontsource-variable/inter/opsz.css';
+@import '@fontsource-variable/inter/opsz-italic.css';
 /* The reset first, in the base layer, where post.css's markdown styles
    follow it. Everything else, here and in post.css, is outside any layer. */
 @import './reset.css' layer(base);

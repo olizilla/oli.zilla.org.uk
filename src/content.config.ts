@@ -14,7 +14,8 @@ const posts = defineCollection({
     tagline: z.string(),
     author: z.string().default('Oli Evans'),
     link: z.string().url().optional(),
-    image: z.string().url().optional(),
+    // Shown on /blog: a path on this site, e.g. /res/img/posts/…, or a URL.
+    image: z.union([z.string().startsWith('/'), z.string().url()]).optional(),
     draft: z.boolean().default(false),
     emoji: z.string().optional(),
     atUri: z.string().optional(),

@@ -30,25 +30,41 @@ html, body.full-screen, body.full-screen * {
 }
 img {position:absolute}
 	</style>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-	<script type="text/javascript" define:vars={{ gifs }}>
-// never repeat the current gif, as an unchanged src won't fire load again
+	<script define:vars={{ gifs }}>
+// Each picture loads, fades out over 15 seconds, swaps for another gif and
+// fades back in, then goes round again. y sits on top of x, so the two
+// drift in and out of each other.
+const FADE = 15000
+
+// never repeat the current gif
 function randomGif(current) {
-	var options = gifs.filter(function(gif) { return gif !== current; });
-	return options[Math.floor(Math.random() * options.length)];
+	const options = gifs.filter(gif => gif !== current)
+	return options[Math.floor(Math.random() * options.length)]
 }
-$(document).ready(function() {
-	$('img').load(function() {
-			$(this).fadeOut(15000, function() {
-				$(this).attr("src", randomGif($(this).attr("src")));
-				$(this).fadeIn(15000);
-			});  
-	});
-	$('img').each(function() {
-		$(this).attr("src", randomGif());
-	});
-	$('#y').attr("style", "block");
-});	
+
+function fade(img, from, to) {
+	return img.animate([{ opacity: from }, { opacity: to }], {
+		duration: FADE,
+		easing: 'cubic-bezier(0.37, 0, 0.63, 1)', // jQuery's swing
+		fill: 'forwards',
+	}).finished
+}
+
+async function cycle(img) {
+	img.src = randomGif()
+	for (;;) {
+		// a gif that fails to load fades out and is replaced like any other
+		await img.decode().catch(() => {})
+		await fade(img, 1, 0)
+		img.src = randomGif(img.getAttribute('src'))
+		await fade(img, 0, 1)
+	}
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+	document.getElementById('y').style.display = ''
+	document.querySelectorAll('img').forEach(cycle)
+})
 	</script>
 </head>
 <body class="full-screen">
