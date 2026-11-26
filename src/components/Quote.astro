@@ -7,13 +7,38 @@ interface Props {
 const { by, year, cite } = Astro.props;
 ---
 
-<blockquote cite={cite} class="py-8 max-w-2xl text-base font-serif">
-  <div class="border-l-8 border-white border-solid -ml-3 pl-3">
+<blockquote cite={cite}>
+  <div class="edge">
     <slot />
-    <footer class="text-zinc-600 font-mono pt-4">
+    <footer>
       <small>
-        <span class="pr-1">—</span><a class="" href={cite}>{by}, <time datetime={year}>{year}</time></a>
+        <span class="dash">—</span><a href={cite}>{by}, <time datetime={year}>{year}</time></a>
       </small>
     </footer>
   </div>
 </blockquote>
+
+<style>
+  /* A quote on the homepage or /iipp: serif, with a white edge on its left
+     and its source in mono below. */
+  blockquote {
+    max-width: var(--width-narrow);
+    padding-block: var(--space-8);
+    font-family: var(--serif);
+    font-size: var(--type-base);
+    line-height: var(--lh-snug);
+  }
+  .edge {
+    margin-left: calc(-1 * var(--space-3));
+    padding-left: var(--space-3);
+    border-left: 8px solid var(--white);
+  }
+  footer {
+    padding-top: var(--space-4);
+    font-family: var(--mono);
+    color: var(--muted);
+  }
+  .dash {
+    padding-right: var(--space-1);
+  }
+</style>

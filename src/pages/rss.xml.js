@@ -55,9 +55,11 @@ export async function GET(context) {
         : `${siteUrl.endsWith('/') ? siteUrl.slice(0, -1) : siteUrl}/${postPath.startsWith('/') ? postPath.slice(1) : postPath}`;
       
       // MDX import/export lines are code, not content
-      const body = post.id.endsWith('.mdx') ? post.body.replace(/^(import|export) .*$/gm, '') : post.body;
+      // A post's id is its URL slug; its file is where its images live.
+      const file = post.filePath.replace(/^src\/content\/posts\//, '');
+      const body = file.endsWith('.mdx') ? post.body.replace(/^(import|export) .*$/gm, '') : post.body;
       const rawHtml = parser.render(body);
-      const absoluteHtml = makeUrlsAbsolute(rawHtml, postUrl, siteUrl, post.id);
+      const absoluteHtml = makeUrlsAbsolute(rawHtml, postUrl, siteUrl, file);
       const sanitizedHtml = sanitizeHtml(absoluteHtml, {
         allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img', 'figure', 'figcaption', 'ul', 'li', 'ol']),
         allowedAttributes: {

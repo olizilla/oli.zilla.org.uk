@@ -4,6 +4,6 @@ import { getCollection } from 'astro:content'
 export async function getPosts() {
   const posts = await getCollection('posts', post => !post.data.draft)
   return posts
-    .map(post => ({ ...post, href: post.data.link ?? `/${post.slug}` }))
+    .map(post => ({ ...post, href: post.data.link ?? `/${post.id}` }))
     .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
 }

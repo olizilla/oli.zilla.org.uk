@@ -5,4 +5,11 @@ export function toDataUrl(emoji: string) {
 const { emoji } = Astro.props
 const src = toDataUrl(emoji)
 ---
-<img class="h-14 w-14" src={src} alt="">
+<img src={src} alt="">
+
+<style>
+  img {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+</style>

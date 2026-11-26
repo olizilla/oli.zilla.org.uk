@@ -1,7 +1,10 @@
-import { z, defineCollection } from 'astro:content'
+import { defineCollection } from 'astro:content'
+import { glob } from 'astro/loaders'
+import { z } from 'astro/zod'
 
+// Each post's id is its `slug` frontmatter, which is also its URL.
 const posts = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/posts' }),
   schema: z.object({
     layout: z.string(),
     publishDate: z.date(),
@@ -23,7 +26,7 @@ const posts = defineCollection({
 // Versions of /nhs-data-strategy. Each file is one frozen version: the
 // intro and starting position, with what changed and what it cites.
 const strategy = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '*.mdx', base: './src/content/strategy' }),
   schema: z.object({
     version: z.number(),
     // Labelled "Draft N" while true, "vN" after; the number keeps counting.

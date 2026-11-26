@@ -1,38 +1,34 @@
 /* Posts: typography for markdown in the 2025 layout, then the components
    posts use. Loaded by src/layouts/2025.astro, after base.css.
 
-   Element styles sit inside :where(.post), so they carry no weight: Tailwind
-   classes in a post and the component classes below always win. */
+   Element styles sit inside :where(.post) and the base layer, so they carry
+   no weight: a class on an element in a post, and the component classes
+   below, always win. */
 
+/* Colours (--ink, --text, --muted, --rule…) and fonts (--serif, --mono)
+   come from src/tokens.css. */
 .post {
-  --ink: #18181b;        /* headings, bold, the current contents entry */
-  --text: #3f3f46;       /* body text */
-  --soft: #27272a;       /* serif intros and quotes */
-  --muted: #52525b;      /* labels, comments */
-  --rule: #d4d4d8;
-  --hairline: #e4e4e7;
-  --link: #1e3a8a;
-  --frame: hsl(0, 20%, 20%);
-  --page: hsl(65, 30%, 97%);
-  --paper: #ffffff;
-  --serif: Charter, "Bitstream Charter", "Sitka Text", Cambria, ui-serif, serif;
-  --mono: courier_prime_sans, ui-monospace, SFMono-Regular, Menlo, monospace;
-
-  font-size: 1rem;
-  line-height: 1.75;
+  font-size: var(--type-md);
+  line-height: var(--lh-loose);
   color: var(--text);
   overflow-wrap: break-word;
-}
-@media (min-width: 640px) {
-  .post {
-    font-size: 1.125rem;
-  }
 }
 
 /* --- Markdown ----------------------------------------------------------- */
 
+/* In the base layer, after the reset (src/reset.css): any rule outside a
+   layer, like a class on an element in a post or the components below,
+   wins over these. */
+@layer base {
+
 :where(.post) > :first-child {
   margin-top: 0;
+}
+/* A post's own paragraphs and lists work out their line height from their
+   own size, rather than inheriting .post's as a fixed length; text nested
+   in a caption, quote or reference inherits its container's. */
+:where(.post) > :is(p, ul, ol) {
+  line-height: var(--lh-loose);
 }
 :where(.post) :is(p, ul, ol) {
   margin: 1.25em 0;
@@ -43,45 +39,44 @@
 }
 :where(.post) h1 {
   margin: 0 0 0.8em;
-  font-size: 1.625rem;
-  line-height: 1.25;
-  font-weight: 800;
+  font-size: var(--type-2xl);
+  line-height: var(--lh-snug);
+  font-weight: var(--weight-heavy);
 }
 :where(.post) h1 em {
   font-family: var(--serif);
-  font-weight: 300;
+  font-weight: var(--weight-normal);
 }
 :where(.post) h2 {
   margin: 1.6em 0 0.8em;
-  font-size: 1.5rem;
-  line-height: 1.3;
-  font-weight: 700;
+  font-size: var(--type-xl);
+  line-height: var(--lh-snug);
+  font-weight: var(--weight-bold);
 }
 :where(.post) h3 {
   margin: 1.6em 0 0.6em;
-  font-size: 1.25rem;
-  line-height: 1.4;
-  font-weight: 600;
+  font-size: var(--type-lg);
+  line-height: var(--lh-snug);
+  font-weight: var(--weight-semibold);
 }
 :where(.post) h4 {
   margin: 1.5em 0 0.5em;
-  font-size: 1.0625rem;
-  line-height: 1.5;
-  font-weight: 600;
+  font-size: var(--type-md);
+  line-height: var(--lh-snug);
+  font-weight: var(--weight-semibold);
 }
 @media (min-width: 640px) {
   :where(.post) h1 {
-    font-size: 1.875rem;
-    line-height: 1.2;
+    font-size: var(--type-3xl);
   }
   :where(.post) h2 {
-    font-size: 1.7rem;
+    font-size: var(--type-2xl);
   }
   :where(.post) h3 {
-    font-size: 1.5rem;
+    font-size: var(--type-xl);
   }
   :where(.post) h4 {
-    font-size: 1.25rem;
+    font-size: var(--type-lg);
   }
 }
 :where(.post) :is(h2, h3, h4) + * {
@@ -90,7 +85,7 @@
 
 :where(.post) a {
   color: var(--link);
-  font-weight: 500;
+  font-weight: var(--weight-medium);
   text-decoration: none;
 }
 :where(.post) a:where(:hover) {
@@ -98,14 +93,21 @@
 }
 :where(.post) strong {
   color: var(--ink);
-  font-weight: 600;
+  font-weight: var(--weight-semibold);
 }
+/* A run of text in another font gets a box placed by that font's own ascent
+   and descent, which platforms read differently: on Android, Charter's
+   pushed lines with italics taller. A box no taller than the text stays
+   inside the line, so the paragraph's line height alone sets the spacing,
+   as normalize.css does for sup and sub. */
 :where(.post) em {
   font-family: var(--serif);
+  line-height: 1; /* no-token: keeps the italic's box inside the line */
 }
 :where(.post) code {
   font-family: var(--mono);
   font-size: 0.9em;
+  line-height: 1; /* no-token: keeps the code's box inside the line, as for em */
   color: var(--ink);
 }
 
@@ -125,10 +127,10 @@
   margin: 0.75em 0;
 }
 :where(.post) ul > li::marker {
-  color: #a1a1aa;
+  color: var(--faint);
 }
 :where(.post) ol > li::marker {
-  color: #71717a;
+  color: var(--muted);
 }
 
 /* Quotes: a quiet snippet of paper, in serif at full strength. End one with
@@ -142,17 +144,17 @@
 :where(.post) blockquote {
   margin: 1.25em 0;
   padding: 0.625em 1em;
-  border-left: 3px solid var(--rule);
-  background: rgb(255 255 255 / 0.55);
+  border-left: var(--border-3) solid var(--rule);
+  background: var(--paper-glass);
   font-family: var(--serif);
   font-size: 1em;
-  line-height: 1.6;
-  color: var(--soft);
+  line-height: var(--lh-loose);
+  color: var(--text);
 }
 /* The last line's descenders leave less room than the first line's capitals,
    so a quote without a source gets a touch more below to look even. */
 :where(.post) blockquote:not(:has(> footer)) {
-  padding-bottom: calc(0.625em + 3px);
+  padding-bottom: calc(0.625em + 3px); /* no-token: an optical nudge, see above */
 }
 :where(.post) blockquote > :first-child {
   margin-top: 0;
@@ -163,10 +165,10 @@
 }
 :where(.post) blockquote > footer {
   /* As on the homepage quotes. */
-  margin-top: 1rem;
+  margin-top: var(--space-4);
   font-family: var(--mono);
-  font-size: 0.8125rem;
-  line-height: 1.5;
+  font-size: var(--type-xs);
+  line-height: var(--lh-snug);
   color: var(--muted);
 }
 :where(.post) blockquote > footer::before {
@@ -180,10 +182,10 @@
    the room, and their line breaks go: they're for wide screens. */
 @media (max-width: 639px) {
   :where(.post) blockquote {
-    margin-left: -0.5rem;
-    margin-right: -0.5rem;
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
+    margin-left: calc(-1 * var(--space-2));
+    margin-right: calc(-1 * var(--space-2));
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
   }
   :where(.post) blockquote br {
     display: none;
@@ -193,22 +195,23 @@
 /* Code blocks. Shiki sets their colours; 2rem below leaves room for a
    .caption tucked underneath. */
 :where(.post) pre {
-  margin: 2rem 0;
+  margin: var(--space-8) 0;
   padding: 1em 1.25em;
   overflow-x: auto;
-  border-radius: 0.375rem;
-  background: #27272a;
-  color: #e4e4e7;
+  border-radius: var(--radius-3);
+  background: var(--code-paper);
+  color: var(--code-ink);
   font-size: 0.875em;
-  line-height: 1.7;
+  line-height: var(--lh-snug);
 }
 :where(.post) pre code {
   font-size: inherit;
+  line-height: inherit;
   color: inherit;
 }
 
 :where(.post) :is(img, video, figure) {
-  margin: 2rem 0;
+  margin: var(--space-8) 0;
 }
 /* Embeds never push the page wider than the column. */
 :where(.post) iframe {
@@ -216,6 +219,7 @@
 }
 :where(.post) iframe.aspect-video {
   height: auto;
+  aspect-ratio: 16 / 9;
 }
 :where(.post) figure > * {
   margin-top: 0;
@@ -224,13 +228,13 @@
 :where(.post) figcaption {
   margin-top: 1em;
   font-size: 0.9em;
-  line-height: 1.6;
+  line-height: var(--lh-snug);
 }
 
 :where(.post) hr {
   margin: 3em 0;
   border: 0;
-  border-top: 1px solid var(--hairline);
+  border-top: var(--border-1) solid var(--hairline);
 }
 
 :where(.post) table {
@@ -239,7 +243,7 @@
   border-collapse: collapse;
   text-align: left;
   font-size: 0.875em;
-  line-height: 1.6;
+  line-height: var(--lh-tight);
 }
 :where(.post) :is(th, td) {
   padding: 0.5em 0.75em;
@@ -253,13 +257,15 @@
 }
 :where(.post) thead th {
   vertical-align: bottom;
-  border-bottom: 1px solid var(--rule);
+  border-bottom: var(--border-1) solid var(--rule);
   color: var(--ink);
-  font-weight: 600;
+  font-weight: var(--weight-semibold);
 }
 :where(.post) tbody tr {
-  border-bottom: 1px solid var(--hairline);
+  border-bottom: var(--border-1) solid var(--hairline);
 }
+
+} /* @layer base */
 
 /* --- Small pieces of voice ---------------------------------------------- */
 
@@ -273,37 +279,43 @@
 /* A source line tucked under an image or code block. */
 .caption {
   display: block;
-  margin-top: -1.75rem;
-  padding: 0.5rem 0.75rem;
-  border-radius: 0 0 0.375rem 0.375rem;
+  margin-top: calc(var(--space-1) - var(--space-8)); /* 4px below an image's margin */
+  padding: var(--space-2) var(--space-3);
+  border-radius: 0 0 var(--radius-3) var(--radius-3);
+  background: var(--paper);
   font-family: var(--mono);
+  line-height: var(--lh-snug);
+}
+/* An image laid on paper: a white backing for a screenshot with a
+   transparent background. */
+.on-paper {
+  background: var(--paper);
+}
+/* A long URL shown on its own just under the paragraph that introduces it,
+   scrolling rather than overflowing on narrow screens. */
+.url-block {
+  max-width: 100%;
+  margin-top: calc(-1 * var(--space-6));
+  overflow-y: auto;
 }
 
-/* The essay's opening line, and an intro in the author's own voice. Charter
-   runs small, so these read at body size: the change of face is enough. */
+/* The essay's opening line, in the serif and a size up from the body. */
 .lede {
-  margin: 2rem 0 1rem;
+  margin: var(--space-8) 0 var(--space-4);
   font-family: var(--serif);
-  font-size: 1.125em;
-  line-height: 1.55;
+  font-size: var(--type-lg);
+  line-height: var(--lh-loose);
   color: var(--ink);
-}
-.standfirst {
-  margin-bottom: 2rem;
-  font-family: var(--serif);
-  font-size: 1.125em;
-  line-height: 1.6;
-  color: var(--soft);
 }
 
 /* On an older version of a document: which one, and where the latest is. */
 .version-note {
-  margin: 1.5rem 0 0;
+  margin: var(--space-6) 0 0;
   padding: 0.75em 1em;
-  border-left: 3px solid var(--frame);
+  border-left: var(--border-3) solid var(--frame);
   background: var(--paper);
-  font-size: 0.9375rem;
-  line-height: 1.6;
+  font-size: var(--type-sm);
+  line-height: var(--lh-snug);
 }
 
 /* --- Labels and dividers ------------------------------------------------ */
@@ -313,24 +325,24 @@
 .sheet > :is(h2, h3):first-child, .sheet > .sheet-note + :is(h2, h3),
 .ledger > h2:first-child, .ledger li > span {
   font-family: var(--mono);
-  font-size: 0.8125rem;
-  font-weight: 400;
-  line-height: 1.4;
-  letter-spacing: 0.14em;
+  font-size: var(--type-xs);
+  font-weight: var(--weight-normal);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-caps);
   text-transform: uppercase;
   color: var(--muted);
 }
 
 .dateline {
-  margin: -0.75rem 0 0;
+  margin: calc(-1 * var(--space-3)) 0 0;
 }
 
 /* Text between two hairlines, e.g. <div class="divider">The essay</div> */
 .divider {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin: 3rem 0 0.5rem;
+  gap: var(--space-4);
+  margin: var(--space-12) 0 var(--space-2);
 }
 .divider::before, .divider::after {
   content: "";
@@ -344,26 +356,27 @@
 /* A sheet of paper laid on the page. Its text lines up with the column, so
    the white reaches out into the margins. */
 .sheet {
-	font-size: 1rem;
+	font-size: var(--type-base);
+  line-height: var(--lh-loose);
   display: flow-root;
-  margin: 2rem -0.5rem 0;
-  padding: 0 0.5rem 1.75rem;
-  border-top: 3px solid var(--frame);
+  margin: var(--space-8) calc(-1 * var(--space-2)) 0;
+  padding: 0 var(--space-2) var(--space-6);
+  border-top: var(--border-3) solid var(--frame);
   background: var(--paper);
 }
 @media (min-width: 900px) {
   .sheet {
-    margin-left: -2rem;
-    margin-right: -2rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    margin-left: calc(-1 * var(--space-8));
+    margin-right: calc(-1 * var(--space-8));
+    padding-left: var(--space-8);
+    padding-right: var(--space-8);
   }
 }
 .sheet > .sheet-note {
   float: right;
   margin: 0;
-  padding: 0.875rem 0 0.75rem 1rem;
-  border-bottom: 1px solid var(--hairline);
+  padding: var(--space-row) 0 var(--space-3) var(--space-4);
+  border-bottom: var(--border-1) solid var(--hairline);
   white-space: nowrap;
 }
 .sheet > .sheet-note a {
@@ -380,8 +393,8 @@
 .sheet > :is(h2, h3):first-child,
 .sheet > .sheet-note + :is(h2, h3) {
   margin: 0;
-  padding: 0.875rem 0 0.75rem;
-  border-bottom: 1px solid var(--hairline);
+  padding: var(--space-row) 0 var(--space-3);
+  border-bottom: var(--border-1) solid var(--hairline);
   color: var(--ink);
   overflow: hidden;
   white-space: nowrap;
@@ -389,7 +402,7 @@
 }
 .sheet > :is(h2, h3):first-child + *,
 .sheet > .sheet-note + :is(h2, h3) + * {
-  margin-top: 1.25rem;
+  margin-top: var(--space-5);
 }
 .sheet > :last-child {
   margin-bottom: 0;
@@ -410,12 +423,12 @@
 }
 .toc a, .toc-m a {
   display: block;
-  padding: 5px 0 5px 12px;
-  border-left: 2px solid var(--rule);
+  padding: 5px 0 5px var(--space-3); /* no-token: a taller target to tap, without spreading the list */
+  border-left: var(--border-2) solid var(--rule);
   color: var(--muted);
-  font-size: 0.875rem;
-  font-weight: 400;
-  line-height: 1.4;
+  font-size: var(--type-sm);
+  font-weight: var(--weight-normal);
+  line-height: var(--lh-tight);
   text-decoration: none;
 }
 .toc a:hover, .toc-m a:hover,
@@ -435,14 +448,14 @@
     display: block;
     float: right;
     width: 152px;
-    margin: 0 -208px 0 0;
+    margin: 0 -208px 0 0; /* no-token: hangs the 152px rail in the right margin, 56px clear of the column */
     position: sticky;
-    top: 1.5rem;
-    padding-top: 1rem;
-    border-top: 1px solid #a1a1aa;
+    top: var(--space-6);
+    padding-top: var(--space-4);
+    border-top: var(--border-1) solid var(--faint);
   }
   .toc .toc-label {
-    margin: 0 0 0.75rem;
+    margin: 0 0 var(--space-3);
   }
   .toc-m {
     display: none;
@@ -451,28 +464,28 @@
 
 /* Small screens: one line, opening to the same list. */
 .toc-m {
-  margin: 2rem 0 0;
-  border-top: 1px solid var(--rule);
+  margin: var(--space-8) 0 0;
+  border-top: var(--border-1) solid var(--rule);
 }
 .toc-m summary {
   cursor: pointer;
   /* Capitals sit high in their line, so a little less below looks even. */
-  padding: 0.875rem 0 0.6875rem;
+  padding: var(--space-row) 0 0.6875rem; /* no-token: 11px below, see above */
 }
 .toc-m ol {
-  margin-bottom: 1.25rem;
+  margin-bottom: var(--space-5);
 }
 .toc-m a {
-  padding-top: 9px;
-  padding-bottom: 9px;
-  font-size: 0.9375rem;
+  padding-top: 9px; /* no-token: a comfortable target to tap on phones */
+  padding-bottom: 9px; /* no-token: as above */
+  font-size: var(--type-sm);
 }
 /* A sheet's top rule closes the contents on small screens. */
 .toc-m + .sheet {
   margin-top: 0;
 }
 .toc-m + h2 {
-  margin-top: 1.5rem;
+  margin-top: var(--space-6);
 }
 
 /* --- Ledger and references ---------------------------------------------- */
@@ -481,12 +494,12 @@
    <div class="ledger"> around an h2 and a list. A <span> at the end of an
    item is its date or note. */
 .ledger {
-  margin-top: 3rem;
+  margin-top: var(--space-12);
 }
 .ledger > h2:first-child {
   margin: 0;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--rule);
+  padding-bottom: var(--space-3);
+  border-bottom: var(--border-1) solid var(--rule);
 }
 .ledger ul, .ledger ol {
   list-style: none;
@@ -496,19 +509,19 @@
 .ledger li {
   position: relative;
   margin: 0;
-  padding: 0.875rem 0;
-  border-bottom: 1px solid var(--hairline);
+  padding: var(--space-row) 0;
+  border-bottom: var(--border-1) solid var(--hairline);
 }
 /* The date sits in its own column on the right; the text stops short of it. */
 .ledger li:has(> span) {
-  padding-right: 8.5rem;
+  padding-right: 8.5rem; /* no-token: room for the date column */
 }
 .ledger li > span {
   position: absolute;
-  top: 0.875rem;
+  top: var(--space-row);
   right: 0;
   /* Down onto the baseline of the item's first line. */
-  padding-top: var(--date-nudge, 0.5rem);
+  padding-top: var(--date-nudge, var(--space-2));
 }
 @media (max-width: 639px) {
   .ledger li:has(> span) {
@@ -517,15 +530,15 @@
   .ledger li > span {
     position: static;
     display: block;
-    margin-top: 0.25rem;
+    margin-top: var(--space-1);
     padding-top: 0;
   }
 }
 /* A smaller face for the record: changes and references. */
 .changes li {
   --date-nudge: 0.25rem;
-  font-size: 0.9375rem;
-  line-height: 1.6;
+  font-size: var(--type-sm);
+  line-height: var(--lh-snug);
 }
 
 /* References and bibliographies: <div class="ledger references"> around an
@@ -534,11 +547,11 @@
 .references > p,
 .references li {
   margin: 0;
-  padding: 0.875rem 0 0.875rem 1.5em;
-  border-bottom: 1px solid var(--hairline);
+  padding: var(--space-row) 0 var(--space-row) 1.5em;
+  border-bottom: var(--border-1) solid var(--hairline);
   text-indent: -1.5em;
-  font-size: 0.9375rem;
-  line-height: 1.6;
+  font-size: var(--type-sm);
+  line-height: var(--lh-snug);
 }
 .references ol {
   list-style: decimal inside;
@@ -556,12 +569,12 @@
 
 /* After a post: how to cite it, on a <Sheet class="cite-as">. */
 .post-footer {
-  margin-top: 4rem;
+  margin-top: var(--space-16);
 }
 .cite-as .citation {
   margin: 0;
-  font-size: 0.875rem;
-  line-height: 1.6;
+  font-size: var(--type-sm);
+  line-height: var(--lh-snug);
 }
 .cite-as .citation i {
   font-family: var(--serif);
@@ -576,7 +589,7 @@
 /* A band the full width of the window, with the image centred in it. */
 .letterbox {
   margin-inline: calc(50% - 50vw);
-  padding: 2rem 0rem;
+  padding: var(--space-8) 0rem;
 }
 .letterbox img {
   display: block;
@@ -610,7 +623,7 @@
 .letterbox svg a:hover rect,
 .letterbox svg a:focus-visible rect,
 .letterbox svg g.selected rect {
-  stroke: var(--line-colour, #2b6cb0) !important;
+  stroke: var(--line-colour, var(--blue-700)) !important;
   stroke-width: 3px !important;
   stroke-dasharray: var(--line-dash, none);
 }
@@ -622,25 +635,25 @@
    sheet across the foot of the screen. */
 .box-panel {
   position: sticky;
-  bottom: 0.5rem;
+  bottom: var(--space-2);
   z-index: 2;
-  margin: 0.75rem auto 0;
+  margin: var(--space-3) auto 0;
   width: min(100% - 1rem, 600px);
   max-height: 60vh;
   display: flex;
   flex-direction: column;
   background: var(--paper);
-  border: 1px solid var(--rule);
-  border-top: 3px solid var(--line-colour, #2b6cb0);
-  box-shadow: 0 -6px 24px rgb(0 0 0 / 0.12);
-  font-size: 0.82rem;
-  line-height: 1.45;
+  border: var(--border-1) solid var(--rule);
+  border-top: var(--border-3) solid var(--line-colour, var(--blue-700));
+  box-shadow: 0 -6px 24px rgb(0 0 0 / 0.12); /* no-token: the panel's one shadow, lifting it over the diagram */
+  font-size: var(--type-xs);
+  line-height: var(--lh-tight);
   color: var(--text);
 }
 .box-panel[data-dashed] {
   border-top-style: dashed;
 }
-@media (max-width: 700px) {
+@media (max-width: 639px) {
   .box-panel {
     position: fixed;
     bottom: 0;
@@ -658,9 +671,9 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  gap: 1rem;
-  padding: 0.5rem 0.9rem;
-  border-bottom: 1px solid var(--hairline);
+  gap: var(--space-4);
+  padding: var(--space-2) var(--space-4);
+  border-bottom: var(--border-1) solid var(--hairline);
 }
 .box-panel-title {
   color: var(--ink);
@@ -678,34 +691,34 @@
 }
 .box-panel-close {
   color: var(--link);
-  font-size: 0.8rem;
+  font-size: var(--type-xs);
 }
 .box-panel-body {
   overflow-y: auto;
-  padding: 0.5rem 0.9rem 0.75rem;
+  padding: var(--space-2) var(--space-4) var(--space-3);
 }
 
 .box-panel-body p,
 .box-panel-body ul {
-  margin: 0.3rem 0;
+  margin: var(--space-1) 0;
 }
 .box-panel-body li {
-  margin: 0.15rem 0;
+  margin: var(--space-1) 0;
 }
 
 /* The references table: dense, with room for the titles. */
 .sources-table {
-  padding: 0.75rem 0;
+  padding: var(--space-3) 0;
 }
 .sources-table table {
   max-width: min(100% - 2rem, 1200px);
   margin: 0 auto;
-  font-size: 0.8rem;
-  line-height: 1.35;
+  font-size: var(--type-xs);
+  line-height: var(--lh-tight);
 }
 .sources-table td,
 .sources-table th {
-  padding: 0.25rem 0.5rem;
+  padding: var(--space-1) var(--space-2);
   vertical-align: top;
 }
 .sources-table th:nth-child(1) {
@@ -720,7 +733,7 @@
 }
 /* On a phone the table keeps its sources, years and authors; the boxes each
    source describes are a select away in the diagram. */
-@media (max-width: 700px) {
+@media (max-width: 639px) {
   .sources-table th:nth-child(4),
   .sources-table td:nth-child(4) {
     display: none;
@@ -732,8 +745,8 @@
 
 @media (min-width: 1040px) {
   .wider {
-  	margin-left: -100px;
-    margin-right: -100px;
+  	margin-left: -100px; /* no-token: wide blocks reach 100px past the column on each side */
+    margin-right: -100px; /* no-token: as above */
     width: calc(100% + 200px);
     max-width: none;
   }
@@ -742,7 +755,7 @@
 /* --- The talk ----------------------------------------------------------- */
 
 /* Slides with notes: `mainClass: "slides"` in a post's frontmatter. */
-.slides article img { border-bottom: solid 1px #ddd; }
-.slides article > figure { background: white; padding: 0px; border: solid 1px #ddd; border-radius: 4px; }
+.slides article img { border-bottom: solid var(--border-1) var(--rule); }
+.slides article > figure { background: var(--paper); padding: 0px; border: solid var(--border-1) var(--rule); border-radius: var(--radius-2); }
 .slides article > figure img { margin: 0 !important; }
 .slides article > figure > figcaption { padding: 0 1em; }

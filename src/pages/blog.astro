@@ -12,13 +12,40 @@ const posts = await getPosts()
 		{ posts.map(post => (
 			<section>
 					<h1>
-						<a href={ post.href } class="font-extrabold">{ post.data.title }</a>
+						<a href={ post.href }>{ post.data.title }</a>
 					</h1>
-					<p class="text-zinc-600 pt-0 italic">{post.data.tagline}</p>
+					<p class="tagline">{post.data.tagline}</p>
 					{ post.data.image && <img src={post.data.image} alt="" /> }
-					<small class="block text-right text-sm font-mono uppercase tracking-wide text-zinc-600 -mb-1 pt-2"><Time date={post.data.publishDate} /></small>
-					<hr class="mt-2" />
+					<small class="date"><Time date={post.data.publishDate} /></small>
+					<hr />
 			</section>
 		)) }
 	</nav>
 </Layout>
+
+<style>
+  /* Each post: its title as a link, its tagline, and its date on the right. */
+  h1 a {
+    font-weight: var(--weight-heavy);
+  }
+  .tagline {
+    padding-top: 0;
+    font-style: italic;
+    color: var(--muted);
+  }
+  .date {
+    display: block;
+    margin-bottom: calc(-1 * var(--space-1));
+    padding-top: var(--space-2);
+    font-family: var(--mono);
+    font-size: var(--type-xs);
+    line-height: var(--lh-snug);
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+    text-align: right;
+    color: var(--muted);
+  }
+  hr {
+    margin-top: var(--space-2);
+  }
+</style>

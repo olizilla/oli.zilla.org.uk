@@ -11,13 +11,13 @@ atUri: "at://did:plc:2ngsl5btroik454wzz7vpbzq/site.standard.document/3mn6cg67jyk
 
 The NHS "owns" the Canonical Data Model (CDM), the interface to the Federated Data Platform that all existing systems are to integrate with and that new systems should build on. This is what the CDM interface looks like today.
 
-<div class="bg-white">
+<div class="on-paper">
 
 ![Screenshot of the Swagger Open API editor showing the NHS Canonical Data Model REST API. The API name is "Palantir OpenAPI". API routes are all prefixed with `/api/v2/ontologies/palantirukhealth-ontology`](./2025-12-02-cdm-api.png)
 
 </div>
 
-<small class="caption bg-white">
+<small class="caption">
 Source: <a href="https://github.com/nhsengland/fdp-canonical-data-model/blob/1ee513515656b7a46a01a9f6a77a0c3efd773bde/canonical-data-model-openapi.yaml">github.com/nhsengland/fdp-canonical-data-model</a>
 </small>
 

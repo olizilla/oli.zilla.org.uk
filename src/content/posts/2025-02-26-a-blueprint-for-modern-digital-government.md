@@ -59,10 +59,10 @@ object SearchConfig {
     const val API_BASE_URL = "https://search.publishing.service.gov.uk"
     const val SEARCH_PATH = "/v0_1/search.json"
 ```
-<small class="font-mono block -mt-7 bg-white rounded-b-md px-3 py-2">Source: <a href="https://github.com/alphagov/govuk-mobile-android-app/blob/846cd58762543e1bc40267d54508dffae5393e35/feature/search/src/main/kotlin/uk/govuk/app/search/domain/SearchConfig.kt#L11-L2">github.com/alphagov/govuk-mobile-android-app</a></small>
+<small class="caption">Source: <a href="https://github.com/alphagov/govuk-mobile-android-app/blob/846cd58762543e1bc40267d54508dffae5393e35/feature/search/src/main/kotlin/uk/govuk/app/search/domain/SearchConfig.kt#L11-L2">github.com/alphagov/govuk-mobile-android-app</a></small>
 
 This tells us the current version of the app pulls search results from an API at:
-<div class="overflow-y-auto max-w-full -mt-6">
+<div class="url-block">
 <a href="https://search.publishing.service.gov.uk/v0_1/search.json">https://search.publishing.service.gov.uk/v0_1/search.json</a>
 </div>
 
@@ -96,7 +96,7 @@ intent.data = Uri.parse(url)
 val context = LocalContext.current
 context.startActivity(intent)
 ```
-<small class="font-mono block -mt-7 bg-white rounded-b-md px-3 py-2">Source: <a href="https://github.com/alphagov/govuk-mobile-android-app/blob/49c1a3173a381e7f36b29d124c995f2bff9a04f0/feature/search/src/main/kotlin/uk/govuk/app/search/ui/SearchResults.kt#L99-L115">github.com/alphagov/govuk-mobile-android-app</a></small> -->
+<small class="caption">Source: <a href="https://github.com/alphagov/govuk-mobile-android-app/blob/49c1a3173a381e7f36b29d124c995f2bff9a04f0/feature/search/src/main/kotlin/uk/govuk/app/search/ui/SearchResults.kt#L99-L115">github.com/alphagov/govuk-mobile-android-app</a></small> -->
 
 There is work to do to make this feel seamless, but the point is that the app gets a huge speed boost by reusing the web platform and the [Design System](https://design-system.service.gov.uk/) that allows the app builders to add new features that match the gov.uk web pages.
 

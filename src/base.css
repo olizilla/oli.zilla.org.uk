@@ -1,21 +1,72 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
-/* The integration's default injected base.css file */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap')
+layer(base);
+/* The reset first, in the base layer, where post.css's markdown styles
+   follow it. Everything else, here and in post.css, is outside any layer. */
+@import './reset.css' layer(base);
+@import './tokens.css';
 
 html {
-  background: hsl(0, 20%, 20%);
+  background: var(--frame);
 }
 body {
-  background: hsl(65, 30%, 97%);
-  color: hsl(0, 15%, 15%);
+  min-height: 100vh;
+  background: var(--page);
+  color: var(--brown-900);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 640px) {
   body {
-    border: solid hsl(0, 20%, 20%) 9px;
+    border: solid var(--frame) 9px;
   }
+}
+
+/* --- The site's shell ------------------------------------------------- */
+
+/* The column every page sits in, and its header and footer: the 2025
+   layout, the homepage and /iipp. */
+.site {
+  max-width: var(--width-page);
+  margin-inline: auto;
+  padding-inline: var(--space-2);
+}
+.site-header {
+  padding-block: var(--space-8);
+}
+.site-title {
+  font-size: var(--type-xl);
+  line-height: var(--lh-snug);
+  font-weight: var(--weight-bold);
+}
+.logo {
+  display: inline-block;
+  cursor: crosshair;
+}
+.logo img {
+  display: inline-block;
+}
+.site-footer {
+  margin-bottom: calc(-1 * var(--space-1));
+  padding-top: var(--space-16);
+  font-size: var(--type-3xl);
+  line-height: var(--lh-snug);
+  text-align: center;
+}
+
+/* A list's heading on the homepage and /iipp: small mono capitals on the
+   right, sitting on the first row. */
+.list-label {
+  margin-bottom: calc(-1 * var(--space-1));
+  padding-top: var(--space-12);
+  font-family: var(--mono);
+  font-size: var(--type-xs);
+  line-height: var(--lh-snug);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: right;
+  color: var(--muted);
+}
+.list-label.first {
+  padding-top: var(--space-8);
 }
 
 /* Charter, hosted here so the serif is the same on every device (Android
@@ -57,20 +108,8 @@ body {
 }
 
 .inter-base {
-  font-family:
-    "Inter",
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    "Open Sans",
-    "Helvetica Neue",
-    sans-serif;
+  font-family: var(--sans);
   font-optical-sizing: auto;
-  font-weight: 400;
+  font-weight: var(--weight-normal);
   font-style: normal;
 }

@@ -34,25 +34,24 @@ const posts = (await getPosts()).slice(0, 12)
 	<meta property="og:site_name" content="olizilla" />
 	<meta property="og:description" content="olizilla: software, resilience, enthusiasm, community." />
 </head>
-<body class="inter-base min-h-screen">
-	<header class="mx-auto max-w-[800px] pt-10 px-2">
-		<h1 class="text-2xl font-bold">
-			<a href="/subconscious" class="inline-block cursor-crosshair">
-				<img title="❤️" alt="logo" src="/res/img/olizilla-trace.min.svg" style="width:140px; height:140px; vertical-align:-92px;" class="inline-block"/>
+<body class="inter-base">
+	<header class="site home-header">
+		<h1 class="site-title">
+			<a href="/subconscious" class="logo">
+				<img title="❤️" alt="logo" src="/res/img/olizilla-trace.min.svg" style="width:140px; height:140px; vertical-align:-92px;"/>
 			</a>
-			<span class="text-3xl pb-2 font-bold font-mono">olizilla</span>
+			<span class="name">olizilla</span>
 		</h1>
-		<p class="font-mono text-xs py-3 leading-6 sm:hidden">
+		<p class="strap short">
 			software 🤖 resilience ✊ enthusiasm 🎉 community 👯‍♀️
 		</p>
-		<p class="font-mono text-md py-3 leading-6 hidden sm:block">
+		<p class="strap long">
 			Building software 🤖 resilience ✊ enthusiasm 🎉 and community 👯‍♀️
 		</p>
 	</header>
-	<div class="mx-auto max-w-[800px] pt-4 px-2">
+	<div class="site home-quotes">
 		<Quote by="Phoebe Tickell" year="2023" cite="https://open.spotify.com/episode/52GGqpGDgZTTYGTQ4sAwLa">
-			<p class="text-lg">The tool of imagination is looking at the two options on the table and saying: 
-				<br/>
+			<p class="quote-text">The tool of imagination is looking at the two options on the table and saying:
 				<i>No! There are 10 more!</i>
 			</p>
 		</Quote>
@@ -68,7 +67,7 @@ const posts = (await getPosts()).slice(0, 12)
 			<p>You should never express yourself more clearly than you are able to think.</p>
 		</Quote> -->
 		<Quote by="Jane Jacobs via James C. Scott" year="1998" cite="https://uk.bookshop.org/p/books/seeing-like-a-state-how-certain-schemes-to-improve-the-human-condition-have-failed-james-c-scott/3456225?ean=9780300246759">
-			<p class="text-lg">
+			<p class="quote-text quote-text-sm">
 				The next step will require great humility, since we are now so prone to confuse great building projects with great social achievements. 
 				We will have to admit that it is beyond the scope of anyone's imagination to create community.
 				<br/><br/>We must learn to <strong>cherish the communities we have</strong>, they are hard to come by.
@@ -78,9 +77,9 @@ const posts = (await getPosts()).slice(0, 12)
 			</p> -->
 		</Quote>
 	</div>
-	<section class="mx-auto max-w-[800px] pt-4 px-2 text-base">
+	<section class="site home-links">
 
-		<h2 class="text-right text-sm font-mono uppercase tracking-widest text-zinc-600 -mb-1 pt-8">Blog</h2>
+		<h2 class="list-label first">Blog</h2>
 		{posts.map(post => (
 			<LinkItem
 				title={post.data.title}
@@ -95,7 +94,7 @@ const posts = (await getPosts()).slice(0, 12)
 			desc="from a more or less civilised age"
 			href="/blog" />
 
-		<h2 class="text-right text-sm font-mono uppercase tracking-widest text-zinc-600 -mb-1 pt-10">Sketches</h2>
+		<h2 class="list-label">Sketches</h2>
 		<LinkItem
 			title="Unicode"
 			desc="Visual memories across the multilingual planes"
@@ -112,7 +111,7 @@ const posts = (await getPosts()).slice(0, 12)
 			emoji="🤖"
 			href="2014/06/14/animated-css-logo-for-nodebots" />
 
-		<h2 class="text-right text-sm font-mono uppercase tracking-widest text-zinc-600 -mb-1 pt-10">Work</h2>
+		<h2 class="list-label">Work</h2>
 		<LinkItem
 			title="Institute of Innovation and Public Purpose"
 			desc="What should the state do?"
@@ -131,7 +130,7 @@ const posts = (await getPosts()).slice(0, 12)
 			img="https://avatars.githubusercontent.com/u/5347145?s=200&v=4"
 			href="https://tableflip.io" />
 
-		<h2 class="text-right text-sm font-mono uppercase tracking-widest text-zinc-600 -mb-1 pt-10">Play</h2>
+		<h2 class="list-label">Play</h2>
 		<LinkItem
 			title="Suena Bien Soundsystem"
 			desc="Making speakers. Playing music. Partying together."
@@ -162,7 +161,7 @@ const posts = (await getPosts()).slice(0, 12)
 			emoji="🧁"
 			href="https://westnorwoodfeast.com/" />
 
-		<h2 class="text-right text-sm font-mono uppercase tracking-widest text-zinc-600 -mb-1 pt-10">Elsewhere</h2>
+		<h2 class="list-label">Elsewhere</h2>
 		<LinkItem
 			title="Bluesky"
 			desc="Loose lips sink ships"
@@ -175,22 +174,78 @@ const posts = (await getPosts()).slice(0, 12)
 			href="https://www.linkedin.com/in/olizilla/" />
 	</section>
 
-	<!-- <section class="pt-48 mx-auto max-w-[800px] px-2">
+	<!-- <section class="site">
 		<Quote by="Kate Raworth" year="2017" cite="https://uk.bookshop.org/p/books/doughnut-economics-seven-ways-to-think-like-a-21st-century-economist-kate-raworth/1572478?ean=9781847946044">
-			<p class="pb-3 text-lg">
+			<p class="quote-text">
 				When political economy was split up into political philosophy and economic science in the late nineteenth century, it opened up what the philosopher Michael Sandel has called a ‘moral vacancy’ at the heart of public policymaking. 
 			</p> 
-			<p class="pb-3 text-lg">
+			<p class="quote-text">
 				Today economists and politicians debate with confident ease in the name of economic efficiency, productivity and growth – as if those values were self-explanatory – while hesitating to speak of justice, fairness and rights. 
 			</p>
-			<p class="text-lg">
+			<p class="quote-text">
 				Talking about values and goals is a lost art waiting to be revived.
 			</p>
 		</Quote>
 	</section> -->
 
-	<footer class="pt-16 text-center text-3xl -mb-1">
-		<div class="pt-16">🌻</div>
+	<footer class="site-footer">
+		<div class="flower">🌻</div>
 	</footer>
 </body>
 </html>
+
+<style>
+  .home-header {
+    padding-top: var(--space-12);
+  }
+  .name {
+    padding-bottom: var(--space-2);
+    font-family: var(--mono);
+    font-size: var(--type-3xl);
+    line-height: var(--lh-snug);
+    font-weight: var(--weight-bold);
+  }
+  /* The strapline: short on phones, long from 640px. */
+  .strap {
+    padding-block: var(--space-3);
+    font-family: var(--mono);
+    line-height: var(--lh-snug);
+    /* One line: cut short with an ellipsis rather than wrap. */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .strap.short {
+    font-size: 0.75rem; /* no-token: 12px fits the strapline on one line at a phone's width */
+  }
+  .strap.long {
+    display: none;
+  }
+  @media (min-width: 640px) {
+    .strap.short {
+      display: none;
+    }
+    .strap.long {
+      display: block;
+    }
+  }
+  .home-quotes {
+    padding-top: var(--space-4);
+  }
+  .quote-text {
+    font-size: var(--type-lg);
+    line-height: var(--lh-loose);
+  }
+  .quote-text-sm {
+    font-size: 18px; /* no-token: decorative */
+    line-height: var(--lh-loose);
+  }
+  .home-links {
+    padding-top: var(--space-4);
+    font-size: var(--type-base);
+    line-height: var(--lh-snug);
+  }
+  .flower {
+    padding-top: var(--space-16);
+  }
+</style>

@@ -1,14 +1,28 @@
 ---
+import { render } from 'astro:content';
 import { getPosts } from '../lib/posts';
+import Layout from '../layouts/2025.astro';
 
+// Posts in the 2025 layout. MDX posts still wrap themselves in their
+// `layout` frontmatter, but Markdown posts in a content collection don't, so
+// their page does. A page gets the CSS of every layout it imports, even one
+// it doesn't render, so a post in another layout has its own page instead,
+// like 2015/09/18/rainbow.astro.
 export async function getStaticPaths() {
   const posts = await getPosts();
-  return posts.map(entry => ({
-    params: { slug: entry.slug }, props: { entry },
-  }));
+  return posts
+    .filter(entry => entry.data.layout.endsWith('/2025.astro'))
+    .map(entry => ({
+      params: { slug: entry.id }, props: { entry },
+    }));
 }
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content, headings } = await render(entry);
+const wrap = !entry.filePath?.endsWith('.mdx');
 ---
-<Content />
+{wrap ? (
+  <Layout frontmatter={entry.data} headings={headings}>
+    <Content />
+  </Layout>
+) : <Content />}

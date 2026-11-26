@@ -1,0 +1,13 @@
+---
+// The one post in the tableflip-lab layout. See [...slug].astro for why it
+// has a page of its own.
+import { getEntry, render } from 'astro:content';
+import Layout from '../../../../layouts/tableflip-lab.astro';
+
+const entry = await getEntry('posts', '2015/09/18/rainbow');
+if (!entry) throw new Error('posts: 2015/09/18/rainbow not found');
+const { Content, headings } = await render(entry);
+---
+<Layout frontmatter={entry.data} headings={headings}>
+  <Content />
+</Layout>

@@ -1,0 +1,1062 @@
+---
+// Every scale in src/tokens.css, with its variable names and a demo of each,
+// then the values post.css and base.css use that aren't on a scale yet.
+// Tokens are read from tokens.css itself, so this page can't fall out of
+// step with it.
+import { Code } from 'astro:components'
+import Layout from '../layouts/2025.astro'
+import tokensCss from '../tokens.css?raw'
+import postCss from '../post.css?raw'
+import baseCss from '../base.css?raw'
+// Pages', layouts' and components' own styles: the <style> blocks in their
+// source. Not this page's, which is the reference itself, nor the old
+// one-off pages and layouts that sit outside the design: /subconscious,
+// /unicode and the 2015 lab layouts.
+const astroSources = import.meta.glob([
+  '../components/*.astro', '../layouts/*.astro', '../pages/**/*.astro', '!./atoms.astro',
+  '!./subconscious/**', '!./unicode/**', '!../layouts/{tableflip-lab,day1post,xhtml1-strict}.astro',
+], { query: '?raw', import: 'default', eager: true })
+const componentCss = Object.entries(astroSources).flatMap(([file, src]) =>
+  [...String(src).matchAll(/<style[^>]*>([\s\S]*?)<\/style>/g)].map(m => [file.replace(/^\.\.\//, '').replace(/^\.\//, 'pages/'), m[1]]))
+
+// --- Tokens, grouped by tokens.css's `/* --- Name --- */` headings ---------
+
+const groups = {}
+const values = {}
+for (const part of tokensCss.split(/\/\* --- /).slice(1)) {
+  const title = part.match(/^(.*?) -+ \*\//)[1]
+  groups[title] = [...part.matchAll(/--([\w-]+):\s*([^;]+);[ \t]*(?:\/\*\s*(.*?)\s*\*\/)?/g)]
+    .map(([, name, value, note]) => {
+      values[name] = value.replace(/\s+/g, ' ').trim()
+      return { name, value: values[name], note: note?.replace(/^[\d.]+px:?\s*/, '') }
+    })
+}
+const resolve = value => value.replace(/var\(--([\w-]+)\)/g, (_, name) => resolve(values[name] ?? ''))
+const px = value => {
+  // Tokens may be written as pixels over 16, e.g. calc(17rem / 16).
+  const over16 = String(value).match(/^calc\(([\d.]+)rem \/ 16\)$/)
+  if (over16) return Number(over16[1])
+  const m = String(value).match(/^(-?[\d.]+)(rem|px)$/)
+  return m ? Number(m[1]) * (m[2] === 'rem' ? 16 : 1) : null
+}
+const remPx = value => px(value) === null ? '' : `${+px(value).toFixed(2)}px`
+
+// --- Values without a token ----------------------------------------------
+
+// Every declaration in post.css and base.css. One that's deliberately not a
+// token says why in a comment after its semicolon, starting "no-token:";
+// that reason rides along as a stand-in declaration, then joins the real one.
+const declarations = []
+for (const [file, css] of [['post.css', postCss], ['base.css', baseCss], ...componentCss]) {
+  const reasons = []
+  const text = css
+    .replace(/;[ \t]*\/\*\s*no-token:\s*([\s\S]*?)\s*\*\//g, (_, why) => `; --no-token-${reasons.push(why.replace(/\s+/g, ' ')) - 1}: x;`)
+    .replace(/\/\*[\s\S]*?\*\//g, '')
+  for (const rule of text.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
+    const selector = rule[1].trim().replace(/\s+/g, ' ')
+    if (selector.startsWith('@')) continue
+    for (const [, prop, value] of rule[2].matchAll(/([\w-]+)\s*:\s*([^;]+)/g)) {
+      const marker = prop.match(/^--no-token-(\d+)$/)
+      if (marker) declarations.at(-1).reason = reasons[marker[1]]
+      else declarations.push({ file, selector, prop, value: value.trim() })
+    }
+  }
+}
+const deliberate = declarations.filter(d => d.reason)
+
+// For one kind of value: how many uses sit on the scale (as the token, or
+// written out at a step's exact value), and the ones that don't, each with
+// the nearest step and where it's used.
+function audit (scale, pick) {
+  const tokens = new RegExp(`var\\(--(${groups[scale].map(t => t.name).join('|')})\\)`, 'g')
+  const steps = groups[scale].map(t => ({ name: t.name, n: px(t.value) ?? Number(t.value) })).filter(t => !Number.isNaN(t.n))
+  // A ratio scale (line heights) has no nearest step for a length.
+  const ratios = steps.every(t => t.n < 4)
+  let onScale = 0
+  const off = new Map()
+  for (const d of declarations.filter(d => !d.reason)) {
+    onScale += (d.value.match(tokens) ?? []).length
+    for (const value of pick(d)) {
+      const n = px(value) ?? Number(value)
+      const length = /[a-z]$/.test(value)
+      const gap = ratios && length ? Infinity : Math.min(...steps.map(t => Math.abs(t.n - n)))
+      if (gap < 0.01) { onScale++; continue }
+      // A value halfway between two steps could go either way, so show both.
+      const nearest = steps.filter(t => Math.abs(Math.abs(t.n - n) - gap) < 0.001)
+      const entry = off.get(value) ?? { value, n, nearest, where: new Set() }
+      entry.where.add(d.file === 'post.css' ? d.selector : `${d.selector} (${d.file})`)
+      off.set(value, entry)
+    }
+  }
+  return { onScale, off: [...off.values()].sort((a, b) => a.n - b.n) }
+}
+const lengths = value => value.match(/-?[\d.]+(?:rem|px)\b/g) ?? []
+const SPACING = /^(margin|padding|gap|row-gap|column-gap|top|right|bottom|left|inset)(-[a-z-]+)?$/
+const drift = {
+  'Type sizes': audit('Type sizes', d => d.prop === 'font-size' ? lengths(d.value) : []),
+  'Line heights': audit('Line heights', d => d.prop === 'line-height' && /^[\d.]+(rem|px)?$/.test(d.value) ? [d.value] : []),
+  'Spacing': audit('Spacing', d => SPACING.test(d.prop)
+    ? lengths(d.value).map(v => v.replace(/^-/, '')).filter(v => px(v) > 0)
+    : []),
+}
+const relative = declarations.filter(d => !d.reason && SPACING.test(d.prop) && /\d(em)\b/.test(d.value.replace(/rem/g, '')))
+const colours = declarations
+  .filter(d => !d.reason && /#[0-9a-f]{3,8}\b|\b(rgb|hsl)a?\(/i.test(d.value) && !d.prop.startsWith('--'))
+const primitiveFor = literal => groups['Colour primitives'].find(t => t.value.toLowerCase() === literal.toLowerCase())?.name
+
+// Breakpoints as used: every @media width, with how often it's used.
+const breakpoints = new Map()
+for (const css of [postCss, baseCss]) {
+  for (const [, query] of css.matchAll(/@media\s*([^{]+)\{/g)) {
+    const q = query.trim()
+    breakpoints.set(q, (breakpoints.get(q) ?? 0) + 1)
+  }
+}
+
+// Line heights in use: each kind of text, as in a post. The element that
+// carries the line height is marked data-lh.
+const heading = 'Where are our manners? A protocol for NHS software'
+const inUse = [
+  { label: 'h1', html: `<h1 data-lh>${heading}</h1>` },
+  { label: 'h2', html: `<h2 data-lh>${heading}</h2>` },
+  { label: 'h3', html: `<h3 data-lh>${heading}</h3>` },
+  { label: 'h4', html: `<h4 data-lh>${heading}</h4>` },
+  { label: 'Body text', html: `<p data-lh>Protocols are exceedingly British. They define who may do what, when. Software protocols are not APIs or digital platforms: they are the ground rules of a multiplayer system.</p>` },
+  { label: 'Intro: p.lede', html: `<p class="lede" data-lh>Our medical records degrade as they move between sites. Interoperability is an externality.</p>` },
+  { label: 'Quote', html: `<blockquote data-lh><p>Market forces can be leveraged to keep the tech industry in check. But in order to do that we need to create the playground.</p></blockquote>` },
+  { label: 'Reference', html: `<div class="references"><p data-lh>Matthan, R. (2023) <em>The third way: India’s revolutionary approach to data governance</em>. New Delhi: Juggernaut Books.</p></div>` },
+  { label: 'Caption', html: `<figure><figcaption data-lh>A caption sits under its image, a little smaller than the text around it, often over two lines.</figcaption></figure>` },
+  { label: 'Table', html: `<table data-lh><thead><tr><th>Source</th><th>Feeds</th></tr></thead><tbody><tr><td>GP record</td><td>Medicines, allergies and test results, as coded</td></tr><tr><td>Hospital</td><td>Letters and discharge summaries</td></tr></tbody></table>` },
+  { label: 'Code', html: `<pre data-lh><code>.card {\n  padding: var(--space-4);\n  border-radius: var(--radius-3);\n}</code></pre>` },
+]
+
+// A font stack's families, in order, without their quotes.
+const families = value => value.split(',').map(f => f.trim().replace(/^["']|["']$/g, ''))
+// CSS's generic families: the browser maps these to a font of that kind.
+const GENERIC = new Set(['serif', 'sans-serif', 'monospace', 'cursive', 'fantasy', 'system-ui', 'ui-serif', 'ui-sans-serif', 'ui-monospace', 'ui-rounded', 'emoji', 'math', 'fangsong'])
+
+// Body text compared: one real paragraph at today's size and line height,
+// then smaller options, one with a narrower measure.
+const bodySample = 'Done well, protocols can create a level playing field for healthy competition. Done badly, without an embedded social purpose or clear mechanisms for long term governance, they are susceptible to market capture. Email sits on open protocols that are multiplayer, but the rise of Gmail has transformed it into something much closer to a platform for which Google sets the terms.'
+const bodyOptions = [
+  { label: 'A. Now', css: '' },
+  { label: 'B. Before: 18px at 1.75, on wider screens', css: 'font-size: 1.125rem; line-height: 1.75' },
+  { label: 'C. 16px', css: 'font-size: 1rem; line-height: 1.65' },
+  { label: 'D. 16px, narrower', css: 'font-size: 1rem; line-height: 1.65; max-width: 34rem' },
+]
+
+// Inline code: today, then three ways of matching its x-height to the text's.
+const codeOptions = [
+  { label: 'A. Today', css: 'font-size: 0.9em', note: 'x-height 8px beside 10.25px' },
+  { label: 'B. Nudged', css: 'font-size: 0.9em; font-size-adjust: 0.53', note: 'x-height 9px; glyphs about 12% bigger' },
+  { label: 'C. Matched at 0.9em', css: 'font-size: 0.9em; font-size-adjust: 0.569', note: 'x-height 9.75px; about 20% bigger' },
+  { label: 'D. Matched at 1em', css: 'font-size: 1em; font-size-adjust: 0.569', note: 'x-height 10.75px; bigger still' },
+]
+
+// The composed card's CSS, shown under it.
+const cardCss = `.card {
+  padding: var(--space-4) var(--space-6);
+  border: var(--border-1) solid var(--hairline);
+  border-radius: var(--radius-3);
+  background: var(--paper);
+}
+.card-label {
+  font: var(--weight-normal) var(--type-xs) / var(--lh-tight) var(--mono);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.card-title {
+  font-size: var(--type-lg);
+  font-weight: var(--weight-semibold);
+  line-height: var(--lh-snug);
+  color: var(--ink);
+}
+.card-body {
+  margin-top: var(--space-2);
+  font-size: var(--type-sm);
+  line-height: var(--lh-snug);
+}`
+
+const roles = groups['Colour roles']
+// How to show a role: as text in it, as a line in it, or as a surface.
+const LINES = ['faint', 'rule', 'hairline', 'frame']
+const SURFACES = ['page', 'paper', 'highlight']
+const primitives = groups['Colour primitives']
+const sample = 'Where are our manners? A protocol for NHS software'
+const prose = 'Protocols are exceedingly British. They define who may do what, when. Software protocols are not APIs or platforms: they are the ground rules of a multiplayer system.'
+---
+<Layout title="Atoms" tagline="The scales this site's CSS is built from: colour, type, spacing and the rest, with their variable names.">
+<div class="atoms">
+  <h1>Atoms</h1>
+  <p class="lede">The scales this site's CSS draws from, with their variable names. New things should be composed from these steps, not from values in between.</p>
+  <p>They're defined in <code>src/tokens.css</code> and read from it here, so this page is always current. Type, line height and spacing are proposals: <a href="#without-a-token">the last section</a> lists the values <code>post.css</code> and <code>base.css</code> use today that aren't tokens.</p>
+
+  <h2 id="colour">Colour</h2>
+  <p>Components use the roles. Each role points at a primitive from the palette below.</p>
+  <ul class="roles">
+    {roles.map(t => (
+      <li>
+        <span class="swatch" style={`background: var(--${t.name})`}></span>
+        {LINES.includes(t.name) ? <span class="role-line" style={`border-top-color: var(--${t.name})`}></span>
+          : SURFACES.includes(t.name) ? <span class="role-surface" style={`background: var(--${t.name})`}>Aa</span>
+          : <span class="role-sample" style={`color: var(--${t.name})`}>Aa</span>}
+        <span><code>--{t.name}</code> <span class="dim">→ <code>{t.value.replace(/^var\(|\)$/g, '')}</code> {resolve(t.value)}</span><br><span class="note">{t.note}</span></span>
+      </li>
+    ))}
+  </ul>
+  <h3>Palette</h3>
+  <ul class="chips">
+    {primitives.map(t => (
+      <li>
+        <span class="chip" style={`background: var(--${t.name})`}></span>
+        <code>--{t.name}</code>
+        <span class="dim">{t.value}</span>
+        {t.note && <span class="note">{t.note}</span>}
+      </li>
+    ))}
+  </ul>
+
+  <h2 id="fonts">Fonts</h2>
+  <ul class="specimens">
+    {groups['Fonts'].map(t => (
+      <li>
+        <p class="spec-head"><code>--{t.name}</code> <span class="note">{t.note}</span></p>
+        <p class="font-sample" style={`font-family: var(--${t.name})`}>{sample}</p>
+        <ol class="stack" data-stack>
+          {families(t.value).map(f => <li data-family={f}><span class="family">{f}</span>{GENERIC.has(f) && ' (generic)'}</li>)}
+        </ol>
+        <p class="stack-status note"></p>
+      </li>
+    ))}
+  </ul>
+
+  <h2 id="inline-code">Inline code</h2>
+  <p>Inline code shares the text's baseline, but Courier Prime's lowercase letters are smaller than Inter's: 0.49 of its size against 0.57. At 0.9em its x is 8px tall beside Inter's 10.25px, so its tops and middle sit about 1px low. <code>font-size-adjust</code> sizes a font by its x-height instead of its em box; these are the options, live.</p>
+  <ul class="code-options">
+    {codeOptions.map(o => (
+      <li>
+        <p class="scale-label">{o.label}</p>
+        <p>Worked out from <code style={o.css}>post.css</code> and <code style={o.css}>base.css</code>, as the cascade <code style={o.css}>xoxo</code> does.</p>
+        <p class="note"><code>{o.css}</code> · {o.note}</p>
+      </li>
+    ))}
+  </ul>
+
+  <h2 id="type">Type sizes</h2>
+  <ul class="specimens">
+    {groups['Type sizes'].map(t => (
+      <li>
+        <p class="spec-head"><code>--{t.name}</code> <span class="dim">{t.value} · {remPx(t.value)}</span> <span class="note">{t.note}</span></p>
+        <p class="type-sample" style={`font-size: var(--${t.name})`}>{sample}</p>
+      </li>
+    ))}
+  </ul>
+
+  <h2 id="headings">Headings</h2>
+  <p>A post's headings, styled as in one, with what sets their size, weight and line height at this window width.</p>
+  <div class="heading-scale">
+    {['h1', 'h2', 'h3', 'h4'].map(tag => (
+      <div class="heading-row">
+        <p class="scale-label">{tag}</p>
+        <Fragment set:html={`<${tag} data-heading>Following protocol</${tag}>`} />
+        <p class="heading-note"></p>
+      </div>
+    ))}
+  </div>
+
+  <h2 id="line-height">Line heights</h2>
+  <ul class="columns">
+    {groups['Line heights'].map(t => (
+      <li>
+        <p class="spec-head"><code>--{t.name}</code> <span class="dim">{t.value}</span><br><span class="note">{t.note}</span></p>
+        <p class="leading-sample" style={`line-height: var(--${t.name})`}>{prose}</p>
+      </li>
+    ))}
+  </ul>
+
+  <h2 id="line-heights-in-use">Line heights in use</h2>
+  <p>Each kind of text, styled as in a post, with the line height its CSS declares and what that comes to at this window width, in pixels and as a ratio of the font size. The ratio of <code>--lh-loose</code> and <code>--lh-snug</code> falls as the text gets bigger.</p>
+  {inUse.map(row => (
+    <section class="lh-row">
+      <p class="lh-label">{row.label}</p>
+      <div class="lh-cell">
+        <Fragment set:html={row.html} />
+        <p class="lh-note"></p>
+      </div>
+    </section>
+  ))}
+
+  <h2 id="body-text">Body text compared</h2>
+  <p>A paragraph from a post at the current size and line height, beside how it was and smaller options. Under each: what it comes to here, and roughly how many characters fit on a line. Comfortable reading is usually 60 to 75; smaller text in the same column makes longer lines, which want more line height, unless the paragraph gets narrower too.</p>
+  <ul class="body-options">
+    {bodyOptions.map(o => (
+      <li>
+        <p class="scale-label">{o.label}</p>
+        <p class="body-sample" data-body style={o.css}>{bodySample}</p>
+        <p class="note"><code>{o.css || 'as in post.css'}</code> · <span class="body-measure"></span></p>
+      </li>
+    ))}
+  </ul>
+
+  <h2 id="weights">Weights</h2>
+  <ul class="specimens">
+    {groups['Weights'].map(t => (
+      <li class="row">
+        <code>--{t.name}</code> <span class="dim">{t.value}</span>
+        <span class="weight-sample" style={`font-weight: var(--${t.name})`}>Protocols are political</span>
+        <span class="note">{t.note}</span>
+      </li>
+    ))}
+  </ul>
+  <p class="note">Charter, the serif, only comes in regular and bold, so on serif text 500 and 600 fall back to the nearest of those.</p>
+
+  <h2 id="tracking">Letter spacing</h2>
+  {groups['Letter spacing'].map(t => (
+    <p class="row"><code>--{t.name}</code> <span class="dim">{t.value}</span> <span class="caps-sample">References</span> <span class="note">{t.note}</span></p>
+  ))}
+
+  <h2 id="spacing">Spacing</h2>
+  <p>Steps of 4px, numbered by how many: <code>--space-4</code> is 16px. Some steps are left out on purpose.</p>
+  <ul class="bars">
+    {groups['Spacing'].map(t => (
+      <li>
+        <code>--{t.name}</code>
+        <span class="dim">{t.value} · {remPx(t.value)}</span>
+        <span class="bar" style={`width: var(--${t.name})`}></span>
+      </li>
+    ))}
+  </ul>
+
+  <h2 id="borders">Borders and corners</h2>
+  <ul class="boxes">
+    {groups['Borders'].map(t => (
+      <li>
+        <span class="box" style={`border: var(--${t.name}) solid var(--frame)`}></span>
+        <code>--{t.name}</code> <span class="dim">{t.value}</span><br><span class="note">{t.note}</span>
+      </li>
+    ))}
+    {groups['Corners'].map(t => (
+      <li>
+        <span class="box" style={`border: var(--border-1) solid var(--rule); border-radius: var(--${t.name})`}></span>
+        <code>--{t.name}</code> <span class="dim">{t.value}</span><br><span class="note">{t.note}</span>
+      </li>
+    ))}
+  </ul>
+
+  <h2 id="breakpoints">Breakpoints</h2>
+  <p>@media can't read variables, so these are written out where they're used. The ones that match this window are marked.</p>
+  <div class="scroll">
+  <table class="breakpoints">
+    <thead><tr><th>Query</th><th>Uses</th><th>Now</th></tr></thead>
+    <tbody>
+      {[...breakpoints].sort((a, b) => parseInt(a[0].match(/\d+/)) - parseInt(b[0].match(/\d+/))).map(([query, uses]) => (
+        <tr data-query={query}><td><code>@media {query}</code></td><td>{uses}</td><td class="now">–</td></tr>
+      ))}
+    </tbody>
+  </table>
+  </div>
+
+  <h2 id="composed">Composed</h2>
+  <p>Something new, made only from the scales above.</p>
+  <div class="composed">
+    <p class="composed-label">Working note</p>
+    <p class="composed-title">A card from the same atoms</p>
+    <p class="composed-body">Mono label, semibold title, small body text, a hairline and a corner: every value comes from a token.</p>
+  </div>
+  <Code code={cardCss} lang="css" />
+
+  <h2 id="post">Post layout</h2>
+  <p>The parts of a post, styled as they are in one. Below it, the declarations that style each part at this window's width, worked out from <code>post.css</code> and <code>base.css</code> as the cascade does. Variables are marked; the values without one are the ones to move on to the scales.</p>
+  <div class="specimen" id="specimen">
+    <h1 data-label="h1"><em data-label="h1 em">Where are our manners?</em> A protocol for NHS software</h1>
+    <p class="lede" data-label="intro: p.lede">Our medical records degrade as they move between sites. Interoperability is an externality, and private companies derive competitive advantage from holding our data.</p>
+    <p data-label="p">Protocols are exceedingly British. They define who may do what, when. Software protocols are not APIs or digital platforms. They are the ground rules of a multiplayer system that, if actively governed, can avoid the usual accumulation of power.</p>
+    <h2 data-label="h2">Following protocol</h2>
+    <p>It's the difference between <em>you may use our API if you agree to our terms</em> and <em>here are the rules of the road, let's drive</em>. The former is what you get if one actor provides a platform.</p>
+    <h3 data-label="h3">Market shaping</h3>
+    <figure data-label="figure">
+      <img data-label="img" src="/res/img/posts/2025-02-26-a-blueprint-for-modern-digital-government-1.jpg" alt="The cover of A blueprint for modern digital government" width="1370" height="760">
+      <figcaption data-label="figcaption">A caption sits under its image, a little smaller than the text around it.</figcaption>
+    </figure>
+  </div>
+  <p class="vars-summary" id="vars-summary"></p>
+  <div class="scroll">
+  <table class="drift inspect">
+    <thead><tr><th>Element</th><th>Declarations <span class="dim">(↑ inherited; hover one for the rule it comes from)</span></th></tr></thead>
+    <tbody id="inspect"></tbody>
+  </table>
+  </div>
+
+  <h2 id="without-a-token">Values without a token</h2>
+  <p>Values in the site's CSS that aren't tokens: <code>post.css</code>, <code>base.css</code>, and the styles in its pages, layouts and components. Some are deliberate, and say why in a comment after their semicolon that starts <code>no-token:</code>; those are <a href="#deliberate">listed last</a>. The rest are to review: each is shown with the nearest step, and nothing changes until we decide.</p>
+  {Object.entries(drift).map(([scale, { onScale, off }]) => (
+    <>
+      <h3>{scale}</h3>
+      <p class="note">{onScale} uses are already on the scale; {off.reduce((n, o) => n + o.where.size, 0)} rules use {off.length} values that aren't.</p>
+      <div class="scroll">
+      <table class="drift">
+        <thead><tr><th>In use</th><th>Nearest step</th><th>Where</th></tr></thead>
+        <tbody>
+          {off.map(o => (
+            <tr>
+              <td><code>{o.value}</code> <span class="dim">{remPx(o.value)}</span></td>
+              <td>{!o.nearest.length && '–'}{o.nearest.map((t, i) => <>{i > 0 && ' or '}<code>--{t.name}</code> <span class="dim">{t.n > o.n ? '+' : ''}{+(t.n - o.n).toFixed(2)}{px(o.value) === null ? '' : 'px'}</span></>)}</td>
+              <td class="where">{[...o.where].join(', ')}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      </div>
+    </>
+  ))}
+  <h3>Spacing relative to text</h3>
+  <p class="note">These use em on purpose, so the rhythm of prose grows with its text. Listed for reference, not review.</p>
+  <div class="scroll">
+  <table class="drift">
+    <thead><tr><th>Value</th><th>Property</th><th>Where</th></tr></thead>
+    <tbody>
+      {relative.map(d => <tr><td><code>{d.value}</code></td><td>{d.prop}</td><td class="where">{d.selector}</td></tr>)}
+    </tbody>
+  </table>
+  </div>
+  <h3>Colours written out</h3>
+  <p class="note">Colour values not taken from a token. Where one matches a primitive exactly, that's the token to use.</p>
+  <div class="scroll">
+  <table class="drift">
+    <thead><tr><th>Value</th><th>Token</th><th>Where</th></tr></thead>
+    <tbody>
+      {colours.map(d => {
+        const literal = d.value.match(/#[0-9a-f]{3,8}\b|(rgb|hsl)a?\([^)]*\)/i)[0]
+        return <tr><td><span class="chip small" style={`background: ${literal}`}></span> <code>{d.value}</code></td><td>{primitiveFor(literal) ? <code>--{primitiveFor(literal)}</code> : '–'}</td><td class="where">{d.selector} <span class="dim">({d.file})</span></td></tr>
+      })}
+    </tbody>
+  </table>
+  </div>
+  <h3 id="deliberate">Deliberate</h3>
+  <p class="note">Values marked <code>no-token</code>, with the reason given.</p>
+  <div class="scroll">
+  <table class="drift">
+    <thead><tr><th>Value</th><th>Why</th><th>Where</th></tr></thead>
+    <tbody>
+      {deliberate.map(d => <tr><td><code>{d.prop}: {d.value}</code></td><td class="why">{d.reason}</td><td class="where">{d.selector} <span class="dim">({d.file})</span></td></tr>)}
+    </tbody>
+  </table>
+  </div>
+</div>
+</Layout>
+
+<script>
+  // Fonts: mark the family in each stack this browser is using. Web fonts
+  // report through document.fonts whether they loaded, so the first one that
+  // did is the font in use. Before that point, a web font that failed is
+  // marked as such. If the stack reaches an installed or generic family
+  // first, the browser takes the first of those it has, which a page can't
+  // see without measuring text, so those are marked as the candidates.
+  async function markFonts () {
+    await document.fonts.ready
+    const faces = [...document.fonts]
+    for (const list of document.querySelectorAll<HTMLElement>('[data-stack]')) {
+      let status = ''
+      let decided = false
+      for (const li of list.querySelectorAll<HTMLElement>('li')) {
+        li.classList.remove('active', 'failed', 'candidate')
+        if (decided) { if (status === 'system') li.classList.add('candidate'); continue }
+        const own = faces.filter(f => f.family.replace(/^["']|["']$/g, '') === li.dataset.family)
+        if (own.some(f => f.status === 'loaded')) {
+          li.classList.add('active')
+          decided = true
+        } else if (own.length) {
+          li.classList.add('failed')
+        } else {
+          li.classList.add('candidate')
+          status = 'system'
+          decided = true
+        }
+      }
+      list.nextElementSibling!.textContent = status === 'system'
+        ? 'No web font in this stack loaded here, so the browser is using the first of the marked fonts that this device has. A page can\'t tell which without measuring text.'
+        : status
+    }
+  }
+  markFonts()
+  document.fonts.addEventListener('loadingdone', markFonts)
+
+  // Body text compared: size, line height, and characters per line: the
+  // paragraph's width over the average width of its characters, measured
+  // in its own font.
+  const ruler = document.createElement('canvas').getContext('2d')!
+  function measureBody () {
+    for (const el of document.querySelectorAll<HTMLElement>('[data-body]')) {
+      const style = getComputedStyle(el)
+      ruler.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`
+      const text = el.textContent!
+      const perLine = Math.round(el.clientWidth / (ruler.measureText(text).width / text.length))
+      el.parentElement!.querySelector('.body-measure')!.textContent = `${style.fontSize} text, ${style.lineHeight} line height, about ${perLine} characters a line`
+    }
+  }
+  document.fonts.ready.then(measureBody)
+  addEventListener('resize', measureBody)
+
+  // Post layout: for each part of the example post, the declarations that win
+  // the cascade for it, from post.css and from base.css's own rules (not
+  // the reset's), at this window width. A rule in a layer loses to one outside
+  // any layer; then the more specific selector wins; then the later rule. A
+  // property an element doesn't set, but inherits, comes from the nearest
+  // ancestor that does. The browser's own styles aren't read, so font-style
+  // isn't followed up the tree: an em is italic by default, not by inheritance.
+  type Rule = { rule: CSSStyleRule, file: string, layered: boolean, media: string[], order: number }
+  const INHERITED = ['color', 'font-family', 'font-size', 'font-weight', 'line-height', 'letter-spacing']
+  const ORDER = ['color', 'background', 'background-color', 'font-family', 'font-size', 'font-weight', 'font-style', 'line-height', 'letter-spacing']
+
+  function sourceOf (sheet: CSSStyleSheet) {
+    const node = sheet.ownerNode as Element | null
+    const id = node?.getAttribute('data-vite-dev-id') ?? sheet.href ?? ''
+    if (/post\.css|\/2025\.[^/]*\.css/.test(id)) return 'post.css'
+    if (/base\.css|\/base\.[^/]*\.css/.test(id)) return 'base.css'
+    return null
+  }
+
+  function collect (rules: CSSRuleList, file: string, layered: boolean, media: string[], out: Rule[]) {
+    for (const r of rules) {
+      if (r instanceof CSSStyleRule) {
+        if (!r.selectorText.includes('data-astro-cid') && !(file === 'base.css' && layered)) out.push({ rule: r, file, layered, media, order: out.length })
+      } else if (r instanceof CSSMediaRule) collect(r.cssRules, file, layered, [...media, r.conditionText], out)
+      else if (r instanceof CSSLayerBlockRule) collect(r.cssRules, file, true, media, out)
+      else if (r instanceof CSSSupportsRule) collect(r.cssRules, file, layered, media, out)
+    }
+  }
+
+  // Split on commas that aren't inside brackets.
+  function splitTop (text: string) {
+    const parts = []; let depth = 0, start = 0
+    for (let i = 0; i < text.length; i++) {
+      if ('(['.includes(text[i])) depth++
+      else if (')]'.includes(text[i])) depth--
+      else if (text[i] === ',' && depth === 0) { parts.push(text.slice(start, i)); start = i + 1 }
+    }
+    return [...parts, text.slice(start)].map(p => p.trim())
+  }
+
+  // [ids, classes, types]. :where() counts nothing; :is(), :not() and :has()
+  // count as their most specific argument.
+  function specificity (selector: string): number[] {
+    let total = [0, 0, 0]
+    let rest = ''
+    for (let i = 0; i < selector.length; i++) {
+      const m = selector.slice(i).match(/^:(where|is|not|has)\(/)
+      if (!m) { rest += selector[i]; continue }
+      let depth = 1, j = i + m[0].length
+      for (; j < selector.length && depth; j++) depth += selector[j] === '(' ? 1 : selector[j] === ')' ? -1 : 0
+      if (m[1] !== 'where') {
+        const best = splitTop(selector.slice(i + m[0].length, j - 1)).map(specificity).sort(compare).at(-1)!
+        total = total.map((n, k) => n + best[k])
+      }
+      i = j - 1
+    }
+    rest = rest.replace(/\[[^\]]*\]/g, () => { total[1]++; return ' ' })
+    rest = rest.replace(/::[\w-]+/g, () => { total[2]++; return ' ' })
+    rest = rest.replace(/#[\w-]+/g, () => { total[0]++; return ' ' })
+    rest = rest.replace(/[.:][\w-]+/g, () => { total[1]++; return ' ' })
+    total[2] += (rest.match(/(^|[\s>+~])[a-z][\w-]*/gi) ?? []).length
+    return total
+  }
+  const compare = (a: number[], b: number[]) => a[0] - b[0] || a[1] - b[1] || a[2] - b[2]
+
+  // margin and padding split into their sides, so a later margin-top can
+  // override one side of an earlier margin.
+  function declarations (rule: CSSStyleRule) {
+    const out: [string, string][] = []
+    for (const part of rule.style.cssText.split(/;(?![^(]*\))/)) {
+      const i = part.indexOf(':')
+      if (i < 0) continue
+      const prop = part.slice(0, i).trim(), value = part.slice(i + 1).trim()
+      const sides = ['top', 'right', 'bottom', 'left']
+      if (prop === 'margin' || prop === 'padding') {
+        const v = value.match(/(?:[\w.-]+\([^)]*\)|\S)+/g) ?? []
+        const four = [v[0], v[1] ?? v[0], v[2] ?? v[0], v[3] ?? v[1] ?? v[0]]
+        sides.forEach((side, k) => out.push([`${prop}-${side}`, four[k]]))
+      } else out.push([prop, value])
+    }
+    return out
+  }
+
+  function winners (el: Element, rules: Rule[]) {
+    const best = new Map<string, { value: string, rule: Rule, spec: number[] }>()
+    for (const r of rules) {
+      if (!r.media.every(q => matchMedia(q).matches)) continue
+      const matching = splitTop(r.rule.selectorText).filter(sel => { try { return el.matches(sel) } catch { return false } })
+      if (!matching.length) continue
+      const spec = matching.map(specificity).sort(compare).at(-1)!
+      for (const [prop, value] of declarations(r.rule)) {
+        const current = best.get(prop)
+        const beats = !current || (Number(!r.layered) - Number(!current.rule.layered) || compare(spec, current.spec) || r.order - current.rule.order) >= 0
+        if (beats) best.set(prop, { value, rule: r, spec })
+      }
+    }
+    return best
+  }
+
+  // The declaration an element inherits a property from: the nearest
+  // ancestor that sets it.
+  function inherited (el: Element, prop: string, rules: Rule[]) {
+    for (let up = el.parentElement; up; up = up.parentElement) {
+      const w = winners(up, rules).get(prop)
+      if (w) return w
+    }
+    return null
+  }
+
+  const describe = (r: Rule) => `${r.rule.selectorText.replace(/\s+/g, ' ')}${r.media.length ? ` @media ${r.media.join(' and ')}` : ''} (${r.file})`
+
+  function inspect () {
+    const rules: Rule[] = []
+    for (const sheet of document.styleSheets) {
+      const file = sourceOf(sheet)
+      if (!file) continue
+      try { collect(sheet.cssRules, file, false, [], rules) } catch {}
+    }
+    rules.forEach((r, i) => { r.order = i })
+    const rows: string[] = []
+    const used = new Set<string>()
+    const escape = (t: string) => t.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]!))
+    for (const el of document.querySelectorAll('#specimen [data-label]')) {
+      const own = winners(el, rules)
+      // Zero margins and padding are mostly the unset sides of a shorthand.
+      const found = [...own].filter(([prop, w]) => !(/^(margin|padding)-/.test(prop) && /^0(px)?$/.test(w.value)))
+        .map(([prop, w]) => ({ prop, ...w, from: describe(w.rule) }))
+      for (const prop of INHERITED) {
+        if (own.has(prop)) continue
+        const w = inherited(el, prop, rules)
+        if (w) found.push({ prop, ...w, from: `inherited from ${describe(w.rule)}` })
+      }
+      found.sort((a, b) => (ORDER.indexOf(a.prop) + 1 || 99) - (ORDER.indexOf(b.prop) + 1 || 99) || a.prop.localeCompare(b.prop))
+      const decls: string[] = []
+      found.forEach(f => {
+        const vars = [...f.value.matchAll(/var\((--[\w-]+)/g)].map(m => m[1])
+        vars.forEach(v => used.add(v))
+        // A font stack shows its first family; the rest is in the tooltip.
+        const shown = f.prop === 'font-family' && !vars.length ? f.value.split(',')[0].replace(/"/g, '') + ', …' : f.value
+        const value = vars.length
+          ? escape(shown).replace(/var\((--[\w-]+)([^)]*)\)/g, '<mark>var($1$2)</mark>')
+          : `<span class="lit">${escape(shown)}</span>`
+        if (shown !== f.value) f.from = `${f.from}\n${f.value}`
+        decls.push(`<span class="decl${f.from.startsWith('inherited') ? ' inherited' : ''}" title="${escape(f.from)}">${f.prop}: <code>${value}</code></span>`)
+      })
+      rows.push(`<tr><td><code>${(el as HTMLElement).dataset.label}</code></td><td class="decls">${decls.join(' ')}</td></tr>`)
+    }
+    document.getElementById('inspect')!.innerHTML = rows.join('')
+
+    // Headings: each one's size, weight and line height, the declaration
+    // behind it (a variable is marked), and what it comes to here.
+    for (const el of document.querySelectorAll('.heading-scale [data-heading]')) {
+      const own = winners(el, rules)
+      const style = getComputedStyle(el)
+      const parts = [['font-size', style.fontSize], ['font-weight', style.fontWeight], ['line-height', style.lineHeight]].map(([prop, computed]) => {
+        const w = own.get(prop) ?? inherited(el, prop, rules)
+        const value = w ? escape(w.value).replace(/var\((--[\w-]+)\)/g, '<mark>var($1)</mark>') : '–'
+        const via = w && !own.has(prop) ? ' <span class="dim">inherited</span>' : ''
+        return `${prop}: <code>${value}</code>${via} <span class="dim">= ${computed}</span>`
+      })
+      el.parentElement!.querySelector('.heading-note')!.innerHTML = parts.join(' · ')
+    }
+
+    // Line heights in use: the declared line height, then what it comes to
+    // here, in pixels and as a ratio of the font size.
+    for (const cell of document.querySelectorAll('.lh-cell')) {
+      const el = cell.querySelector('[data-lh]')!
+      const w = winners(el, rules).get('line-height') ?? inherited(el, 'line-height', rules)
+      const declared = w ? escape(w.value).replace(/var\((--[\w-]+)\)/g, '<mark>var($1)</mark>') : '–'
+      const style = getComputedStyle(el)
+      const lh = parseFloat(style.lineHeight), size = parseFloat(style.fontSize)
+      cell.querySelector('.lh-note')!.innerHTML = `line-height: <code>${declared}</code> <span class="dim">= ${+lh.toFixed(1)}px on ${+size.toFixed(1)}px text · ${(lh / size).toFixed(2)}</span>`
+    }
+    document.getElementById('vars-summary')!.innerHTML = `Variables in use at this width: ${[...used].sort().map(v => `<code>${v}</code>`).join(', ')}.`
+  }
+  inspect()
+  let resizing: number | undefined
+  addEventListener('resize', () => { clearTimeout(resizing); resizing = window.setTimeout(inspect, 150) })
+
+  // Mark the breakpoints that match the window, as it's resized.
+  for (const row of document.querySelectorAll<HTMLElement>('tr[data-query]')) {
+    const query = matchMedia(row.dataset.query!)
+    const mark = () => { row.querySelector('.now')!.textContent = query.matches ? '● yes' : '–' }
+    query.addEventListener('change', mark)
+    mark()
+  }
+</script>
+
+<style>
+  /* Every value here comes from src/tokens.css. */
+  .atoms > h1 {
+    margin-bottom: var(--space-4);
+  }
+  .atoms > h2 {
+    margin-top: var(--space-16);
+    padding-top: var(--space-4);
+    border-top: var(--border-1) solid var(--rule);
+  }
+  .atoms > ul {
+    list-style: none;
+    margin: var(--space-6) 0;
+    padding: 0;
+  }
+  .atoms > ul > li {
+    margin: 0;
+  }
+  .dim {
+    color: var(--muted);
+    font-size: var(--type-sm);
+  }
+  .note {
+    color: var(--muted);
+    font-size: var(--type-sm);
+    line-height: var(--lh-snug);
+  }
+  .atoms :not(pre) > code {
+    font-size: var(--type-sm);
+  }
+
+  /* Colour */
+  .roles li {
+    display: grid;
+    grid-template-columns: var(--space-12) var(--space-12) 1fr;
+    gap: var(--space-4);
+    align-items: center;
+    padding: var(--space-3) 0;
+    border-bottom: var(--border-1) solid var(--hairline);
+  }
+  .swatch,
+  .chip {
+    display: block;
+    width: var(--space-12);
+    height: var(--space-12);
+    border: var(--border-1) solid var(--hairline);
+    border-radius: var(--radius-3);
+  }
+  .role-sample {
+    font-family: var(--serif);
+    font-size: var(--type-xl);
+    font-weight: var(--weight-bold);
+  }
+  .role-line {
+    display: block;
+    border-top: var(--border-3) solid;
+  }
+  .role-surface {
+    padding: var(--space-1) var(--space-2);
+    border: var(--border-1) solid var(--hairline);
+    border-radius: var(--radius-2);
+    font-family: var(--serif);
+    font-size: var(--type-xl);
+    font-weight: var(--weight-bold);
+    color: var(--ink);
+    text-align: center;
+  }
+  .chips {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
+    gap: var(--space-4);
+  }
+  .chips li {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    line-height: var(--lh-tight);
+  }
+  .chips .chip {
+    width: 100%;
+  }
+  .chip.small {
+    display: inline-block;
+    width: var(--space-4);
+    height: var(--space-4);
+    vertical-align: middle;
+    border-radius: var(--radius-1);
+  }
+
+  /* Type */
+  .specimens > li {
+    padding: var(--space-4) 0;
+    border-bottom: var(--border-1) solid var(--hairline);
+  }
+  .specimens p {
+    margin: 0;
+  }
+  .spec-head {
+    line-height: var(--lh-tight);
+  }
+  .font-sample,
+  .type-sample {
+    margin-top: var(--space-2);
+    color: var(--ink);
+    line-height: var(--lh-snug);
+  }
+  .font-sample {
+    font-size: var(--type-xl);
+  }
+  .stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1) var(--space-2);
+    margin: var(--space-3) 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: var(--type-sm);
+    line-height: var(--lh-tight);
+    color: var(--muted);
+  }
+  .stack li {
+    margin: 0;
+  }
+  .stack li:not(:last-child)::after {
+    content: ",";
+    color: var(--muted);
+  }
+  .stack li.active .family {
+    background: var(--highlight);
+    color: var(--ink);
+  }
+  .stack li.failed {
+    text-decoration: line-through;
+  }
+  .stack li.candidate {
+    color: var(--ink);
+  }
+  .stack-status {
+    margin: var(--space-2) 0 0;
+  }
+  .columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: var(--space-6);
+  }
+  .leading-sample {
+    margin-top: var(--space-2);
+    font-size: var(--type-sm);
+    color: var(--ink);
+  }
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-2) var(--space-4);
+  }
+  .weight-sample {
+    font-size: var(--type-lg);
+    color: var(--ink);
+  }
+  .caps-sample {
+    font-family: var(--mono);
+    font-size: var(--type-xs);
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* Body text compared */
+  .body-options > li {
+    padding: var(--space-4) 0;
+    border-bottom: var(--border-1) solid var(--hairline);
+  }
+  .body-options p {
+    margin: 0;
+  }
+  .body-options .body-sample {
+    margin-bottom: var(--space-2);
+  }
+
+  /* Inline code */
+  .code-options > li {
+    padding: var(--space-4) 0;
+    border-bottom: var(--border-1) solid var(--hairline);
+  }
+  .code-options p {
+    margin: 0;
+  }
+  .code-options .note {
+    margin-top: var(--space-1);
+  }
+
+  /* Headings */
+  .heading-row {
+    padding: var(--space-4) 0;
+    border-bottom: var(--border-1) solid var(--hairline);
+  }
+  .heading-row > :global(:is(h1, h2, h3, h4, h5, h6)) {
+    margin: 0;
+  }
+  .scale-label,
+  .lh-label {
+    margin: 0 0 var(--space-2);
+    font: var(--weight-normal) var(--type-xs) / var(--lh-tight) var(--mono);
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .heading-note {
+    margin: var(--space-2) 0 0;
+    font-size: var(--type-sm);
+    line-height: var(--lh-snug);
+  }
+  .heading-note :global(mark) {
+    padding: 0 var(--space-1);
+    border-radius: var(--radius-1);
+    background: var(--highlight);
+    color: var(--ink);
+  }
+
+  /* Line heights in use */
+  .lh-row {
+    padding: var(--space-6) 0;
+    border-bottom: var(--border-1) solid var(--hairline);
+  }
+  .lh-cell > :global(*) {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .lh-cell .lh-note {
+    margin-top: var(--space-2);
+    font-size: var(--type-sm);
+    line-height: var(--lh-snug);
+  }
+  .lh-note :global(mark) {
+    padding: 0 var(--space-1);
+    border-radius: var(--radius-1);
+    background: var(--highlight);
+    color: var(--ink);
+  }
+  .lh-cell :global(blockquote),
+  .lh-cell :global(figure) {
+    margin: 0;
+  }
+
+  /* Spacing, borders, corners */
+  .bars li {
+    display: grid;
+    grid-template-columns: 7rem 8rem 1fr;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-2) 0;
+  }
+  .bar {
+    display: block;
+    height: var(--space-4);
+    background: var(--frame);
+  }
+  .boxes {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+    gap: var(--space-6);
+    line-height: var(--lh-tight);
+  }
+  .box {
+    display: block;
+    width: var(--space-16);
+    height: var(--space-16);
+    margin-bottom: var(--space-2);
+    background: var(--paper);
+  }
+
+  /* Tables scroll sideways on narrow screens rather than widen the page. */
+  .scroll {
+    overflow-x: auto;
+  }
+  .breakpoints .now {
+    white-space: nowrap;
+  }
+  .drift {
+    font-size: var(--type-sm);
+  }
+  .drift td {
+    vertical-align: top;
+  }
+  .drift td:not(.where) {
+    white-space: nowrap;
+  }
+  .drift .why {
+    min-width: 14rem;
+    white-space: normal;
+  }
+  .where {
+    color: var(--muted);
+    font-size: var(--type-xs);
+    line-height: var(--lh-snug);
+  }
+
+  /* Post layout: the example sits on a sheet of paper, as a post's text does
+     on the page. */
+  .specimen {
+    margin: var(--space-6) 0;
+    padding: var(--space-8) var(--space-6);
+    border: var(--border-1) solid var(--hairline);
+    border-radius: var(--radius-3);
+    background: var(--page);
+  }
+  .specimen > :first-child {
+    margin-top: 0;
+  }
+  .specimen > :last-child {
+    margin-bottom: 0;
+  }
+  .vars-summary {
+    font-size: var(--type-sm);
+  }
+  /* The rows are added by the script, so they're outside this page's scoped
+     styles: these reach them with :global(). */
+  .inspect :global(td) {
+    vertical-align: top;
+  }
+  .inspect :global(td:first-child) {
+    white-space: nowrap;
+  }
+  .inspect :global(.decl) {
+    display: inline-block;
+    margin: 0 var(--space-3) var(--space-1) 0;
+    white-space: nowrap;
+    cursor: help;
+  }
+  .inspect :global(.decl.inherited)::before {
+    content: "↑ ";
+    color: var(--muted);
+  }
+  .inspect :global(.lit) {
+    color: var(--muted);
+  }
+  .inspect :global(mark) {
+    padding: 0 var(--space-1);
+    border-radius: var(--radius-1);
+    background: var(--highlight);
+    color: var(--ink);
+  }
+
+  /* Composed */
+  .composed {
+    max-width: 24rem;
+    padding: var(--space-4) var(--space-6);
+    border: var(--border-1) solid var(--hairline);
+    border-radius: var(--radius-3);
+    background: var(--paper);
+  }
+  .composed p {
+    margin: 0;
+  }
+  .composed-label {
+    font: var(--weight-normal) var(--type-xs) / var(--lh-tight) var(--mono);
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .composed-title {
+    margin-top: var(--space-1);
+    font-size: var(--type-lg);
+    font-weight: var(--weight-semibold);
+    line-height: var(--lh-snug);
+    color: var(--ink);
+  }
+  .composed .composed-body {
+    margin-top: var(--space-2);
+    font-size: var(--type-sm);
+    line-height: var(--lh-snug);
+  }
+</style>

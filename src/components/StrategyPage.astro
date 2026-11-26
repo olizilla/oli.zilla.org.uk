@@ -4,6 +4,7 @@
 import Layout from '../layouts/2025.astro'
 import Related from '../pages/nhs-data-strategy/_related.mdx'
 import MarkdownIt from 'markdown-it'
+import { render } from 'astro:content'
 
 const { entry, versions } = Astro.props
 const md = new MarkdownIt({ linkify: true, typographer: true })
@@ -14,7 +15,7 @@ const href = v => `/nhs-data-strategy/v${v.data.version}/`
 
 const latest = versions[0]
 const isLatest = entry.data.version === latest.data.version
-const { Content } = await entry.render()
+const { Content } = await render(entry)
 
 const frontmatter = {
   title: 'Towards a strategy for NHS data',

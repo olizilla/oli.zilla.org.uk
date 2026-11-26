@@ -1,5 +1,5 @@
 diff --git a/node_modules/@astrojs/rss/dist/index.js b/node_modules/@astrojs/rss/dist/index.js
-index db49641..eb7472d 100644
+index 6a60b1e..0c76cff 100644
 --- a/node_modules/@astrojs/rss/dist/index.js
 +++ b/node_modules/@astrojs/rss/dist/index.js
 @@ -100,7 +100,8 @@ async function generateRSS(rssOptions) {

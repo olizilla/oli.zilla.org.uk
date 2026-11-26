@@ -29,6 +29,7 @@ const tagline = frontmatter?.tagline || Astro.props.tagline || "Oli Evans (olizi
     background: url(https://tableflip.io/img/tableflip.min.svg) no-repeat;
     background-size: 100% auto;
     font-size:0;
+    -webkit-user-select: none; /* older Safari; autoprefixer used to add it */
     user-select: none;
     opacity: 0.8;
     transition: all 400ms;
