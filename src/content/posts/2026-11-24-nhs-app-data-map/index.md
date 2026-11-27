@@ -19,13 +19,17 @@ It also sets us up for _consent-based sharing_ where they choose to hand over th
 
 ### How data gets into the NHS App
 
+_Click on a box to see more info._
+
 <div class="letterbox"><img
 	data-inline
 	src="/res/img/posts/2026-11-24-nhs-app-data-map.svg"
 	alt="Diagram of how data reaches the NHS App. On the left are national services, GP practices and hospital trusts and regional services. Their lines run to the NHS App backend in the middle, or straight to the NHS App on the right as web views. Red lines are IM1, from EMIS and TPP. Orange lines are FHIR. Dashed lines are web views, where the data stays with the source."
 /></div>
 
-<small>Select a box to see its sources, or [open the image on its own page](/res/img/posts/2026-11-24-nhs-app-data-map.svg). Drawn from the [public sources](#sources). The main ones are NHS England's data protection impact assessment (DPIA) for the NHS App, its master data specification (MDS) and its technical specification.</small>
+<small><strong>Figure 1: </strong>Drawn from [public sources](#sources). NHS England's data protection impact assessment (DPIA) for the NHS App, its master data specification (MDS) and its technical specification, provide the bulk of the sources.
+Click on a box to see its sources, or [open the image on its own page](/res/img/posts/2026-11-24-nhs-app-data-map.svg).</small>
+
 
 ### Recommendations
 
